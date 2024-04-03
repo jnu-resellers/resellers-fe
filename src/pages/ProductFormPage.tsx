@@ -10,54 +10,58 @@ import {
   Select,
   Text,
   Textarea,
-  VStack,
   theme,
 } from '@chakra-ui/react';
 import styled from 'styled-components';
+import SectionTitle from '../components/ProductForm/SectionTitle';
+import InputTitle from '../components/ProductForm/InputTitle';
 
 const ProductFormPage = () => {
   return (
-    <VStack w="100%">
-      <Box w="100%">
+    <Box w="100%">
+      <Box w="100%" mb={9}>
         <Heading as="h2" size="2xl">
           기자재 판매 등록
         </Heading>
       </Box>
       <TitleDivider />
-      <Flex>
-        <Text>제목</Text>
-        <Input placeholder="안녕" size="md" />
-      </Flex>
-      <Flex>
-        <Text>업종 선택</Text>
-        <Select placeholder="업종" size="md">
-          <option value="option1">option1</option>
-        </Select>
-      </Flex>
-      <Heading as="h3" size="lg">
-        판매상품
-      </Heading>
-      <Divider />
+      <Box my={12}>
+        <Flex align="center" mb={10}>
+          <InputTitle title="제목" />
+          <Input
+            placeholder="인상깊은 제목을 작성해주세요."
+            size="md"
+            w={{ base: '20rem', sm: '20rem', md: '20rem', lg: '40rem' }}
+          />
+        </Flex>
+        <Flex>
+          <InputTitle title="업종선택" />
+          <Select
+            placeholder="업종"
+            size="md"
+            w={{ base: '20rem', sm: '20rem', md: '20rem', lg: '40rem' }}
+          >
+            <option value="option1">option1</option>
+          </Select>
+        </Flex>
+      </Box>
+      <SectionTitle title="판매 상품" />
       {/* product in here */}
-      <Divider />
-      <Heading as="h3" size="lg">
-        상품추가
-      </Heading>
-      <Divider />
+      <SectionTitle title="상품 추가" />
       <Box>
         <Heading as="h4" size="md">
           이미지 추가
         </Heading>
         <Flex>
-          <Text>상품 명</Text>
+          <InputTitle title="상품명" />
           <Input placeholder="올바른 상품명을 입력해주세요." size="md" />
         </Flex>
         <Flex>
-          <Text>가격</Text>
+          <InputTitle title="가격" />
           <Input placeholder="숫자만 입력해주세요" size="md" />
         </Flex>
         <Flex>
-          <Text>설명</Text>
+          <InputTitle title="설명" />
           <Textarea placeholder="상품에 대해 설명해주세요" size="md" />
         </Flex>
         <Button color="white" bgColor={theme.colors.orange[200]}>
@@ -65,16 +69,14 @@ const ProductFormPage = () => {
         </Button>
         <Divider />
         <Box>
-          <Heading as="h3" size="lg">
-            멘토링 여부
-          </Heading>
+          <SectionTitle title="멘토링 여부" />
           <RadioGroup>
             <Radio colorScheme="orange">예</Radio>
             <Radio colorScheme="orange">아니요</Radio>
           </RadioGroup>
         </Box>
       </Box>
-    </VStack>
+    </Box>
   );
 };
 

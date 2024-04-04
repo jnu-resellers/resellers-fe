@@ -1,11 +1,11 @@
 import { Box, Button, Flex, Input, Select, theme } from '@chakra-ui/react';
-import InputTitle from '../components/ProductForm/InputTitle';
-import ProductList from '../components/ProductForm/ProductList';
-import PageLayout from '../layouts/PageLayout';
-import Header from '../components/Header';
-import AddProductForm from '../components/ProductForm/AddProductForm';
-import MentoringSelect from '../components/ProductForm/MentoringSelect';
-import PageTitle from '../components/ProductForm/PageTitle';
+import InputTitle from '@/components/ProductForm/InputTitle';
+import ProductList from '@/components/ProductForm/ProductList';
+import PageLayout from '@/layouts/PageLayout';
+import Header from '@/components/Header';
+import AddProductForm from '@/components/ProductForm/AddProductForm';
+import MentoringSelect from '@/components/ProductForm/MentoringSelect';
+import PageTitle from '@/components/ProductForm/PageTitle';
 
 const ProductFormPage = () => {
   return (

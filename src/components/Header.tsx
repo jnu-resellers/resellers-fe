@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react';
-import Logo from '../assets/logo.png';
+import Logo from '@/assets/logo.png';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 

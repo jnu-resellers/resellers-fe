@@ -1,4 +1,4 @@
-import { Center } from '@chakra-ui/react';
+import { Box, Center } from '@chakra-ui/react';
 import { PropsWithChildren } from 'react';
 /** break point
  * base: "0em",0px
@@ -11,7 +11,13 @@ import { PropsWithChildren } from 'react';
 interface PageLayoutProps extends PropsWithChildren {}
 
 const PageLayout = ({ children }: PageLayoutProps) => {
-  return <Center w="100%">{children}</Center>;
+  return (
+    <Center w="100%">
+      <Box w={{ lg: '100%', xl: '80rem' }} p={10}>
+        {children}
+      </Box>
+    </Center>
+  );
 };
 
 export default PageLayout;

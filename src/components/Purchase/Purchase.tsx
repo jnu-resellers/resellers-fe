@@ -15,7 +15,7 @@ export interface PurchaseDetailsProps {
   error: string | null;
 }
 
-const category = "요식업";
+const CATEGORY = "요식업";
 const RESPONSE: PurchaseDetailsProps = {
   title: "기자재 구매",
   writer: "김기자",
@@ -42,42 +42,38 @@ const RESPONSE: PurchaseDetailsProps = {
   error: null,
 };
 
-const productsProps = RESPONSE.products;
-
 export const Purchase = () => {
   return (
-    <>
-      <Box w="100%">
-        <Flex justifyContent="start" alignItems="center">
-          <Text fontSize={"xx-large"} fontWeight={"600"} mr={"2rem"}>
-            기자재 구매
-          </Text>
-          <Text fontSize="larger">업종 : {category}</Text>
-        </Flex>
-        <Divider orientation="horizontal" />
-        <Flex flexDirection="row">
-          <PurchaseImages products={productsProps} />
-          <Box w={"100%"} mr={"8rem"}>
-            <PurchaseDetails
-              title={RESPONSE.title}
-              writer={RESPONSE.writer}
-              products={RESPONSE.products}
-              error={RESPONSE.error}
-            />
-            <Button
-              display={"flex"}
-              colorScheme={"orange"}
-              w={"16rem"}
-              h={"4rem"}
-              fontSize={"1.25rem"}
-              justifyContent={"center"}
-              float={"right"}
-            >
-              거래하러 하기
-            </Button>
-          </Box>
-        </Flex>
-      </Box>
-    </>
+    <Box w="100%">
+      <Flex justifyContent="start" alignItems="center">
+        <Text fontSize={"xx-large"} fontWeight={"600"} mr={"2rem"}>
+          기자재 구매
+        </Text>
+        <Text fontSize="larger">업종 : {CATEGORY}</Text>
+      </Flex>
+      <Divider orientation="horizontal" />
+      <Flex flexDirection="row">
+        <PurchaseImages products={RESPONSE.products} />
+        <Box w={"100%"} mr={"8rem"}>
+          <PurchaseDetails
+            title={RESPONSE.title}
+            writer={RESPONSE.writer}
+            products={RESPONSE.products}
+            error={RESPONSE.error}
+          />
+          <Button
+            display={"flex"}
+            colorScheme={"orange"}
+            w={"16rem"}
+            h={"4rem"}
+            fontSize={"1.25rem"}
+            justifyContent={"center"}
+            float={"right"}
+          >
+            거래하러 하기
+          </Button>
+        </Box>
+      </Flex>
+    </Box>
   );
 };

@@ -46,7 +46,7 @@ export const Purchase = () => {
   return (
     <Box w="100%">
       <Flex justifyContent="start" alignItems="center">
-        <Text fontSize={"xx-large"} fontWeight={"600"} mr={"2rem"}>
+        <Text fontSize="xx-large" fontWeight="600" mr="2rem">
           기자재 구매
         </Text>
         <Text fontSize="larger">업종 : {CATEGORY}</Text>
@@ -54,7 +54,7 @@ export const Purchase = () => {
       <Divider orientation="horizontal" />
       <Flex flexDirection="row">
         <PurchaseImages products={RESPONSE.products} />
-        <Box w={"100%"} mr={"8rem"}>
+        <Box w="100%" mr="8rem">
           <PurchaseDetails
             title={RESPONSE.title}
             writer={RESPONSE.writer}
@@ -62,13 +62,13 @@ export const Purchase = () => {
             error={RESPONSE.error}
           />
           <Button
-            display={"flex"}
-            colorScheme={"orange"}
-            w={"16rem"}
-            h={"4rem"}
-            fontSize={"1.25rem"}
-            justifyContent={"center"}
-            float={"right"}
+            display="flex"
+            colorScheme="orange"
+            w="16rem"
+            h="4rem"
+            fontSize="1.25rem"
+            justifyContent="center"
+            float="right"
           >
             거래하러 하기
           </Button>

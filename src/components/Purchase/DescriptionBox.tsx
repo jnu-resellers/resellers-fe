@@ -6,11 +6,11 @@ interface DescriptionBoxProps {
 
 export const DescriptionBox = ({ description }: DescriptionBoxProps) => {
   return (
-    <Box bgColor="#F5F5F5" mb={"2rem"}>
-      <Text mb={"2rem"} p={"2rem"}>
+    <Box bgColor="#F5F5F5" mb="2rem">
+      <Text mb="2rem" p="2rem">
         {description}
       </Text>
-      <Divider orientation={"horizontal"} />
+      <Divider orientation="horizontal" />
     </Box>
   );
 };

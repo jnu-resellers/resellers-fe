@@ -41,6 +41,9 @@ dependencies:
   styled-reset:
     specifier: ^4.5.2
     version: 4.5.2(styled-components@6.1.8)
+  uuid:
+    specifier: ^9.0.1
+    version: 9.0.1
 
 devDependencies:
   '@types/react':
@@ -49,6 +52,9 @@ devDependencies:
   '@types/react-dom':
     specifier: ^18.2.22
     version: 18.2.23
+  '@types/uuid':
+    specifier: ^9.0.8
+    version: 9.0.8
   '@typescript-eslint/eslint-plugin':
     specifier: ^7.2.0
     version: 7.4.0(@typescript-eslint/parser@7.4.0)(eslint@8.57.0)(typescript@5.4.3)
@@ -2074,6 +2080,10 @@ packages:
     resolution: {integrity: sha512-n4sx2bqL0mW1tvDf/loQ+aMX7GQD3lc3fkCMC55VFNDu/vBOabO+LTIeXKM14xK0ppk5TUGcWRjiSpIlUpghKw==}
     dev: false
 
+  /@types/uuid@9.0.8:
+    resolution: {integrity: sha512-jg+97EGIcY9AGHJJRaaPVgetKDsrTgbRjQ5Msgjh/DQKEFl0DtyRr/VCOyD1T2R1MNeWPK/u7JoGhlDZnKBAfA==}
+    dev: true
+
   /@typescript-eslint/eslint-plugin@7.4.0(@typescript-eslint/parser@7.4.0)(eslint@8.57.0)(typescript@5.4.3):
     resolution: {integrity: sha512-yHMQ/oFaM7HZdVrVm/M2WHaNPgyuJH4WelkSVEWSSsir34kxW2kDJCxlXRhhGWEsMN0WAW/vLpKfKVcm8k+MPw==}
     engines: {node: ^18.18.0 || >=20.0.0}
@@ -3621,6 +3631,11 @@ packages:
       detect-node-es: 1.1.0
       react: 18.2.0
       tslib: 2.5.0
+    dev: false
+
+  /uuid@9.0.1:
+    resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
+    hasBin: true
     dev: false
 
   /vite-tsconfig-paths@4.3.2(typescript@5.4.3)(vite@5.2.7):

@@ -8,6 +8,7 @@ import MentoringSelect from '@/components/ProductForm/MentoringSelect';
 import PageTitle from '@/components/ProductForm/PageTitle';
 import useProducts from '@/hooks/ProductForm/useProducts';
 import { useState } from 'react';
+import MentoringQuestionList from '../components/ProductForm/MentoringQuestionList';
 
 const ProductFormPage = () => {
   const [title, setTitle] = useState('');
@@ -68,6 +69,7 @@ const ProductFormPage = () => {
       <ProductList products={products} />
       <AddProductForm appendProduct={appendProduct} />
       <MentoringSelect onChange={onChangeMentoring} value={isCheckMentoring} />
+      <MentoringQuestionList isShow={isCheckMentoring === 'yes'} />
       <Button px={32} py={4} color="white" bgColor={theme.colors.orange[200]}>
         등록
       </Button>

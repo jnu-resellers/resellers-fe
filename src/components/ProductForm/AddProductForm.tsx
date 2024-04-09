@@ -11,17 +11,15 @@ import {
 } from '@chakra-ui/react';
 import InputTitle from './InputTitle';
 import SectionTitle from './SectionTitle';
-import { useState } from 'react';
 import { Product } from '@/hooks/ProductForm/useProducts';
+import useRegisterProduct from '../../hooks/ProductForm/useRegisterProduct';
 
 interface AddProductFormProps {
   appendProduct: (product: Product) => void;
 }
 
 const AddProductForm = ({ appendProduct }: AddProductFormProps) => {
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState('');
-  const [description, setDescription] = useState('');
+  const { state: product, onChange, clearAll } = useRegisterProduct();
 
   return (
     <>
@@ -49,8 +47,8 @@ const AddProductForm = ({ appendProduct }: AddProductFormProps) => {
             <Input
               placeholder="올바른 상품명을 입력해주세요."
               size="md"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={product.name}
+              onChange={onChange('name')}
             />
           </Flex>
           <Flex w="100%">
@@ -58,8 +56,8 @@ const AddProductForm = ({ appendProduct }: AddProductFormProps) => {
             <Input
               placeholder="숫자만 입력해주세요"
               size="md"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
+              value={product.price}
+              onChange={onChange('price')}
             />
           </Flex>
           <Flex w="100%">
@@ -67,8 +65,8 @@ const AddProductForm = ({ appendProduct }: AddProductFormProps) => {
             <Textarea
               placeholder="상품에 대해 설명해주세요"
               size="md"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              value={product.description}
+              onChange={onChange('description')}
             />
           </Flex>
         </VStack>
@@ -81,14 +79,12 @@ const AddProductForm = ({ appendProduct }: AddProductFormProps) => {
           py={2}
           onClick={() => {
             appendProduct({
-              name,
-              price: Number(price),
-              description,
+              name: product.name,
+              price: Number(product.price),
+              description: product.description,
               imgFileNames: [],
             });
-            setName('');
-            setPrice('');
-            setDescription('');
+            clearAll();
           }}
         >
           추가하기

@@ -9,11 +9,10 @@ import PageTitle from '@/components/ProductForm/PageTitle';
 import useProducts from '@/hooks/ProductForm/useProducts';
 import { useState } from 'react';
 import MentoringQuestionList from '../components/ProductForm/MentoringQuestionList';
+import useProductForm from '../hooks/ProductForm/useProductForm';
 
 const ProductFormPage = () => {
-  const [title, setTitle] = useState('');
-  const [jobType, setJobType] = useState('');
-  const [contact, setContact] = useState('');
+  const { state: productForm, onChange } = useProductForm();
   const { products, appendProduct } = useProducts();
   const [isCheckMentoring, setIsCheckMentoring] = useState<'yes' | 'no'>('no');
   const onChangeMentoring = (nextValue: 'yes' | 'no') => {
@@ -31,10 +30,8 @@ const ProductFormPage = () => {
             placeholder="인상깊은 제목을 작성해주세요."
             size="md"
             w={{ base: '20rem', sm: '20rem', md: '20rem', lg: '40rem' }}
-            value={title}
-            onChange={(e) => {
-              setTitle(e.target.value);
-            }}
+            value={productForm.title}
+            onChange={onChange('title')}
           />
         </Flex>
         <Flex mb={10}>
@@ -43,8 +40,8 @@ const ProductFormPage = () => {
             placeholder="업종"
             size="md"
             w={{ base: '20rem', sm: '20rem', md: '20rem', lg: '40rem' }}
-            value={jobType}
-            onChange={(e) => setJobType(e.target.value)}
+            value={productForm.jobType}
+            onChange={onChange('jobType')}
           >
             {/* TODO: 업종 상수화 */}
             <option value="option1">음식점</option>
@@ -59,10 +56,8 @@ const ProductFormPage = () => {
             placeholder="카카오 오픈채팅 링크, 연락처등 구매자와 연락할 수단"
             size="md"
             w={{ base: '20rem', sm: '20rem', md: '20rem', lg: '40rem' }}
-            value={contact}
-            onChange={(e) => {
-              setContact(e.target.value);
-            }}
+            value={productForm.contact}
+            onChange={onChange('contact')}
           />
         </Flex>
       </Box>

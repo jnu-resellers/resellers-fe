@@ -32,11 +32,16 @@ const AddProductForm = ({ appendProduct }: AddProductFormProps) => {
             이미지 추가
           </Heading>
           {/* add img */}
-          <Box
+          <Flex
             w="220px"
             h="170px"
             backgroundColor={theme.colors.blackAlpha[100]}
-          />
+            color={theme.colors.blackAlpha[400]}
+            align="center"
+            justify="center"
+          >
+            여기를 클릭해 이미지 추가
+          </Flex>
         </Box>
         <VStack spacing={6} w="60%">
           <Flex w="100%">

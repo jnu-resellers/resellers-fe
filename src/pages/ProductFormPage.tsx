@@ -6,19 +6,22 @@ import AddProductForm from '@/components/ProductForm/AddProductForm';
 import MentoringSelect from '@/components/ProductForm/MentoringSelect';
 import PageTitle from '@/components/ProductForm/PageTitle';
 import useProducts from '@/hooks/ProductForm/useProducts';
-import { useState } from 'react';
 import MentoringQuestionList from '../components/ProductForm/MentoringQuestionList';
 import useProductForm from '../hooks/ProductForm/useProductForm';
 import ProductFormInput from '../components/ProductForm/ProductFormInput';
 import ProductFormSelect from '../components/ProductForm/ProductFormSelect';
+import useMentoring from '../hooks/ProductForm/useMentoring';
 
 const ProductFormPage = () => {
   const { state: productForm, onChange } = useProductForm();
   const { products, appendProduct, removeProductById } = useProducts();
-  const [isCheckMentoring, setIsCheckMentoring] = useState<'yes' | 'no'>('no');
-  const onChangeMentoring = (nextValue: 'yes' | 'no') => {
-    setIsCheckMentoring(nextValue);
-  };
+  const {
+    mentoringStatus,
+    isShow: isShowMentoring,
+    onChangeMentoring,
+    questions,
+    onChangeQuestionByOrder,
+  } = useMentoring();
 
   return (
     <PageLayout>
@@ -46,8 +49,12 @@ const ProductFormPage = () => {
       </Box>
       <ProductList products={products} removeProductById={removeProductById} />
       <AddProductForm appendProduct={appendProduct} />
-      <MentoringSelect onChange={onChangeMentoring} value={isCheckMentoring} />
-      <MentoringQuestionList isShow={isCheckMentoring === 'yes'} />
+      <MentoringSelect onChange={onChangeMentoring} value={mentoringStatus} />
+      <MentoringQuestionList
+        isShow={isShowMentoring}
+        questions={questions}
+        onChangeQuestionByOrder={onChangeQuestionByOrder}
+      />
       <Button px={32} py={4} color="white" bgColor={theme.colors.orange[200]}>
         등록
       </Button>

@@ -14,6 +14,10 @@ const ProductFormPage = () => {
   const [jobType, setJobType] = useState('');
   const [contact, setContact] = useState('');
   const { products, appendProduct } = useProducts();
+  const [isCheckMentoring, setIsCheckMentoring] = useState<'yes' | 'no'>('no');
+  const onChangeMentoring = (nextValue: 'yes' | 'no') => {
+    setIsCheckMentoring(nextValue);
+  };
 
   return (
     <PageLayout>
@@ -63,7 +67,7 @@ const ProductFormPage = () => {
       </Box>
       <ProductList products={products} />
       <AddProductForm appendProduct={appendProduct} />
-      <MentoringSelect />
+      <MentoringSelect onChange={onChangeMentoring} value={isCheckMentoring} />
       <Button px={32} py={4} color="white" bgColor={theme.colors.orange[200]}>
         등록
       </Button>

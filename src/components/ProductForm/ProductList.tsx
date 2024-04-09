@@ -5,8 +5,9 @@ import ProductItem from './ProductItem';
 
 interface ProductListProps {
   products: Product[];
+  removeProductById: (clientId: string) => void;
 }
-const ProductList = ({ products }: ProductListProps) => {
+const ProductList = ({ products, removeProductById }: ProductListProps) => {
   return (
     <>
       <SectionTitle title="판매 상품" />
@@ -19,7 +20,11 @@ const ProductList = ({ products }: ProductListProps) => {
 
         {!!products.length &&
           products.map((product) => (
-            <ProductItem key={product.name} product={product} />
+            <ProductItem
+              key={product.clientId}
+              product={product}
+              removeProductById={removeProductById}
+            />
           ))}
       </VStack>
       <Divider mb={5} />

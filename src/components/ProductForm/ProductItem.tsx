@@ -1,8 +1,16 @@
 import { Product } from '@/hooks/ProductForm/useProducts';
-import { Box, Divider, Flex, Heading, Text, theme } from '@chakra-ui/react';
-
+import {
+  Box,
+  CloseButton,
+  Divider,
+  Flex,
+  Heading,
+  Text,
+  theme,
+} from '@chakra-ui/react';
 interface ProductItemProps {
   product: Product;
+  removeProductById: (clientId: string) => void;
 }
 
 interface ProductItemFieldProps {
@@ -21,9 +29,15 @@ const ProductItemField = ({ title, content }: ProductItemFieldProps) => {
   );
 };
 
-const ProductItem = ({ product }: ProductItemProps) => {
+const ProductItem = ({ product, removeProductById }: ProductItemProps) => {
   return (
     <>
+      <Flex w="100%" direction="row-reverse">
+        <CloseButton
+          color={theme.colors.blackAlpha[400]}
+          onClick={() => removeProductById(product.clientId)}
+        />
+      </Flex>
       <Flex w="100%" justify="space-between">
         {!product.imgFileNames.length ? (
           <Box w="250px" h="170px" backgroundColor={theme.colors.gray[300]} />

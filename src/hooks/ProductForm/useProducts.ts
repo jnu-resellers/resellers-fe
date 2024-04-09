@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 export interface Product {
+  clientId: string;
   imgFileNames: string[];
   name: string;
   price: number;
@@ -13,7 +14,11 @@ const useProducts = () => {
   const appendProduct = (product: Product) => {
     setProducts([...products, product]);
   };
-  return { products, appendProduct };
+  const removeProductById = (clientId: string) => {
+    setProducts(products.filter((product) => product.clientId !== clientId));
+  };
+
+  return { products, appendProduct, removeProductById };
 };
 
 export default useProducts;

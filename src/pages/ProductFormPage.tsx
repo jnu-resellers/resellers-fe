@@ -14,7 +14,7 @@ import ProductFormSelect from '../components/ProductForm/ProductFormSelect';
 
 const ProductFormPage = () => {
   const { state: productForm, onChange } = useProductForm();
-  const { products, appendProduct } = useProducts();
+  const { products, appendProduct, removeProductById } = useProducts();
   const [isCheckMentoring, setIsCheckMentoring] = useState<'yes' | 'no'>('no');
   const onChangeMentoring = (nextValue: 'yes' | 'no') => {
     setIsCheckMentoring(nextValue);
@@ -44,7 +44,7 @@ const ProductFormPage = () => {
           onChange={onChange('contact')}
         />
       </Box>
-      <ProductList products={products} />
+      <ProductList products={products} removeProductById={removeProductById} />
       <AddProductForm appendProduct={appendProduct} />
       <MentoringSelect onChange={onChangeMentoring} value={isCheckMentoring} />
       <MentoringQuestionList isShow={isCheckMentoring === 'yes'} />

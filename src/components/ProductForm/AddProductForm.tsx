@@ -13,7 +13,7 @@ import InputTitle from './InputTitle';
 import SectionTitle from './SectionTitle';
 import { Product } from '@/hooks/ProductForm/useProducts';
 import useRegisterProduct from '../../hooks/ProductForm/useRegisterProduct';
-
+import { v4 as uuidv4 } from 'uuid';
 interface AddProductFormProps {
   appendProduct: (product: Product) => void;
 }
@@ -79,6 +79,7 @@ const AddProductForm = ({ appendProduct }: AddProductFormProps) => {
           py={2}
           onClick={() => {
             appendProduct({
+              clientId: uuidv4(),
               name: product.name,
               price: Number(product.price),
               description: product.description,

@@ -6,8 +6,15 @@ import Header from '@/components/Header';
 import AddProductForm from '@/components/ProductForm/AddProductForm';
 import MentoringSelect from '@/components/ProductForm/MentoringSelect';
 import PageTitle from '@/components/ProductForm/PageTitle';
+import useProducts from '@/hooks/ProductForm/useProducts';
+import { useState } from 'react';
 
 const ProductFormPage = () => {
+  const [title, setTitle] = useState('');
+  const [jobType, setJobType] = useState('');
+  const [contact, setContact] = useState('');
+  const { products, appendProduct } = useProducts();
+
   return (
     <PageLayout>
       <Header />
@@ -19,14 +26,20 @@ const ProductFormPage = () => {
             placeholder="인상깊은 제목을 작성해주세요."
             size="md"
             w={{ base: '20rem', sm: '20rem', md: '20rem', lg: '40rem' }}
+            value={title}
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
           />
         </Flex>
-        <Flex>
+        <Flex mb={10}>
           <InputTitle title="업종선택" />
           <Select
             placeholder="업종"
             size="md"
             w={{ base: '20rem', sm: '20rem', md: '20rem', lg: '40rem' }}
+            value={jobType}
+            onChange={(e) => setJobType(e.target.value)}
           >
             {/* TODO: 업종 상수화 */}
             <option value="option1">음식점</option>
@@ -35,9 +48,21 @@ const ProductFormPage = () => {
             <option value="option4">스포츠/레저/체험</option>
           </Select>
         </Flex>
+        <Flex align="center" mb={10}>
+          <InputTitle title="연락 수단" />
+          <Input
+            placeholder="카카오 오픈채팅 링크, 연락처등 구매자와 연락할 수단"
+            size="md"
+            w={{ base: '20rem', sm: '20rem', md: '20rem', lg: '40rem' }}
+            value={contact}
+            onChange={(e) => {
+              setContact(e.target.value);
+            }}
+          />
+        </Flex>
       </Box>
-      <ProductList />
-      <AddProductForm />
+      <ProductList products={products} />
+      <AddProductForm appendProduct={appendProduct} />
       <MentoringSelect />
       <Button px={32} py={4} color="white" bgColor={theme.colors.orange[200]}>
         등록

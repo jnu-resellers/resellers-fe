@@ -2,7 +2,6 @@ import { useState } from "react";
 import { PurchaseDetailsProps } from "../components/Purchase/Purchase";
 
 export const useProducts = () => {
-  //default 값은 첫번째 product
   const [currentProduct, setCurrentProduct] = useState<
     PurchaseDetailsProps["products"]
   >([]);

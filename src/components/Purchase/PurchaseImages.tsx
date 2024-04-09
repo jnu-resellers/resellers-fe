@@ -1,8 +1,11 @@
 import { Flex, Box, Img } from "@chakra-ui/react";
-import { PurchaseDetailsProps } from "./Purchase";
 
 export interface PurchaseImagesProps {
-  products: PurchaseDetailsProps["products"];
+  products: {
+    presignedUrl: string[];
+    id: number;
+    name: string;
+  }[];
 }
 
 export const PurchaseImages = ({ products }: PurchaseImagesProps) => {

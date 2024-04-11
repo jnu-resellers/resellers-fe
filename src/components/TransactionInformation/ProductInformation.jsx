@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Heading,
   Flex,
@@ -11,6 +10,14 @@ import {
   TableContainer,
   Table,
 } from '@chakra-ui/react';
+
+const PRODUCT_INFO = {
+  name: '레전드 냉장고',
+  price: '240,000원',
+  description: '국가권력급 냉장고입니다.',
+};
+
+const TOTAL_AMOUNT = '240,000원';
 
 const ProductInformation = () => {
   return (
@@ -40,9 +47,9 @@ const ProductInformation = () => {
           </Thead>
           <Tbody>
             <Tr>
-              <Td>레전드 냉장고</Td>
-              <Td>240,000원</Td>
-              <Td textAlign="right">국가권력급 냉장고입니다.</Td>
+              <Td>{PRODUCT_INFO.name}</Td>
+              <Td>{PRODUCT_INFO.price}</Td>
+              <Td textAlign="right">{PRODUCT_INFO.description}</Td>
             </Tr>
           </Tbody>
         </Table>
@@ -52,7 +59,7 @@ const ProductInformation = () => {
           <Text as="span" mr="24">
             총 금액
           </Text>
-          240,000원
+          {TOTAL_AMOUNT}
         </Heading>
       </Flex>
     </div>

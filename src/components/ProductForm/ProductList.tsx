@@ -1,15 +1,32 @@
-import { Center, Divider, Text, theme } from '@chakra-ui/react';
+import { Divider, Text, VStack, theme } from '@chakra-ui/react';
 import SectionTitle from './SectionTitle';
+import { Product } from '@/hooks/ProductForm/useProducts';
+import ProductItem from './ProductItem';
 
-const ProductList = () => {
+interface ProductListProps {
+  products: Product[];
+  removeProductById: (clientId: string) => void;
+}
+const ProductList = ({ products, removeProductById }: ProductListProps) => {
   return (
     <>
       <SectionTitle title="판매 상품" />
-      <Center my={10}>
-        <Text size="xl" color={theme.colors.gray[600]}>
-          상품을 등록해주세요!
-        </Text>
-      </Center>
+      <VStack w="100%" spacing={12} my={10}>
+        {!products.length && (
+          <Text size="xl" color={theme.colors.gray[600]}>
+            아래에서 상품을 등록해주세요!
+          </Text>
+        )}
+
+        {!!products.length &&
+          products.map((product) => (
+            <ProductItem
+              key={product.clientId}
+              product={product}
+              removeProductById={removeProductById}
+            />
+          ))}
+      </VStack>
       <Divider mb={5} />
     </>
   );

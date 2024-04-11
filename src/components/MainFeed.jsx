@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Text, Card, CardBody, Grid, Box, Flex } from '@chakra-ui/react';
 import styled from 'styled-components';
 

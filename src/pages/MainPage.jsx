@@ -1,4 +1,3 @@
-import React from 'react';
 import MainFeed from '@/components/MainFeed';
 import Header from '@/components/Header';
 import PageLayout from '@/layouts/PageLayout';

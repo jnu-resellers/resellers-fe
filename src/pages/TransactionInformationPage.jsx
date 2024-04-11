@@ -4,8 +4,10 @@ import PageTitle from '@/components/ProductForm/PageTitle';
 import { Heading, Flex, Text, theme, Button } from '@chakra-ui/react';
 import ProductInformation from '@/components/TransactionInformation/ProductInformation';
 import SellerInformation from '@/components/TransactionInformation/SellerInformation';
+import { useNavigate } from 'react-router-dom';
 
 const TransactionInformationPage = () => {
+  const navigate = useNavigate();
   return (
     <PageLayout>
       <Header />
@@ -26,12 +28,15 @@ const TransactionInformationPage = () => {
       <Flex justify="flex-end">
         <Button
           mt="8"
-          px="28"
+          px="16"
           py="4"
           color="white"
           bgColor={theme.colors.orange[200]}
+          onClick={() => {
+            navigate('/');
+          }}
         >
-          등록
+          홈으로 돌아가기
         </Button>
       </Flex>
     </PageLayout>

@@ -12,9 +12,9 @@ import {
 } from '@chakra-ui/react';
 
 const PRODUCT_INFO = {
-  name: '레전드 냉장고',
-  price: '240,000원',
-  description: '국가권력급 냉장고입니다.',
+  name: '레전드 냉장고', // TODO: 백엔드로부터 데이터 받아와야 함
+  price: '240,000원', // TODO: 백엔드로부터 데이터 받아와야 함
+  description: '국가권력급 냉장고입니다.', // TODO: 백엔드로부터 데이터 받아와야 함
 };
 
 const TOTAL_AMOUNT = '240,000원';

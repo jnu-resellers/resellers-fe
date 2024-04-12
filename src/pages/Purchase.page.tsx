@@ -6,7 +6,7 @@ export const PurchasePage = () => {
   return (
     <PageLayout>
       <Header />
-      <Purchase />;
+      <Purchase />
     </PageLayout>
   );
 };

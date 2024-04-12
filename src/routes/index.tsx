@@ -3,6 +3,7 @@ import { PurchasePage } from '../pages/Purchase.page';
 import App from '../App';
 import ProductFormPage from '../pages/ProductFormPage';
 import TransactionInformationPage from '@/pages/TransactionInformationPage';
+import MainPage from '@/pages/MainPage';
 
 const routes = createBrowserRouter([
   {
@@ -18,7 +19,11 @@ const routes = createBrowserRouter([
         element: <TransactionInformationPage />,
       },
       {
-        path: 'purchase',
+        path: '',
+        element: <MainPage />,
+      },
+      {
+        path: "purchase",
         element: <PurchasePage />,
       },
     ],

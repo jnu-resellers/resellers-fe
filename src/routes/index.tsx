@@ -1,11 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
+import { PurchasePage } from "../pages/Purchase.page";
 import App from '../App';
 import ProductFormPage from '../pages/ProductFormPage';
 import MainPage from '@/pages/MainPage';
 
 const routes = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <App />,
     children: [
       {
@@ -15,6 +16,10 @@ const routes = createBrowserRouter([
       {
         path: '',
         element: <MainPage />,
+      },
+      {
+        path: "purchase",
+        element: <PurchasePage />,
       },
     ],
   },

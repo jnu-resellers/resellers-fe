@@ -5,7 +5,6 @@ export const usePurchase = () => {
 
   const onClickProduct = (id: number) => {
     setSelectedProductId(id);
-    console.log('selectedProductId', selectedProductId);
   };
 
   return {

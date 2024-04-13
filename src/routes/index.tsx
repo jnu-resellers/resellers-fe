@@ -1,11 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { PurchasePage } from "../pages/Purchase.page";
+import { PurchasePage } from '../pages/Purchase.page';
+import { PurchaseCheckPage } from '../pages/PurchaseCheck.page';
 import App from '../App';
 import ProductFormPage from '../pages/ProductFormPage';
 
 const routes = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <App />,
     children: [
       {
@@ -13,8 +14,12 @@ const routes = createBrowserRouter([
         element: <ProductFormPage />,
       },
       {
-        path: "purchase",
+        path: 'purchase',
         element: <PurchasePage />,
+      },
+      {
+        path: 'purchase-check',
+        element: <PurchaseCheckPage />,
       },
     ],
   },

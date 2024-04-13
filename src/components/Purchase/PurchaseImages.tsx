@@ -1,7 +1,7 @@
 import { Flex, Box, Img } from '@chakra-ui/react';
 
 export interface PurchaseImagesProps {
-  onClickImage: (id: number) => unknown;
+  onClickImage: (id: number) => void;
   products: {
     presignedUrl: string[];
     id: number;

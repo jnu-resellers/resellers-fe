@@ -74,7 +74,7 @@ const AddProductForm = ({ appendProduct }: AddProductFormProps) => {
       <Flex w="100%" direction="row-reverse" mb={8}>
         <Button
           color="white"
-          bgColor={theme.colors.orange[200]}
+          bgColor={theme.colors.orange[300]}
           px={12}
           py={2}
           onClick={() => {

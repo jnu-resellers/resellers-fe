@@ -31,7 +31,7 @@ const TransactionInformationPage = () => {
           px="16"
           py="4"
           color="white"
-          bgColor={theme.colors.orange[200]}
+          bgColor={theme.colors.orange[300]}
           onClick={() => {
             navigate('/');
           }}

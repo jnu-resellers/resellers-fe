@@ -55,7 +55,7 @@ const ProductFormPage = () => {
         questions={questions}
         onChangeQuestionByOrder={onChangeQuestionByOrder}
       />
-      <Button px={32} py={4} color="white" bgColor={theme.colors.orange[200]}>
+      <Button px={32} py={4} color="white" bgColor={theme.colors.orange[300]}>
         등록
       </Button>
     </PageLayout>

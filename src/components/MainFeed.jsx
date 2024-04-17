@@ -1,34 +1,33 @@
-import { useState, useEffect } from 'react';
 import { Text, Card, CardBody, Grid, Box, Flex } from '@chakra-ui/react';
 import styled from 'styled-components';
+import { useQuery } from '@tanstack/react-query';
+import { getMaterials } from 'src/apis/materials';
 
 const MainFeed = () => {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    fetch('api/products.json')
-      .then((response) => response.json())
-      .then((data) => {
-        setProducts(data.response.materials);
-      })
-      .catch((error) => console.error('에러 발생', error));
-  }, []);
+  const { data: materials, status } = useQuery({
+    queryKey: ['materials'],
+    queryFn: getMaterials,
+  });
+
+  if (status === 'error') return <>에러 상태</>;
+  if (status === 'pending') return <>로딩 중 ...</>;
 
   return (
     <Box display="flex" justifyContent="center">
       <Grid templateColumns="repeat(4, 1fr)" gap="10">
-        {products.map((product) => (
-          <Card key={product.id}>
+        {materials.map((material) => (
+          <Card key={material.id}>
             <ImageField />
             <CardBody fontSize="md">
               <Text mb="3">
-                {product.title.length > 15
-                  ? `${product.title.substring(0, 15)} ···`
-                  : product.title}
+                {material.title.length > 15
+                  ? `${material.title.substring(0, 15)} ···`
+                  : material.title}
               </Text>
               <Flex justifyContent="space-between">
-                <Text color="gray.400">{product.jobType}</Text>
+                <Text color="gray.400">{material.jobType}</Text>
                 <Text fontWeight="bold">
-                  {product.totalPrice.toLocaleString()}원
+                  {material.totalPrice.toLocaleString()}원
                 </Text>
               </Flex>
             </CardBody>

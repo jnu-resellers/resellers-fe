@@ -1,11 +1,21 @@
-import { Flex, Text, Box, Divider } from "@chakra-ui/react";
-import { PurchaseDetailsProps } from "./Purchase";
-import { DescriptionBox } from "./DescriptionBox";
+import { Flex, Text, Box, Divider } from '@chakra-ui/react';
+import { DescriptionBox } from './DescriptionBox';
+
+export interface PurchaseDetailsProps {
+  title: string;
+  writer: string;
+  selectedProduct: {
+    id: number;
+    name: string;
+    price: number;
+    description: string;
+  };
+}
 
 export const PurchaseDetails = ({
   title,
   writer,
-  products,
+  selectedProduct,
 }: PurchaseDetailsProps) => {
   return (
     <Flex flexDirection="column" w="100%" m="2.25rem 2.25rem 0 0">
@@ -16,15 +26,13 @@ export const PurchaseDetails = ({
         {writer}
       </Text>
       <Divider orientation="horizontal" mb="1rem" />
-      {products.map((product) => (
-        <Box key={product.id}>
-          <Text fontSize="xx-large" mb="1.25rem">
-            {product.name}
-          </Text>
-          <Text fontSize="xxx-large">{product.price}원</Text>
-          <DescriptionBox description={product.description} />
-        </Box>
-      ))}
+      <Box key={selectedProduct.id}>
+        <Text fontSize="xx-large" mb="1.25rem">
+          {selectedProduct.name}
+        </Text>
+        <Text fontSize="xxx-large">{selectedProduct.price}원</Text>
+        <DescriptionBox description={selectedProduct.description} />
+      </Box>
       <Box>
         <Text fontSize="x-large" fontWeight="600">
           멘토링 여부

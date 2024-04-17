@@ -1,6 +1,7 @@
-import { Flex, Box, Img } from "@chakra-ui/react";
+import { Flex, Box, Img } from '@chakra-ui/react';
 
 export interface PurchaseImagesProps {
+  onClickImage: (id: number) => void;
   products: {
     presignedUrl: string[];
     id: number;
@@ -8,7 +9,10 @@ export interface PurchaseImagesProps {
   }[];
 }
 
-export const PurchaseImages = ({ products }: PurchaseImagesProps) => {
+export const PurchaseImages = ({
+  onClickImage,
+  products,
+}: PurchaseImagesProps) => {
   return (
     <Flex
       flexDirection="column"
@@ -25,6 +29,9 @@ export const PurchaseImages = ({ products }: PurchaseImagesProps) => {
             alt={product.name}
             width="18rem"
             border="1px solid black"
+            marginBottom="1rem"
+            cursor="pointer"
+            onClick={() => onClickImage(product.id)}
           />
         ))}
       </Box>

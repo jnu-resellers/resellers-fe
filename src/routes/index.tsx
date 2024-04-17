@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { PurchasePage } from '../pages/Purchase.page';
+import { PurchaseCheckPage } from '../pages/PurchaseCheck.page';
 import App from '../App';
 import ProductFormPage from '../pages/ProductFormPage';
 import TransactionInformationPage from '@/pages/TransactionInformationPage';
@@ -23,8 +24,12 @@ const routes = createBrowserRouter([
         element: <MainPage />,
       },
       {
-        path: "purchase",
+        path: 'purchase',
         element: <PurchasePage />,
+      },
+      {
+        path: 'purchase-check',
+        element: <PurchaseCheckPage />,
       },
     ],
   },

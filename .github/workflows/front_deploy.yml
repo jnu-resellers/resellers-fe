@@ -1,0 +1,54 @@
+name: deploy frontend server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repository and set up
+        uses: actions/checkout@v4
+
+      - name: setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
+      - name: generate env file
+        run: |
+          touch .env
+          echo BASE_URL="${{ secrets.BASE_URL }}" >> .env
+          cat .env
+
+      - name: build before install pnpm
+        run: pnpm install
+
+      - name: build process
+        run: pnpm run build
+
+      - name: compress build files
+        run: tar -cvf build.tar dist
+
+      - name: copy file via ssh key (scp)
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          source: 'build.tar'
+          target: /home/ubuntu/
+
+      - name: run deploy script via scp
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          script: |
+            pwd
+            ls -al
+            bash front-deploy.sh

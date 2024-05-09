@@ -64,7 +64,7 @@ const getMaterials = http.get('/api/board/materials', () => {
   });
 });
 
-const postMaterials = http.post('/api/board/matherial', () => {
+const postMaterials = http.post('/api/board/material', () => {
   return HttpResponse.json({
     success: true,
     response: {

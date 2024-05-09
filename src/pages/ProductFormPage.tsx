@@ -11,7 +11,12 @@ import useProductForm from '../hooks/ProductForm/useProductForm';
 import ProductFormInput from '../components/ProductForm/ProductFormInput';
 import ProductFormSelect from '../components/ProductForm/ProductFormSelect';
 import useMentoring from '../hooks/ProductForm/useMentoring';
+import { useMutation } from '@tanstack/react-query';
+import { postMaterials } from '../apis/materials';
+import { useNavigate } from 'react-router-dom';
 
+// TODO: need validation check
+// TODO: image upload logic
 const ProductFormPage = () => {
   const { state: productForm, onChange } = useProductForm();
   const { products, appendProduct, removeProductById } = useProducts();
@@ -22,7 +27,42 @@ const ProductFormPage = () => {
     questions,
     onChangeQuestionByOrder,
   } = useMentoring();
-
+  const { mutate } = useMutation({
+    mutationFn: postMaterials,
+    onSuccess: () => {
+      alert('정상적으로 등록되었습니다.');
+      navigate('/');
+    },
+    onError: () => {
+      alert('서버에 문제가 발생했습니다. 잠시 후 다시시도 해보세요.');
+    },
+  });
+  const navigate = useNavigate();
+  const onSubmitMaterial = () => {
+    const { title, jobType } = productForm;
+    const requestProducts = products.map(
+      ({ description, price, name, imgFileNames }) => ({
+        fileNames: imgFileNames,
+        name,
+        price,
+        description,
+      })
+    );
+    const { first, second, third, fourth, fifth } = questions;
+    mutate({
+      title,
+      jobType,
+      products: requestProducts,
+      answers: {
+        isMentoring: isShowMentoring,
+        first,
+        second,
+        third,
+        fourth,
+        fifth,
+      },
+    });
+  };
   return (
     <PageLayout>
       <Header />
@@ -55,7 +95,13 @@ const ProductFormPage = () => {
         questions={questions}
         onChangeQuestionByOrder={onChangeQuestionByOrder}
       />
-      <Button px={32} py={4} color="white" bgColor={theme.colors.orange[300]}>
+      <Button
+        px={32}
+        py={4}
+        color="white"
+        bgColor={theme.colors.orange[300]}
+        onClick={onSubmitMaterial}
+      >
         등록
       </Button>
     </PageLayout>

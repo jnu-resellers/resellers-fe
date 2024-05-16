@@ -19,26 +19,32 @@ const MainFeed = ({ selectedCategory }) => {
 
   return (
     <Box display="flex" justifyContent="center">
-      <Grid templateColumns="repeat(4, 1fr)" gap="10">
-        {filteredMaterials.map((material) => (
-          <Card key={material.id}>
-            <ImageField />
-            <CardBody fontSize="md">
-              <Text mb="3">
-                {material.title.length > 15
-                  ? `${material.title.substring(0, 15)} ···`
-                  : material.title}
-              </Text>
-              <Flex justifyContent="space-between">
-                <Text color="gray.500">{material.itemType}</Text>
-                <Text fontWeight="bold">
-                  {material.totalPrice.toLocaleString()}원
+      {filteredMaterials.length > 0 ? (
+        <Grid templateColumns="repeat(4, 1fr)" gap="10">
+          {filteredMaterials.map((material) => (
+            <Card key={material.id}>
+              <ImageField />
+              <CardBody fontSize="md">
+                <Text mb="3">
+                  {material.title.length > 15
+                    ? `${material.title.substring(0, 15)} ···`
+                    : material.title}
                 </Text>
-              </Flex>
-            </CardBody>
-          </Card>
-        ))}
-      </Grid>
+                <Flex justifyContent="space-between">
+                  <Text color="gray.500">{material.itemType}</Text>
+                  <Text fontWeight="bold">
+                    {material.totalPrice.toLocaleString()}원
+                  </Text>
+                </Flex>
+              </CardBody>
+            </Card>
+          ))}
+        </Grid>
+      ) : (
+        <Text mt="40" fontSize="xl">
+          상품이 존재하지 않습니다.
+        </Text>
+      )}
     </Box>
   );
 };

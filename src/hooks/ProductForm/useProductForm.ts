@@ -1,9 +1,12 @@
 import { ChangeEvent, useReducer } from 'react';
 
 interface ProductFormState {
-  title: string;
-  jobType: string;
+  productName: string;
+  itemType: string; // TODO: concrete type
   contact: string;
+  description: string;
+  price: string;
+  defect: string;
 }
 
 interface ProductFormAction {
@@ -13,15 +16,21 @@ interface ProductFormAction {
 
 const productFormReducer = (
   state: ProductFormState,
-  action: ProductFormAction,
+  action: ProductFormAction
 ) => {
   switch (action.type) {
-    case 'title':
-      return { ...state, title: action.payload };
-    case 'jobType':
-      return { ...state, jobType: action.payload };
+    case 'productName':
+      return { ...state, productName: action.payload };
+    case 'itemType':
+      return { ...state, itemType: action.payload };
     case 'contact':
       return { ...state, contact: action.payload };
+    case 'description':
+      return { ...state, description: action.payload };
+    case 'defect':
+      return { ...state, defect: action.payload };
+    case 'price':
+      return { ...state, price: action.payload };
     default:
       throw new Error(`not valid action type: ${action.type}`);
   }
@@ -29,13 +38,18 @@ const productFormReducer = (
 
 const useProductForm = () => {
   const [state, dispatch] = useReducer(productFormReducer, {
-    title: '',
-    jobType: '',
+    productName: '',
+    itemType: '',
     contact: '',
+    description: '',
+    price: '',
+    defect: '',
   });
 
   const onChange = (type: keyof ProductFormState) => {
-    return (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    return (
+      e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement>
+    ) => {
       dispatch({ type, payload: e.target.value });
     };
   };

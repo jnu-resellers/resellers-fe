@@ -25,7 +25,7 @@ const MainFeed = () => {
                   : material.title}
               </Text>
               <Flex justifyContent="space-between">
-                <Text color="gray.400">{material.jobType}</Text>
+                <Text color="gray.500">{material.itemType}</Text>
                 <Text fontWeight="bold">
                   {material.totalPrice.toLocaleString()}원
                 </Text>
@@ -41,6 +41,7 @@ const MainFeed = () => {
 export default MainFeed;
 
 const ImageField = styled.img`
-  height: 21rem;
+  height: 23rem;
+  width: 18rem;
   background-color: #cacaca;
 `;

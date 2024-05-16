@@ -4,7 +4,7 @@ interface GetMaterialRes {
   preSignedUrl: string;
   id: number;
   title: string;
-  jobType: string; // TODO: 유니온 타입으로 제한 필요
+  itemType: string; // TODO: 유니온 타입으로 제한 필요
   totalPrice: number;
 }
 
@@ -20,7 +20,7 @@ interface PostMaterialRes {
 
 interface PostMaterialReq {
   title: string;
-  jobType: string; // TODO: change concrete type
+  itemType: string; // TODO: change concrete type
   products: Array<{
     fileNames: string[];
     name: string;

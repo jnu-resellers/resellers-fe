@@ -2,13 +2,18 @@ import MainFeed from '@/components/Main/MainFeed';
 import Header from '@/components/Header';
 import PageLayout from '@/layouts/PageLayout';
 import CategorySelect from '@/components/Main/CategorySelect';
+import { useState } from 'react';
 
 const MainPage = () => {
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const handleCategorySelect = (category) => {
+    setSelectedCategory(category);
+  };
   return (
     <PageLayout>
       <Header />
-      <CategorySelect />
-      <MainFeed />
+      <CategorySelect onCategorySelect={handleCategorySelect} />
+      <MainFeed selectedCategory={selectedCategory} />
     </PageLayout>
   );
 };

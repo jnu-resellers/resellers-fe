@@ -1,6 +1,6 @@
-import { Heading, Box, Grid, Button, Text } from '@chakra-ui/react';
+import { Heading, Box, Grid, Text } from '@chakra-ui/react';
 
-const CategorySelect = () => {
+const CategorySelect = ({ onCategorySelect }) => {
   const categories = [
     '냉장고/냉동고',
     '쇼케이스',
@@ -23,14 +23,15 @@ const CategorySelect = () => {
       <Box py="4" bg="blackAlpha.100" w="100%" mb="10">
         <Grid templateColumns="repeat(7, 1fr)" gap="5">
           {categories.map((category, index) => (
-            <Text
-              ml="4"
-              bg="blackAlpha"
-              _hover={{ bg: 'blackAlpha' }}
-              key={index}
-            >
-              {category}
-            </Text>
+            <Box key={index} ml="4" bg="blackAlpha">
+              <Text
+                as="span"
+                cursor="pointer"
+                onClick={() => onCategorySelect(category)}
+              >
+                {category}
+              </Text>
+            </Box>
           ))}
         </Grid>
       </Box>

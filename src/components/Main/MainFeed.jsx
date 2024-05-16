@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useQuery } from '@tanstack/react-query';
 import { getMaterials } from 'src/apis/materials';
 
-const MainFeed = () => {
+const MainFeed = ({ selectedCategory }) => {
   const { data: materials, status } = useQuery({
     queryKey: ['materials'],
     queryFn: getMaterials,
@@ -12,10 +12,15 @@ const MainFeed = () => {
   if (status === 'error') return <>에러 상태</>;
   if (status === 'pending') return <>로딩 중 ...</>;
 
+  const filteredMaterials = materials.filter(
+    (material) =>
+      material.itemType === selectedCategory || selectedCategory === ''
+  );
+
   return (
     <Box display="flex" justifyContent="center">
       <Grid templateColumns="repeat(4, 1fr)" gap="10">
-        {materials.map((material) => (
+        {filteredMaterials.map((material) => (
           <Card key={material.id}>
             <ImageField />
             <CardBody fontSize="md">

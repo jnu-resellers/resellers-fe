@@ -41,6 +41,6 @@ const MainFeed = () => {
 export default MainFeed;
 
 const ImageField = styled.img`
-  height: 16rem;
+  height: 21rem;
   background-color: #cacaca;
 `;

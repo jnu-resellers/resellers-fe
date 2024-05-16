@@ -64,4 +64,34 @@ const getMaterials = http.get('/api/board/materials', () => {
   });
 });
 
-export const handlers = [getMentoringQuestion, getMaterials];
+const getTradeInformation = http.get('/api/board/material', () => {
+  return HttpResponse.json({
+    success: true,
+    response: {
+      productName: 'LG 냉장고',
+      itemType: '냉장고/냉동고',
+      price: 100000,
+      description: '어쩌구 저쩌구',
+      defect: '문이 잘 안열려요.',
+      contact: '010-0000-0000',
+    },
+    error: null,
+  });
+});
+
+const getSellerInformation = http.get('/api/seller', () => {
+  return HttpResponse.json({
+    success: true,
+    response: {
+      contact: '010-0000-0000',
+    },
+    error: null,
+  });
+});
+
+export const handlers = [
+  getMentoringQuestion,
+  getMaterials,
+  getTradeInformation,
+  getSellerInformation,
+];

@@ -13,7 +13,7 @@ export const PurchaseImages = (preSignedUrl: PurchaseImagesProps) => {
       maxW="20rem"
       justify="center"
     >
-      <Box marginBottom="1rem">
+      <Box marginBottom="16rem">
         {preSignedUrl.preSignedUrl.map((url, index) => (
           <Img
             key={index}
@@ -24,7 +24,6 @@ export const PurchaseImages = (preSignedUrl: PurchaseImagesProps) => {
             maxW="20rem"
             maxH="20rem"
             borderRadius="1rem"
-            m="1rem"
           />
         ))}
       </Box>

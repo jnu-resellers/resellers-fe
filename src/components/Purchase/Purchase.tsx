@@ -17,7 +17,7 @@ export interface PurchaseProps {
 
 export const Purchase = () => {
   const id = 1; //TODO: main 에서 id 받아오기
-  const CATEGORY = '요식업';
+  const CATEGORY = '요식업'; //TODO: 카테고리 받아오기 추가
   const { data: material, status } = useQuery({
     queryKey: ['material', id],
     queryFn: () => getMaterial(id),

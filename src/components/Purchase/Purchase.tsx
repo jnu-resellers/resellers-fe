@@ -30,7 +30,7 @@ export const Purchase = () => {
     <Box w="100%">
       <Flex justifyContent="start" alignItems="center">
         <Text fontSize="xx-large" fontWeight="600" mr="2rem">
-          기자재 구매
+          기자재 거래
         </Text>
         <Text fontSize="larger">업종 : {CATEGORY}</Text>
       </Flex>
@@ -48,6 +48,7 @@ export const Purchase = () => {
             w="16rem"
             h="4rem"
             fontSize="1.25rem"
+            fontWeight="600"
             justifyContent="center"
             float="right"
           >

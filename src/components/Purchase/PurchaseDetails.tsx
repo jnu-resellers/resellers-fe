@@ -3,11 +3,14 @@ import { DescriptionBox } from './DescriptionBox';
 import { PurchaseProps } from './Purchase';
 import { PurchaseImages } from './PurchaseImages';
 
+const priceFormatter = (price: number) => {
+  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};
+
 export const PurchaseDetails = ({
   writer,
   product: { productName, id, preSignedUrl, price, description, defect },
 }: PurchaseProps) => {
-  const fixedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   return (
     <Flex flexDirection="column" w="100%" m="2.25rem 2.25rem 0 0">
       <Text fontSize="xx-large" fontWeight="500" mb="1.25rem">
@@ -18,7 +21,7 @@ export const PurchaseDetails = ({
       </Text>
       <Divider orientation="horizontal" mb="1rem" />
       <Box key={id}>
-        <Text fontSize="xxx-large">{fixedPrice}원</Text>
+        <Text fontSize="xxx-large">{priceFormatter(price)}원</Text>
         <PurchaseImages preSignedUrl={preSignedUrl} />
         <Text fontSize="x-large" fontWeight="600" marginBottom="2rem">
           설명

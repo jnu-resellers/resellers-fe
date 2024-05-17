@@ -51,7 +51,7 @@ export const Purchase = () => {
             justifyContent="center"
             float="right"
           >
-            거래하러 하기
+            주문 신청
           </Button>
         </Box>
       </Flex>

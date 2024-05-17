@@ -2,7 +2,7 @@ import { ChangeEvent, useReducer } from 'react';
 
 interface ProductFormState {
   title: string;
-  jobType: string;
+  itemType: string;
   contact: string;
 }
 
@@ -13,13 +13,13 @@ interface ProductFormAction {
 
 const productFormReducer = (
   state: ProductFormState,
-  action: ProductFormAction,
+  action: ProductFormAction
 ) => {
   switch (action.type) {
     case 'title':
       return { ...state, title: action.payload };
-    case 'jobType':
-      return { ...state, jobType: action.payload };
+    case 'itemType':
+      return { ...state, itemType: action.payload };
     case 'contact':
       return { ...state, contact: action.payload };
     default:
@@ -30,7 +30,7 @@ const productFormReducer = (
 const useProductForm = () => {
   const [state, dispatch] = useReducer(productFormReducer, {
     title: '',
-    jobType: '',
+    itemType: '',
     contact: '',
   });
 

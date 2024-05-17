@@ -37,8 +37,8 @@ const ProductFormPage = () => {
         <ProductFormSelect
           title="업종선택"
           placeholder="업종"
-          value={productForm.jobType}
-          onChange={onChange('jobType')}
+          value={productForm.itemType}
+          onChange={onChange('itemType')}
         />
         <ProductFormInput
           title="연락 수단"

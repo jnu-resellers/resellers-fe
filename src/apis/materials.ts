@@ -56,6 +56,9 @@ export const getSellerInformation =
 export const getMaterial = async (id: number): Promise<GetProductRes> => {
   const response = await https.get(`/board/materials/${id}`);
 
+  return response.data.response;
+  };
+
 interface PostMaterialRes {
   // FIXME: impl response type
 }

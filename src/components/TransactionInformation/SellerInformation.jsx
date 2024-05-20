@@ -6,20 +6,27 @@ import {
   TableContainer,
   Table,
 } from '@chakra-ui/react';
+import { getSellerInformation } from 'src/apis/materials';
+import { useQuery } from '@tanstack/react-query';
 
 const SELLER_INFO = {
-  bankName: '카카오뱅크', // TODO: 백엔드로부터 데이터 받아와야 함
-  accountNumber: '3333-05-220-8939', // TODO: 백엔드로부터 데이터 받아와야 함
-  accountHolder: '곽민준', // TODO: 백엔드로부터 데이터 받아와야 함
-  amount: '240,000원', // TODO: 백엔드로부터 데이터 받아와야 함
-  contact: '010-0000-0000', // TODO: 백엔드로부터 데이터 받아와야 함
+  bankName: '카카오뱅크',
+  accountNumber: '3333-05-220-8939',
+  accountHolder: '곽민준',
 };
 
 const SellerInformation = () => {
+  const { data: sellerInfo, status } = useQuery({
+    queryKey: ['sellerInfo'],
+    queryFn: getSellerInformation,
+  });
+
+  if (status === 'error') return <>에러 상태</>;
+  if (status === 'pending') return <>로딩 중 ...</>;
   return (
     <div>
       <Heading mt="12" as="h2" size="md">
-        판매자 정보
+        입금 정보
       </Heading>
       <TableContainer
         mt="4"
@@ -42,12 +49,8 @@ const SellerInformation = () => {
               <Td textAlign="right">{SELLER_INFO.accountHolder}</Td>
             </Tr>
             <Tr>
-              <Td>입금액</Td>
-              <Td textAlign="right">{SELLER_INFO.amount}</Td>
-            </Tr>
-            <Tr>
               <Td>연락 수단</Td>
-              <Td textAlign="right">{SELLER_INFO.contact}</Td>
+              <Td textAlign="right">{sellerInfo.contact}</Td>
             </Tr>
           </Tbody>
         </Table>

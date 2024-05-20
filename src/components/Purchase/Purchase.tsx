@@ -1,50 +1,45 @@
 import { Box, Button, Flex, Text, Divider, theme } from '@chakra-ui/react';
-import { PurchaseImages } from './PurchaseImages';
 import { PurchaseDetails } from './PurchaseDetails';
-import { usePurchase } from '@/hooks/purchase/usePurchase';
-import { PRODUCTS_LIST } from './constants';
+import { getMaterial } from 'src/apis/materials';
+import { useQuery } from '@tanstack/react-query';
 
 export interface PurchaseProps {
-  title: string;
   writer: string;
-  products: {
-    presignedUrl: string[];
+  product: {
+    preSignedUrl: string[];
     id: number;
-    name: string;
+    productName: string;
     price: number;
     description: string;
-  }[];
-  error: string | null;
+    defect: string;
+  };
 }
 
-const CATEGORY = '요식업';
-const RESPONSE = PRODUCTS_LIST;
 export const Purchase = () => {
-  const { selectedProductId, onClickProduct } = usePurchase();
+  const id = 1; //TODO: main 에서 id 받아오기
+  const CATEGORY = '요식업'; //TODO: 카테고리 받아오기 추가
+  const { data: material, status } = useQuery({
+    queryKey: ['material', id],
+    queryFn: () => getMaterial(id),
+  });
 
-  const selectedProduct = RESPONSE.products.filter(
-    (product) => product.id === selectedProductId,
-  );
+  if (status === 'error') return <>에러 상태</>;
+  if (status === 'pending') return <>로딩 중 ...</>;
 
   return (
     <Box w="100%">
       <Flex justifyContent="start" alignItems="center">
         <Text fontSize="xx-large" fontWeight="600" mr="2rem">
-          기자재 구매
+          기자재 거래
         </Text>
         <Text fontSize="larger">업종 : {CATEGORY}</Text>
       </Flex>
       <Divider orientation="horizontal" />
-      <Flex flexDirection="row">
-        <PurchaseImages
-          products={RESPONSE.products}
-          onClickImage={onClickProduct}
-        />
+      <Flex flexDirection="column">
         <Box w="100%" mr="8rem">
           <PurchaseDetails
-            title={RESPONSE.title}
-            writer={RESPONSE.writer}
-            selectedProduct={selectedProduct[0]}
+            writer={material.writer}
+            product={material.product}
           />
           <Button
             display="flex"
@@ -53,10 +48,11 @@ export const Purchase = () => {
             w="16rem"
             h="4rem"
             fontSize="1.25rem"
+            fontWeight="600"
             justifyContent="center"
             float="right"
           >
-            거래하러 하기
+            주문 신청
           </Button>
         </Box>
       </Flex>

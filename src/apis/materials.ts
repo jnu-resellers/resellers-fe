@@ -8,11 +8,26 @@ interface GetMaterialRes {
   totalPrice: number;
 }
 
+interface GetProductRes {
+  writer: string;
+  product: {
+    preSignedUrl: string[];
+    id: number;
+    productName: string;
+    price: number;
+    description: string;
+    defect: string;
+  };
+}
+
 export const getMaterials = async (): Promise<GetMaterialRes[]> => {
   const response = await https.get('/board/materials');
 
   return response.data.response.materials;
 };
+
+export const getMaterial = async (id: number): Promise<GetProductRes> => {
+  const response = await https.get(`/board/materials/${id}`);
 
 interface PostMaterialRes {
   // FIXME: impl response type

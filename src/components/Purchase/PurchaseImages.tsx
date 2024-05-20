@@ -1,37 +1,29 @@
 import { Flex, Box, Img } from '@chakra-ui/react';
 
 export interface PurchaseImagesProps {
-  onClickImage: (id: number) => void;
-  products: {
-    presignedUrl: string[];
-    id: number;
-    name: string;
-  }[];
+  preSignedUrl: string[];
 }
 
-export const PurchaseImages = ({
-  onClickImage,
-  products,
-}: PurchaseImagesProps) => {
+export const PurchaseImages = (preSignedUrl: PurchaseImagesProps) => {
   return (
     <Flex
-      flexDirection="column"
+      flexDirection="row"
       w="100%"
       m="2.25rem 2.25rem 0rem 8rem "
       maxW="20rem"
       justify="center"
     >
-      <Box marginBottom="1rem">
-        {products.map((product) => (
+      <Box marginBottom="16rem">
+        {preSignedUrl.preSignedUrl.map((url, index) => (
           <Img
-            key={product.id}
-            src={product.presignedUrl[0]}
-            alt={product.name}
-            width="18rem"
-            border="1px solid black"
-            marginBottom="1rem"
-            cursor="pointer"
-            onClick={() => onClickImage(product.id)}
+            key={index}
+            src={url}
+            alt="product"
+            w="100%"
+            h="100%"
+            maxW="20rem"
+            maxH="20rem"
+            borderRadius="1rem"
           />
         ))}
       </Box>

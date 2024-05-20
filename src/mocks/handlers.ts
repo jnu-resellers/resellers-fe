@@ -16,56 +16,33 @@ const getMentoringQuestion = http.get('/api/question', () => {
     error: null,
   });
 });
-
-const getMaterials = http.get('/api/board/materials', () => {
+const id = 1;
+const getMaterial = http.get(`/api/board/materials/${id}`, () => {
   return HttpResponse.json({
     success: true,
     response: {
-      materials: [
-        {
-          preSignedUrl:
-            'https://test-bucket.s3.ap-northeast-2.amazonaws.com/1_?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240405T134134Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=test-key%2F20240405%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Signature=d55632edf221054bde206601d44a25f86100017c8a1aa816972fb675dd38ce41',
-          id: 1,
-          title: '12구 LPG가스 화구 버너',
-          itemType: '냉장고/냉동고',
-          totalPrice: 2000,
-        },
-        {
-          preSignedUrl: null,
-          id: 2,
-          title: '12구 LPG가스 화구 버너',
-          itemType: '주방잡화',
-          totalPrice: 1000,
-        },
-        {
-          preSignedUrl: null,
-          id: 3,
-          title: '12구 LPG가스 화구 버너',
-          itemType: '가구',
-          totalPrice: 1000,
-        },
-        {
-          preSignedUrl: null,
-          id: 4,
-          title: '12구 LPG가스 화구 버너',
-          itemType: '세척기',
-          totalPrice: 1000,
-        },
-        {
-          preSignedUrl: null,
-          id: 5,
-          title: '12구 LPG가스 화구 버너',
-          itemType: '냉장고/냉동고',
-          totalPrice: 1000,
-        },
-      ],
+      writer: 'yunseng',
+      product: {
+        preSignedUrl: [
+          'https://test-bucket.s3.ap-northeast-2.amazonaws.com/13_?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240411T172245Z&X-Amz-SignedHeaders=content-type%3Bhost&X-Amz-Expires=600&X-Amz-Credential=test-key%2F20240411%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Signature=4e081486e21a911f27b7dff27ad5156fb042c3201755493ac8f0a52cd7e3db91',
+          'https://test-bucket.s3.ap-northeast-2.amazonaws.com/14_?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240411T172245Z&X-Amz-SignedHeaders=content-type%3Bhost&X-Amz-Expires=600&X-Amz-Credential=test-key%2F20240411%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Signature=8ecdd0ec5e349c2893611907ee6e584f1d7a59816f368f4b804fac89c1c304ea',
+        ],
+        id: 1,
+        productName: 'LG 냉장고',
+        price: 1200000,
+        description: '2년쓴 냉장고 입니다.',
+        defect: '문이 잘 안열려요.',
+      },
     },
-    error: null,
+    error: {
+      code: 'string',
+      reason: 'string',
+      status: 'string',
+    },
   });
 });
 
-
-onst getTradeInformation = http.get('/api/board/material', () => {
+const getTradeInformation = http.get('/api/board/material', () => {
   return HttpResponse.json({
     success: true,
     response: {
@@ -79,6 +56,7 @@ onst getTradeInformation = http.get('/api/board/material', () => {
     error: null,
   });
 });
+
 
 const postMaterials = http.post('/api/board/material', () => {
   return HttpResponse.json({
@@ -120,6 +98,8 @@ export const handlers = [
   getMaterials,
   getTradeInformation,
   getSellerInformation,
-  postMaterials
+  postMaterials,
+  getMaterial
 ];
+
 

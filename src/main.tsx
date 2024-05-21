@@ -9,9 +9,9 @@ const enableMocking = async () => {
     return;
   }
 
-  const { worker } = await import('./mocks/worker.ts');
+  // const { worker } = await import('./mocks/worker.ts');
 
-  return worker.start();
+  // return worker.start();
 };
 
 enableMocking().then(() => {

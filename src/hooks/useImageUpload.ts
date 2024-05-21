@@ -1,16 +1,18 @@
 import axios from 'axios';
 import { ChangeEvent } from 'react';
 
+const AWS_API = import.meta.env.VITE_AWS_LAMBDA_URL;
 const imgUploadAxiosInstance = axios.create({
-  baseURL: 'https://3lzbbxqufh.execute-api.ap-northeast-2.amazonaws.com',
+  baseURL: AWS_API,
 });
 
 const getPresignedUrl = async (extension: string) => {
   const response = await imgUploadAxiosInstance.get(
-    `/default/presignedUrlUpload?extension=${extension}`,
+    `/default/presignedUrlUpload`,
     {
       headers: {
         'Content-Type': `application/${extension}`,
+        'x-extension': extension,
       },
     }
   );
@@ -22,7 +24,10 @@ const putImageToS3 = async (
   file: File,
   extension: string
 ) => {
-  return await imgUploadAxiosInstance.put(presignedUrl, file, {
+  console.log(extension);
+  const instance = axios.create();
+
+  return await instance.put(presignedUrl, file, {
     headers: {
       'Content-Type': `application/${extension}`,
     },

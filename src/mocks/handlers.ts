@@ -105,7 +105,6 @@ const getTradeInformation = http.get('/api/board/material', () => {
   });
 });
 
-
 const postMaterials = http.post('/api/board/material', () => {
   return HttpResponse.json({
     success: true,
@@ -147,7 +146,5 @@ export const handlers = [
   getTradeInformation,
   getSellerInformation,
   postMaterials,
-  getMaterial
+  getMaterial,
 ];
-
-

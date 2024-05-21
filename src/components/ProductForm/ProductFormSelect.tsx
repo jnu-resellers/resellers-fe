@@ -22,14 +22,21 @@ const ProductFormSelect = memo(
           onChange={onChange}
         >
           {/* TODO: 업종 상수화 */}
-          <option value="option1">음식점</option>
-          <option value="option2">생활편의</option>
-          <option value="option3">학원</option>
-          <option value="option4">스포츠/레저/체험</option>
+          <option value="냉장고/냉동고">냉장고/냉동고</option>
+          <option value="쇼케이스">쇼케이스</option>
+          <option value="가구">가구</option>
+          <option value="가스레인지">가스레인지</option>
+          <option value="포장기계">포장기계</option>
+          <option value="세척기">세척기</option>
+          <option value="싱크대/작업대">싱크대/작업대</option>
+          <option value="커피머신">커피머신</option>
+          <option value="제빙기">제빙기</option>
+          <option value="에어컨">에어컨</option>
+          <option value="주방잡화">주방잡화</option>
         </Select>
       </Flex>
     );
-  },
+  }
 );
 
 export default ProductFormSelect;

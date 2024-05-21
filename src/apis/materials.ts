@@ -57,7 +57,7 @@ export const getMaterial = async (id: number): Promise<GetProductRes> => {
   const response = await https.get(`/board/materials/${id}`);
 
   return response.data.response;
-  };
+};
 
 interface PostMaterialRes {
   // FIXME: impl response type
@@ -89,3 +89,14 @@ export const postMaterials = async (
   return response.data.response;
 };
 
+interface GetPriceCheckRes {
+  date: string;
+  lowest: number;
+  average: number;
+}
+
+export const getPriceCheck = async (): Promise<GetPriceCheckRes> => {
+  const response = await https.get('/trade/price');
+
+  return response.data.response;
+};

@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  Checkbox,
-  Text,
-  theme,
-  useDisclosure,
-} from '@chakra-ui/react';
+import { Box, Button, Text, theme } from '@chakra-ui/react';
 import PageLayout from '@/layouts/PageLayout';
 import Header from '@/components/Header';
 import PageTitle from '@/components/ProductForm/PageTitle';
@@ -18,15 +11,11 @@ import { useNavigate } from 'react-router-dom';
 import SectionTitle from '@/components/ProductForm/SectionTitle';
 import AddPhotoButton from '@/components/ProductForm/AddPhotoButton';
 import ProductFormTextArea from '@/components/ProductForm/ProductFormTextArea';
-import TermsOfUseModal from '@/components/ProductForm/TermsOfUseModal';
-import { useState } from 'react';
 
 // TODO: need validation check
 // TODO: image upload logic
 const ProductFormPage = () => {
   const { state: productForm, onChange } = useProductForm();
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [isAgreed, setIsAgreed] = useState(false);
   const { mutate } = useMutation({
     mutationFn: postMaterials,
     onSuccess: () => {
@@ -39,10 +28,6 @@ const ProductFormPage = () => {
   });
   const navigate = useNavigate();
   const onSubmitMaterial = () => {
-    if (!isAgreed) {
-      alert('약관에 동의해주세요.');
-      return;
-    }
     mutate({
       ...productForm,
     });
@@ -99,23 +84,6 @@ const ProductFormPage = () => {
           onChange={onChange('contact')}
         />
       </Box>
-      <Box my={12}>
-        <Text as="button" onClick={onOpen} my={5}>
-          <Text as="u" color={theme.colors.blackAlpha[500]}>
-            서비스 약관 전문 읽기
-          </Text>
-        </Text>
-        <Box>
-          <Checkbox
-            isChecked={isAgreed}
-            onChange={() => {
-              setIsAgreed((prev) => !prev);
-            }}
-          >
-            약관에 동의합니다.
-          </Checkbox>
-        </Box>
-      </Box>
       <Button
         px={32}
         py={4}
@@ -125,7 +93,6 @@ const ProductFormPage = () => {
       >
         등록
       </Button>
-      <TermsOfUseModal isOpen={isOpen} onClose={onClose} />
     </PageLayout>
   );
 };

@@ -14,13 +14,13 @@ const TransactionInformationPage = () => {
       <PageTitle title="거래 정보" />
       <Flex direction="column" align="center" justify="center" mt="6">
         <Heading mt="24" as="h2" size="3xl">
-          <Text as="span" color="green.400">
-            거래가 정상적으로 시작
+          <Text as="span" color="green.500">
+            주문 신청이 완료{' '}
           </Text>
           되었습니다.
         </Heading>
         <Heading mt="4" as="h3" size="lg">
-          아래의 정보를 통해 거래를 진행해주세요!
+          아래 계좌정보에 입금해주세요.
         </Heading>
       </Flex>
       <ProductInformation />
@@ -31,7 +31,7 @@ const TransactionInformationPage = () => {
           px="16"
           py="4"
           color="white"
-          bgColor={theme.colors.orange[300]}
+          bgColor={theme.colors.orange[200]}
           onClick={() => {
             navigate('/');
           }}

@@ -26,35 +26,35 @@ const getMaterials = http.get('/api/board/materials', () => {
           preSignedUrl:
             'https://test-bucket.s3.ap-northeast-2.amazonaws.com/1_?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240405T134134Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=test-key%2F20240405%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Signature=d55632edf221054bde206601d44a25f86100017c8a1aa816972fb675dd38ce41',
           id: 1,
-          title: '응애글자넘어갔을시화면표시되는부분테스트를위한타이틀',
+          productName: '응애글자넘어갔을시화면표시되는부분테스트를위한타이틀',
           itemType: '냉장고/냉동고',
           totalPrice: 2000,
         },
         {
           preSignedUrl: null,
           id: 2,
-          title: '응애2',
+          productName: '응애2',
           itemType: '냉장고/냉동고',
           totalPrice: 1000,
         },
         {
           preSignedUrl: null,
           id: 3,
-          title: '응애3',
+          productName: '응애3',
           itemType: '쇼케이스',
           totalPrice: 1000,
         },
         {
           preSignedUrl: null,
           id: 4,
-          title: '응애3',
+          productName: '응애3',
           itemType: '세척기',
           totalPrice: 1000,
         },
         {
           preSignedUrl: null,
           id: 5,
-          title: '응애3',
+          productName: '응애3',
           itemType: '제빙기',
           totalPrice: 1000,
         },
@@ -140,6 +140,37 @@ const getSellerInformation = http.get('/api/seller', () => {
   });
 });
 
+const getAuctionList = http.get('/api/auction', () => {
+  return HttpResponse.json({
+    success: true,
+    response: {
+      auctions: [
+        {
+          id: 1,
+          preSignedUrl: null,
+          itemType: '냉장고/냉동고',
+          productName: '경매 물품 A',
+          bidCount: 1,
+          startAt: '2024-05-21T10:00:00',
+          endAt: '2024-05-22T10:45:00',
+          price: 30000,
+        },
+        {
+          id: 2,
+          preSignedUrl: null,
+          itemType: '세척기',
+          productName: '경매 물품 B',
+          bidCount: 10,
+          startAt: '2024-05-23T10:00:00',
+          endAt: '2024-05-24T10:45:00',
+          price: 20000,
+        },
+      ],
+    },
+    error: null,
+  });
+});
+
 export const handlers = [
   getMentoringQuestion,
   getMaterials,
@@ -147,4 +178,5 @@ export const handlers = [
   getSellerInformation,
   postMaterials,
   getMaterial,
+  getAuctionList,
 ];

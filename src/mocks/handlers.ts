@@ -131,7 +131,6 @@ const getSellerInformation = http.get(generateFullApiUrl('/seller'), () => {
 });
 
 export const handlers = [
-  getMentoringQuestion,
   getMaterials,
   getTradeInformation,
   getSellerInformation,

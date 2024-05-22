@@ -26,9 +26,9 @@ const MainFeed = ({ selectedCategory }) => {
               <ImageField />
               <CardBody fontSize="md">
                 <Text mb="3">
-                  {material.title.length > 15
-                    ? `${material.title.substring(0, 15)} ···`
-                    : material.title}
+                  {material.productName.length > 15
+                    ? `${material.productName.substring(0, 15)} ···`
+                    : material.productName}
                 </Text>
                 <Flex justifyContent="space-between">
                   <Text color="gray.500">{material.itemType}</Text>

@@ -3,7 +3,7 @@ import https from './https';
 interface GetMaterialRes {
   preSignedUrl: string;
   id: number;
-  title: string;
+  productName: string;
   itemType: string; // TODO: 유니온 타입으로 제한 필요
   totalPrice: number;
 }
@@ -78,5 +78,23 @@ export const postMaterials = async (
   postMaterialReqest: PostMaterialReq
 ): Promise<PostMaterialRes> => {
   const response = await https.post('/board/material', postMaterialReqest);
+  return response.data.response;
+};
+
+interface GetAuctionListRes {
+  contact: string;
+  preSignedUrl: string;
+  itemType: string;
+  productName: string;
+  bidCount: number;
+  startAt: string;
+  endAt: string;
+  price: number;
+  id: number;
+}
+
+export const getAuctionList = async (): Promise<GetAuctionListRes> => {
+  const response = await https.get('/auction');
+
   return response.data.response;
 };

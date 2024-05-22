@@ -1,8 +1,11 @@
 import { Flex, theme } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
-import useImageUpload from '../../hooks/useImageUpload';
-const AddPhotoButton = () => {
-  const { onUploadFile } = useImageUpload();
+import { ChangeEvent } from 'react';
+
+interface AddPhotoButtonProps {
+  onUploadFile: (event: ChangeEvent<HTMLInputElement>) => void;
+}
+const AddPhotoButton = ({ onUploadFile }: AddPhotoButtonProps) => {
   return (
     <div>
       <input
@@ -10,6 +13,7 @@ const AddPhotoButton = () => {
         type="file"
         id="imageUploadInput"
         style={{ display: 'none' }}
+        accept="image/png, image/jpeg, image/jpg"
       />
       <label htmlFor="imageUploadInput">
         <Flex

@@ -11,11 +11,13 @@ import { useNavigate } from 'react-router-dom';
 import SectionTitle from '@/components/ProductForm/SectionTitle';
 import AddPhotoButton from '@/components/ProductForm/AddPhotoButton';
 import ProductFormTextArea from '@/components/ProductForm/ProductFormTextArea';
+import useImageUpload from '../hooks/useImageUpload';
 
 // TODO: need validation check
 // TODO: image upload logic
 const ProductFormPage = () => {
   const { state: productForm, onChange } = useProductForm();
+  const { fileNameList, onUploadFile } = useImageUpload();
   const { mutate } = useMutation({
     mutationFn: postMaterials,
     onSuccess: () => {
@@ -52,7 +54,11 @@ const ProductFormPage = () => {
       </Box>
       <SectionTitle title="판매 사진" />
       <Box my={12}>
-        <AddPhotoButton />
+        {/* TODO: change text on img tag */}
+        {fileNameList.map((fileName) => (
+          <div key={fileName}>{fileName}</div>
+        ))}
+        <AddPhotoButton onUploadFile={onUploadFile} />
         <Text color={theme.colors.blackAlpha[400]} pt={5}>
           상품의 여러부분을 찍어서 올리면 구매율이 높아져요!
         </Text>

@@ -16,7 +16,6 @@
     "@emotion/styled": "^11.11.0",
     "@tanstack/react-query": "^5.28.9",
     "@tanstack/react-query-devtools": "^5.28.10",
-    "aws-sdk": "^2.1624.0",
     "axios": "^1.6.8",
     "framer-motion": "^11.0.24",
     "react": "^18.2.0",

@@ -96,5 +96,5 @@ interface GetAuctionListRes {
 export const getAuctionList = async (): Promise<GetAuctionListRes> => {
   const response = await https.get('/auction');
 
-  return response.data.response;
+  return response.data.response.auctions;
 };

@@ -33,6 +33,7 @@ const ProductFormPage = () => {
   const onSubmitMaterial = () => {
     mutate({
       ...productForm,
+      fileNames: fileNameList,
     });
   };
   return (

@@ -68,6 +68,7 @@ interface PostMaterialRes {
 interface PostMaterialReq {
   productName: string;
   itemType: string; // TODO: change concrete type
+  fileNames: string[];
   price: string;
   description: string;
   defect: string;

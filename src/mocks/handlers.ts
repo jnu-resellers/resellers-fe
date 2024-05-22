@@ -1,26 +1,6 @@
 import { http, HttpResponse } from 'msw';
 import { generateFullApiUrl } from '../utils/url';
 
-const getMentoringQuestion = http.get(
-  generateFullApiUrl('/api/question'),
-  () => {
-    // ...and respond to them using this JSON response.
-    return HttpResponse.json({
-      success: true,
-      response: {
-        questions: {
-          '1': '질문',
-          '2': '질문',
-          '3': '질문',
-          '4': '질문',
-          '5': '질문',
-        },
-      },
-      error: null,
-    });
-  }
-);
-
 const getMaterials = http.get(generateFullApiUrl('/board/materials'), () => {
   return HttpResponse.json({
     success: true,

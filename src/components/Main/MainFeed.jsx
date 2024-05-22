@@ -23,7 +23,10 @@ const MainFeed = ({ selectedCategory }) => {
         <Grid templateColumns="repeat(4, 1fr)" gap="10">
           {filteredMaterials.map((material) => (
             <Card key={material.id}>
-              <ImageField />
+              <ImageField
+                src={material.preSignedUrl}
+                alt={material.productName}
+              />
               <CardBody fontSize="md">
                 <Text mb="3">
                   {material.productName.length > 15

@@ -14,31 +14,29 @@ const AuctionFeed = ({ selectedCategory }) => {
   if (status === 'error') return <>에러 상태</>;
   if (status === 'loading') return <>로딩 중 ...</>;
 
+  const filteredAuctions = auctions?.filter(
+    (auction) => !selectedCategory || auction.itemType === selectedCategory
+  );
+
   return (
     <>
       <Box display="flex" justifyContent="center">
         <Flex direction="column">
-          {auctions &&
-          auctions.filter(
-            (auction) =>
-              !selectedCategory || auction.itemType === selectedCategory
-          ).length > 0 ? (
-            auctions
-              .filter(
-                (auction) =>
-                  !selectedCategory || auction.itemType === selectedCategory
-              )
-              .map((auction) => (
-                <Flex key={auction.id} mb={4}>
-                  <ImageField src={auction.imageUrl} alt={auction.title} />
-                  <TextField>
-                    <Text>{auction.productName}</Text>
-                    <Text>{auction.price}</Text>
-                    <Text>{auction.itemType}</Text>
-                    <Text>{auction.bidCount}</Text>
-                  </TextField>
-                </Flex>
-              ))
+          {filteredAuctions && filteredAuctions.length > 0 ? (
+            filteredAuctions.map((auction) => (
+              <Flex key={auction.id} mb={4}>
+                <ImageField
+                  src={auction.preSignedUrl || 'default-image-url'}
+                  alt={auction.productName}
+                />
+                <TextField>
+                  <Text>{auction.productName}</Text>
+                  <Text>{auction.price}</Text>
+                  <Text>{auction.itemType}</Text>
+                  <Text>{auction.bidCount}</Text>
+                </TextField>
+              </Flex>
+            ))
           ) : (
             <Text mt="20" fontSize="xl">
               상품이 존재하지 않습니다.

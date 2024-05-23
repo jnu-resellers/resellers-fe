@@ -1,4 +1,4 @@
-import { Box, Button, Text, theme } from '@chakra-ui/react';
+import { Box, Button, Flex, Text, theme } from '@chakra-ui/react';
 import PageLayout from '@/layouts/PageLayout';
 import Header from '@/components/Header';
 import PageTitle from '@/components/ProductForm/PageTitle';
@@ -11,11 +11,14 @@ import { useNavigate } from 'react-router-dom';
 import SectionTitle from '@/components/ProductForm/SectionTitle';
 import AddPhotoButton from '@/components/ProductForm/AddPhotoButton';
 import ProductFormTextArea from '@/components/ProductForm/ProductFormTextArea';
+import useImageUpload from '../hooks/useImageUpload';
+import UploadImgList from '../components/ProductForm/UploadImgList';
 
 // TODO: need validation check
 // TODO: image upload logic
 const ProductFormPage = () => {
   const { state: productForm, onChange } = useProductForm();
+  const { fileNameList, onUploadFile } = useImageUpload();
   const { mutate } = useMutation({
     mutationFn: postMaterials,
     onSuccess: () => {
@@ -30,6 +33,7 @@ const ProductFormPage = () => {
   const onSubmitMaterial = () => {
     mutate({
       ...productForm,
+      fileNames: fileNameList,
     });
   };
   return (
@@ -52,7 +56,10 @@ const ProductFormPage = () => {
       </Box>
       <SectionTitle title="판매 사진" />
       <Box my={12}>
-        <AddPhotoButton />
+        <Flex gap={4}>
+          <AddPhotoButton onUploadFile={onUploadFile} />
+          <UploadImgList fileList={fileNameList} />
+        </Flex>
         <Text color={theme.colors.blackAlpha[400]} pt={5}>
           상품의 여러부분을 찍어서 올리면 구매율이 높아져요!
         </Text>

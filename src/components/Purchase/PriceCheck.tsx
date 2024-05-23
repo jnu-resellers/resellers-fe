@@ -1,17 +1,19 @@
 import ApexCharts from 'apexcharts';
 import { useEffect, useRef } from 'react';
+import { getTradePrice } from 'src/apis/materials';
+import { useQuery } from '@tanstack/react-query';
 
-interface PriceCheckProps {
-  data: { date: string; lowest: number; average: number }[];
-}
-
-export const PriceCheck = ({ data }: PriceCheckProps) => {
+export const PriceCheck = () => {
   const chartRef = useRef<ApexCharts | null>(null);
+  const { data } = useQuery({
+    queryKey: ['tradePrice'],
+    queryFn: getTradePrice,
+  });
 
   useEffect(() => {
-    const dates = data.map((entry) => entry.date);
-    const lowestPrices = data.map((entry) => entry.lowest);
-    const averagePrices = data.map((entry) => entry.average);
+    const dates = data?.map((entry) => entry.date) ?? [];
+    const lowestPrices = data?.map((entry) => entry.lowest) ?? [];
+    const averagePrices = data?.map((entry) => entry.average) ?? [];
 
     const options = {
       chart: {

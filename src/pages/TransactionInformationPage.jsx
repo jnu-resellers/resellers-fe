@@ -1,10 +1,10 @@
 import Header from '@/components/Header';
 import PageLayout from '@/layouts/PageLayout';
-import PageTitle from '@/components/ProductForm/PageTitle';
 import { Heading, Flex, Text, theme, Button } from '@chakra-ui/react';
 import ProductInformation from '@/components/TransactionInformation/ProductInformation';
 import SellerInformation from '@/components/TransactionInformation/SellerInformation';
 import { useNavigate } from 'react-router-dom';
+import PageTitle from '@/components/Form/PageTitle';
 
 const TransactionInformationPage = () => {
   const navigate = useNavigate();

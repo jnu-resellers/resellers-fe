@@ -75,14 +75,18 @@ const AuctionFeed = ({ selectedCategory }) => {
                     {auction.productName}
                   </Text>
                   <S>
-                    <Text w="32%" mt="52" color="gray.500" fontSize="xl">
+                    <Text w="35%" mt="52" color="gray.500" fontSize="xl">
                       남은 시간: {timeLefts[auction.id]?.days}일{' '}
                       {timeLefts[auction.id]?.hours}시간{' '}
                       {timeLefts[auction.id]?.minutes}분{' '}
                       {timeLefts[auction.id]?.seconds}초
                     </Text>
                     <FlexContainer>
-                      <Text fontWeight="bold" fontSize="xl">
+                      <Text
+                        fontWeight="bold"
+                        fontSize="xl"
+                        color={auction.bidCount > 9 ? 'red.500' : 'black'}
+                      >
                         입찰 {auction.bidCount}건
                       </Text>
                       <Text fontWeight="bold" fontSize="24">

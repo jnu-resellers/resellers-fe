@@ -105,7 +105,6 @@ const getTradeInformation = http.get('/api/board/material', () => {
   });
 });
 
-
 const postMaterials = http.post('/api/board/material', () => {
   return HttpResponse.json({
     success: true,
@@ -141,13 +140,60 @@ const getSellerInformation = http.get('/api/seller', () => {
   });
 });
 
+const getTradePrice = http.get('/api/trade/price', () => {
+  return HttpResponse.json({
+    success: true,
+    response: [
+      {
+        date: '2024-05-21',
+        lowest: 10000,
+        average: 12000,
+      },
+      {
+        date: '2024-05-22',
+        lowest: 11000,
+        average: 13000,
+      },
+      {
+        date: '2024-05-23',
+        lowest: 12000,
+        average: 14000,
+      },
+      {
+        date: '2024-05-24',
+        lowest: 11000,
+        average: 16000,
+      },
+      {
+        date: '2024-05-25',
+        lowest: 12000,
+        average: 17000,
+      },
+      {
+        date: '2024-05-26',
+        lowest: 13000,
+        average: 18000,
+      },
+      {
+        date: '2024-05-27',
+        lowest: 14000,
+        average: 19000,
+      },
+    ],
+    error: {
+      code: 'string',
+      reason: 'string',
+      status: 'string',
+    },
+  });
+});
+
 export const handlers = [
   getMentoringQuestion,
   getMaterials,
   getTradeInformation,
   getSellerInformation,
   postMaterials,
-  getMaterial
+  getMaterial,
+  getTradePrice,
 ];
-
-

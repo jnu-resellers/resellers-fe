@@ -45,7 +45,9 @@ const AuctionFormPage = () => {
     <PageLayout>
       <Header />
       <PageTitle title="기자재 경매 목록" />
-      <SectionTitle title="경매 정보" />
+      <Box my={12}>
+        <SectionTitle title="경매 정보" />
+      </Box>
       <Box my={12}>
         <FormSelect
           title="경매 기간"

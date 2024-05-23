@@ -65,7 +65,7 @@ interface PostMaterialRes {
 
 // TODO: fileNames 추가해야 함.
 // TODO: price가 숫자인지 검증하는 로직이 컴포넌트 단에서 필요
-interface PostMaterialReq {
+export interface PostMaterialReq {
   productName: string;
   itemType: string; // TODO: change concrete type
   fileNames: string[];

@@ -13,12 +13,33 @@ import UploadImgList from '../components/ProductForm/UploadImgList';
 import ProductFormTextArea from '../components/ProductForm/ProductFormTextArea';
 import { AUCTION_PERIODS } from '../constants/options';
 import FormSelect from '../components/Form/FormSelect';
+import { useNavigate } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
+import { postAuctions } from '../apis/auctions';
 
 const AuctionFormPage = () => {
   const { state: productForm, onChange: onChangeProduct } = useProductForm();
   const { state: auctionForm, onChange: onChangeAuction } = useAuctionForm();
   const { fileNameList, onUploadFile } = useImageUpload();
-  const onSubmitAuction = () => {};
+  const { mutate } = useMutation({
+    mutationFn: postAuctions,
+    onSuccess: () => {
+      alert('정상적으로 등록되었습니다.');
+      navigate('/');
+    },
+    onError: () => {
+      alert('서버에 문제가 발생했습니다. 잠시 후 다시시도 해보세요.');
+    },
+  });
+  const navigate = useNavigate();
+
+  const onSubmitAuction = () => {
+    mutate({
+      ...productForm,
+      ...auctionForm,
+      fileNames: fileNameList,
+    });
+  };
 
   return (
     <PageLayout>

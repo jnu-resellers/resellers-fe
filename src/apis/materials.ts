@@ -95,7 +95,7 @@ interface GetPriceCheckRes {
   average: number;
 }
 
-export const getPriceCheck = async (): Promise<GetPriceCheckRes> => {
+export const getTradePrice = async (): Promise<GetPriceCheckRes[]> => {
   const response = await https.get('/trade/price');
 
   return response.data.response;

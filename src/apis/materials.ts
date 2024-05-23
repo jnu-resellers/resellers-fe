@@ -63,23 +63,16 @@ interface PostMaterialRes {
   // FIXME: impl response type
 }
 
+// TODO: fileNames 추가해야 함.
+// TODO: price가 숫자인지 검증하는 로직이 컴포넌트 단에서 필요
 interface PostMaterialReq {
-  title: string;
+  productName: string;
   itemType: string; // TODO: change concrete type
-  products: Array<{
-    fileNames: string[];
-    name: string;
-    price: number;
-    description: string;
-  }>;
-  answers: {
-    isMentoring: boolean;
-    first: string;
-    second: string;
-    third: string;
-    fourth: string;
-    fifth: string;
-  };
+  fileNames: string[];
+  price: string;
+  description: string;
+  defect: string;
+  contact: string;
 }
 
 export const postMaterials = async (
@@ -100,3 +93,4 @@ export const getTradePrice = async (): Promise<GetPriceCheckRes[]> => {
 
   return response.data.response;
 };
+

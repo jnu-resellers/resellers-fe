@@ -1,18 +1,19 @@
 import { Box, Button, Flex, Text, theme } from '@chakra-ui/react';
 import PageLayout from '@/layouts/PageLayout';
 import Header from '@/components/Header';
-import PageTitle from '@/components/ProductForm/PageTitle';
 import useProductForm from '../hooks/ProductForm/useProductForm';
-import ProductFormInput from '../components/ProductForm/ProductFormInput';
-import ProductFormSelect from '../components/ProductForm/ProductFormSelect';
 import { useMutation } from '@tanstack/react-query';
 import { postMaterials } from '../apis/materials';
 import { useNavigate } from 'react-router-dom';
-import SectionTitle from '@/components/ProductForm/SectionTitle';
 import AddPhotoButton from '@/components/ProductForm/AddPhotoButton';
-import ProductFormTextArea from '@/components/ProductForm/ProductFormTextArea';
 import useImageUpload from '../hooks/useImageUpload';
 import UploadImgList from '../components/ProductForm/UploadImgList';
+import SectionTitle from '../components/Form/SectionTitle';
+import FormInput from '../components/Form/FormInput';
+import FormTextArea from '../components/Form/FormTextArea';
+import PageTitle from '../components/Form/PageTitle';
+import FormSelect from '../components/Form/FormSelect';
+import { MATERIAL_CATEGORYS } from '../constants/options';
 
 // TODO: need validation check
 // TODO: image upload logic
@@ -41,17 +42,18 @@ const ProductFormPage = () => {
       <Header />
       <PageTitle title="기자재 판매 등록" />
       <Box my={12}>
-        <ProductFormInput
+        <FormInput
           title="상품명"
           placeholder="상품명 작성"
           value={productForm.productName}
           onChange={onChange('productName')}
         />
-        <ProductFormSelect
+        <FormSelect
           title="물품 카테고리"
           placeholder="카테고리를 선택해주세요"
           value={productForm.itemType}
           onChange={onChange('itemType')}
+          options={MATERIAL_CATEGORYS}
         />
       </Box>
       <SectionTitle title="판매 사진" />
@@ -66,25 +68,25 @@ const ProductFormPage = () => {
       </Box>
 
       <Box>
-        <ProductFormInput
+        <FormInput
           title="가격"
           placeholder="숫자만 기입해주세요."
           value={productForm.price}
           onChange={onChange('price')}
         />
-        <ProductFormTextArea
+        <FormTextArea
           title="설명"
           placeholder="상품에 대한 자세한 정보를 작성해주세요!"
           value={productForm.description}
           onChange={onChange('description')}
         />
-        <ProductFormTextArea
+        <FormTextArea
           title="결함"
           placeholder="결함을 작성해주세요. 작성된 정보 이외의 결함이 발견될 경우 책임은 판매자에게 있습니다. 자세한 사항은 약관을 확인해주세요."
           value={productForm.defect}
           onChange={onChange('defect')}
         />
-        <ProductFormInput
+        <FormInput
           title="연락수단"
           placeholder="카카오톡 오픈채팅 링크, 연락처"
           value={productForm.contact}

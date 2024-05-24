@@ -4,7 +4,9 @@ import App from '../App';
 import ProductFormPage from '../pages/ProductFormPage';
 import TransactionInformationPage from '@/pages/TransactionInformationPage';
 import MainPage from '@/pages/MainPage';
+import AuctionListPage from '@/pages/AuctionListPage';
 import AuctionFormPage from '../pages/AuctionFormPage';
+
 
 const routes = createBrowserRouter([
   {
@@ -28,6 +30,9 @@ const routes = createBrowserRouter([
         element: <PurchasePage />,
       },
       {
+
+        path: 'auction',
+        element: <AuctionListPage />,
         path: 'auction-form',
         element: <AuctionFormPage />,
       },

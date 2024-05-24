@@ -1,4 +1,4 @@
-import { Flex, Box, Img } from '@chakra-ui/react';
+import { Flex, Img } from '@chakra-ui/react';
 
 export interface PurchaseImagesProps {
   preSignedUrl: string[];

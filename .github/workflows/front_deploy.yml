@@ -21,7 +21,7 @@ jobs:
       - name: generate env file
         run: |
           touch .env
-          echo VITE_BASE_URL="${{ secrets.VITE_API_URL }}" >> .env
+          echo VITE_API_URL="${{ secrets.VITE_API_URL }}" >> .env
           echo VITE_AWS_LAMBDA_URL="${{ secrets.VITE_AWS_LAMBDA_URL }}" >> .env
           echo VITE_AWS_CLOUDFRONT_URL="${{ secrets.VITE_AWS_CLOUDFRONT_URL }}" >> .env
           cat .env

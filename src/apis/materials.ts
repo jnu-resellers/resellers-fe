@@ -81,3 +81,16 @@ export const postMaterials = async (
   const response = await https.post('/board/material', postMaterialReqest);
   return response.data.response;
 };
+
+interface GetPriceCheckRes {
+  date: string;
+  lowest: number;
+  average: number;
+}
+
+export const getTradePrice = async (): Promise<GetPriceCheckRes[]> => {
+  const response = await https.get('/trade/price');
+
+  return response.data.response;
+};
+

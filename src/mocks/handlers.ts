@@ -130,6 +130,54 @@ const getSellerInformation = http.get(generateFullApiUrl('/seller'), () => {
   });
 });
 
+const getTradePrice = http.get(generateFullApiUrl('/trade/price'), () => {
+  return HttpResponse.json({
+    success: true,
+    response: [
+      {
+        date: '2024-05-21',
+        lowest: 10000,
+        average: 12000,
+      },
+      {
+        date: '2024-05-22',
+        lowest: 11000,
+        average: 13000,
+      },
+      {
+        date: '2024-05-23',
+        lowest: 12000,
+        average: 14000,
+      },
+      {
+        date: '2024-05-24',
+        lowest: 11000,
+        average: 16000,
+      },
+      {
+        date: '2024-05-25',
+        lowest: 12000,
+        average: 17000,
+      },
+      {
+        date: '2024-05-26',
+        lowest: 13000,
+        average: 18000,
+      },
+      {
+        date: '2024-05-27',
+        lowest: 14000,
+        average: 19000,
+      },
+    ],
+    error: {
+      code: 'string',
+      reason: 'string',
+      status: 'string',
+    },
+  });
+});
+
 const postAuctions = http.post(generateFullApiUrl('/auction'), () => {
   return HttpResponse.json({
     success: true,
@@ -161,5 +209,6 @@ export const handlers = [
   getSellerInformation,
   postMaterials,
   getMaterial,
+  getTradePrice,
   postAuctions,
 ];

@@ -3,6 +3,8 @@ import { DescriptionBox } from '../Purchase/DescriptionBox';
 import { AuctionPurchaseImages } from './AuctionPurchaseImages';
 import { AuctionPurchaseProps } from './AuctionPurchase';
 import { theme } from '@chakra-ui/react';
+import { AuctionPurchaseModal } from './AuctionPurchaseModal';
+import { useAuction } from '@/hooks/Auction/useAuction';
 
 const priceFormatter = (price: number) => {
   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -12,6 +14,7 @@ export const AuctionPurchaseDetails = ({
   writer,
   product: { productName, id, preSignedUrl, description, defect },
 }: AuctionPurchaseProps) => {
+  const { isModalOpen, openModal, closeModal } = useAuction();
   return (
     <Flex flexDirection="column" w="100%" m="2.25rem 2.25rem 0 0">
       <Text fontSize="xx-large" fontWeight="500" mb="1.25rem">
@@ -46,6 +49,9 @@ export const AuctionPurchaseDetails = ({
               fontWeight="600"
               justifyContent="center"
               marginTop="2rem"
+              onClick={() => {
+                openModal();
+              }}
             >
               입찰 하기
             </Button>
@@ -65,6 +71,7 @@ export const AuctionPurchaseDetails = ({
         </Text>
         <DescriptionBox description={defect} />
       </Box>
+      {isModalOpen && <AuctionPurchaseModal closeModal={closeModal} />}
     </Flex>
   );
 };

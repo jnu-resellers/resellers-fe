@@ -2,6 +2,7 @@ import { Flex, Text, Box, Divider } from '@chakra-ui/react';
 import { DescriptionBox } from './DescriptionBox';
 import { PurchaseProps } from './Purchase';
 import { PurchaseImages } from './PurchaseImages';
+import { PriceCheck } from './PriceCheck';
 
 const priceFormatter = (price: number) => {
   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -31,6 +32,7 @@ export const PurchaseDetails = ({
           결함
         </Text>
         <DescriptionBox description={defect} />
+        <PriceCheck />
       </Box>
     </Flex>
   );

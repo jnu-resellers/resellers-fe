@@ -1,4 +1,4 @@
-import { Flex, Box, Img } from '@chakra-ui/react';
+import { Flex, Img } from '@chakra-ui/react';
 
 export interface PurchaseImagesProps {
   preSignedUrl: string[];
@@ -13,7 +13,7 @@ export const PurchaseImages = (preSignedUrl: PurchaseImagesProps) => {
       maxW="20rem"
       justify="center"
     >
-      <Box marginBottom="16rem">
+      <Flex marginBottom="16rem">
         {preSignedUrl.preSignedUrl.map((url, index) => (
           <Img
             key={index}
@@ -24,9 +24,10 @@ export const PurchaseImages = (preSignedUrl: PurchaseImagesProps) => {
             maxW="20rem"
             maxH="20rem"
             borderRadius="1rem"
+            flexDirection="row"
           />
         ))}
-      </Box>
+      </Flex>
     </Flex>
   );
 };

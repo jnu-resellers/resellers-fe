@@ -4,7 +4,7 @@ export interface PurchaseImagesProps {
   preSignedUrl: string[];
 }
 
-export const PurchaseImages = (preSignedUrl: PurchaseImagesProps) => {
+export const AuctionPurchaseImages = (preSignedUrl: PurchaseImagesProps) => {
   return (
     <Flex
       flexDirection="row"

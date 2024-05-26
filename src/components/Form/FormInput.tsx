@@ -1,23 +1,18 @@
 import { Flex, Input } from '@chakra-ui/react';
-import InputTitle from './InputTitle';
 import { ChangeEvent } from 'react';
+import FormInputTitle from './FormInputTitle';
 
-interface ProductFormInputProps {
+interface FormInputProps {
   title: string;
   value: string;
   placeholder: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const ProductFormInput = ({
-  title,
-  value,
-  placeholder,
-  onChange,
-}: ProductFormInputProps) => {
+const FormInput = ({ title, value, placeholder, onChange }: FormInputProps) => {
   return (
     <Flex align="center" mb={10}>
-      <InputTitle title={title} />
+      <FormInputTitle title={title} />
       <Input
         placeholder={placeholder}
         size="md"
@@ -29,4 +24,4 @@ const ProductFormInput = ({
   );
 };
 
-export default ProductFormInput;
+export default FormInput;

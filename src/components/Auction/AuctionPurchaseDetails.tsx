@@ -6,10 +6,6 @@ import { theme } from '@chakra-ui/react';
 import { AuctionPurchaseModal } from './AuctionPurchaseModal';
 import { useAuction } from '@/hooks/Auction/useAuction';
 
-const priceFormatter = (price: number) => {
-  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-};
-
 export const AuctionPurchaseDetails = ({
   writer,
   product: { productName, id, preSignedUrl, description, defect },

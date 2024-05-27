@@ -8,7 +8,6 @@ import { AuctionPurchasePage } from '@/pages/AuctionPurchase.page';
 import AuctionListPage from '@/pages/AuctionListPage';
 import AuctionFormPage from '../pages/AuctionFormPage';
 
-
 const routes = createBrowserRouter([
   {
     path: '/',
@@ -37,8 +36,10 @@ const routes = createBrowserRouter([
       {
         path: 'auction',
         element: <AuctionListPage />,
-        path: 'auction-form',
+      },
+      {
         element: <AuctionFormPage />,
+        path: 'auction-form',
       },
     ],
   },

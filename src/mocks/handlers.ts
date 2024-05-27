@@ -203,17 +203,7 @@ const postAuctions = http.post(generateFullApiUrl('/auction'), () => {
   });
 });
 
-const getSellerInformation = http.get('/api/seller', () => {
-  return HttpResponse.json({
-    success: true,
-    response: {
-      contact: '010-0000-0000',
-    },
-    error: null,
-  });
-});
-
-const getAuctionList = http.get('/api/auction', () => {
+const getAuctionList = http.get(generateFullApiUrl('/auction'), () => {
   return HttpResponse.json({
     success: true,
     response: {

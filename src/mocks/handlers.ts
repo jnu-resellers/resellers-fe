@@ -259,6 +259,26 @@ const getAuctionList = http.get(generateFullApiUrl('/auction'), () => {
   });
 });
 
+const getAuctionPurchase = http.get(generateFullApiUrl('/auction/1'), () => {
+  return HttpResponse.json({
+    success: true,
+    response: {
+      imageNames: ['냉장고1.png', '냉장고13.jpeg', '냉장고25.jpeg'],
+      itemType: '냉장고/냉동고',
+      productName: '상품이름',
+      bidCount: 5,
+      startAt: '2024-05-20T14:09:27',
+      endAt: '2024-06-03T14:09:27',
+      startPrice: 200000,
+      nowPrice: 500000,
+      writer: '황대선',
+      description: '상품설명',
+      defect: '상품결함',
+    },
+    error: null,
+  });
+});
+
 export const handlers = [
   getMaterials,
   getTradeInformation,
@@ -266,6 +286,7 @@ export const handlers = [
   postMaterials,
   getMaterial,
   getAuctionList,
+  getAuctionPurchase,
   getTradePrice,
   postAuctions,
 ];

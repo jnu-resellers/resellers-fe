@@ -101,6 +101,28 @@ export const getAuctionList = async (): Promise<GetAuctionListRes> => {
 
   return response.data.response.auctions;
 };
+
+interface GetAuctionPurchaseRes {
+  imageNames: string[];
+  itemType: string;
+  productName: string;
+  bidCount: number;
+  startAt: string;
+  endAt: string;
+  startPrice: number;
+  nowPrice: number;
+  writer: string;
+  description: string;
+  defect: string;
+}
+
+export const getAuctionPurchase = async (
+  id: number
+): Promise<GetAuctionPurchaseRes> => {
+  const response = await https.get(`/auction/${id}`);
+
+  return response.data.response;
+};
 interface GetPriceCheckRes {
   date: string;
   lowest: number;

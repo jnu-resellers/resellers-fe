@@ -9,15 +9,8 @@ import {
   Button,
   theme,
 } from '@chakra-ui/react';
-import {
-  useMutation,
-  MutateOptions,
-  useQueryClient,
-} from '@tanstack/react-query';
 import { patchAuctionPrice } from 'src/apis/auctions';
-import { patchAuctionBidReq, patchAuctionBidRes } from 'src/apis/auctions';
-
-import { useState } from 'react';
+import { useAuction } from '@/hooks/Auction/useAuction';
 
 interface AuctionPurchaseModalProps {
   priceUnit: number;
@@ -30,32 +23,7 @@ export const AuctionPurchaseModal = ({
   nowPrice,
   closeModal,
 }: AuctionPurchaseModalProps) => {
-  const [addedPrice, setAddedPrice] = useState(0);
-  const [priceUnitCount, setPriceUnitCount] = useState(0);
-
-  const addPriceUnit = () => {
-    setPriceUnitCount((prevPriceUnitCount) => {
-      const newPriceUnitCount = prevPriceUnitCount + priceUnit;
-      handleAddedPrice(newPriceUnitCount, nowPrice);
-      return newPriceUnitCount;
-    });
-  };
-
-  const subtractPriceUnit = () => {
-    setPriceUnitCount((prevPriceUnitCount) => {
-      const newPriceUnitCount = prevPriceUnitCount - priceUnit;
-      if (newPriceUnitCount < 0) {
-        return prevPriceUnitCount;
-      }
-      handleAddedPrice(newPriceUnitCount, nowPrice);
-      return newPriceUnitCount;
-    });
-  };
-
-  const handleAddedPrice = (priceUnitCount: number, nowPrice: number) => {
-    setAddedPrice(priceUnitCount + nowPrice);
-  };
-
+  const { addedPrice, addPriceUnit, subtractPriceUnit } = useAuction();
   return (
     <Modal isOpen={true} onClose={() => {}}>
       <ModalOverlay />
@@ -82,7 +50,7 @@ export const AuctionPurchaseModal = ({
                 py="1rem"
                 px="2rem"
                 m="1rem"
-                onClick={subtractPriceUnit}
+                onClick={() => subtractPriceUnit(priceUnit, nowPrice)}
               >
                 입찰가 감소
               </Button>
@@ -92,7 +60,7 @@ export const AuctionPurchaseModal = ({
                 py="1rem"
                 px="2rem"
                 m="1rem"
-                onClick={addPriceUnit}
+                onClick={() => addPriceUnit(priceUnit, nowPrice)}
               >
                 입찰가 증가
               </Button>

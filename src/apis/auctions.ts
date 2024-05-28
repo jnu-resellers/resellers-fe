@@ -37,18 +37,18 @@ export const getAuctionPurchase = async (
   return response.data.response;
 };
 
-interface postAuctionBidReq {
+export interface patchAuctionBidReq {
   auctionId: number;
   price: number;
 }
 
-interface postAuctionBidRes {
-  response: number;
+export interface patchAuctionBidRes {
+  response: null;
 }
 
-export const postAuctionBid = async (
-  request: postAuctionBidReq
-): Promise<postAuctionBidRes> => {
-  const response = await https.post('/auction', request);
+export const patchAuctionPrice = async (
+  request: patchAuctionBidReq
+): Promise<patchAuctionBidRes> => {
+  const response = await https.patch('/auction', request);
   return response.data;
 };

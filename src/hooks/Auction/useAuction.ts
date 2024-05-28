@@ -12,6 +12,8 @@ interface useAuctionProps {
 export const useAuction = () => {
   const [isModalOpen, setIsModalOpen] =
     useState<useAuctionProps['isModalOpen']>(false);
+  const [addedPrice, setAddedPrice] = useState(0);
+  const [priceUnitCount, setPriceUnitCount] = useState(0);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -50,11 +52,38 @@ export const useAuction = () => {
     return formatTime;
   };
 
+  const addPriceUnit = (priceUnit: number, nowPrice: number) => {
+    setPriceUnitCount((prevPriceUnitCount) => {
+      const newPriceUnitCount = prevPriceUnitCount + priceUnit;
+      handleAddedPrice(newPriceUnitCount, nowPrice);
+      return newPriceUnitCount;
+    });
+  };
+
+  const subtractPriceUnit = (priceUnit: number, nowPrice: number) => {
+    setPriceUnitCount((prevPriceUnitCount) => {
+      const newPriceUnitCount = prevPriceUnitCount - priceUnit;
+      if (newPriceUnitCount < 0) {
+        return prevPriceUnitCount;
+      }
+      handleAddedPrice(newPriceUnitCount, nowPrice);
+      return newPriceUnitCount;
+    });
+  };
+
+  const handleAddedPrice = (priceUnitCount: number, nowPrice: number) => {
+    setAddedPrice(priceUnitCount + nowPrice);
+  };
+
   return {
     isModalOpen,
+    addedPrice,
+    priceUnitCount,
     openModal,
     closeModal,
     restTimeChecker,
     timeFormatter,
+    addPriceUnit,
+    subtractPriceUnit,
   };
 };

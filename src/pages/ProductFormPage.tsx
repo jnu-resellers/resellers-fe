@@ -32,6 +32,19 @@ const ProductFormPage = () => {
   });
   const navigate = useNavigate();
   const onSubmitMaterial = () => {
+    // This is really bad practice. You should validate the form before submitting.
+    if (
+      fileNameList.length === 0 ||
+      !productForm.contact ||
+      !productForm.defect ||
+      !productForm.description ||
+      !productForm.itemType ||
+      !productForm.price ||
+      !productForm.productName
+    ) {
+      alert('모든 항목을 입력해주세요.');
+      return;
+    }
     mutate({
       ...productForm,
       fileNames: fileNameList,

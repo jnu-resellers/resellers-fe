@@ -13,3 +13,20 @@ export const postAuctions = async (
   const response = await https.post('/auction', request);
   return response.data;
 };
+
+interface GetAuctionListRes {
+  imageName: string;
+  itemType: string;
+  productName: string;
+  bidCount: number;
+  startAt: string;
+  endAt: string;
+  price: number;
+  auctionId: number;
+}
+
+export const getAuctionList = async (): Promise<GetAuctionListRes> => {
+  const response = await https.get('/auction');
+
+  return response.data.response.auctions;
+};

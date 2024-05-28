@@ -26,11 +26,11 @@ const routes = createBrowserRouter([
         element: <MainPage />,
       },
       {
-        path: 'purchase',
+        path: 'purchase/:id',
         element: <PurchasePage />,
       },
       {
-        path: 'auction-purchase',
+        path: 'auction-purchase/:id',
         element: <AuctionPurchasePage />,
       },
       {

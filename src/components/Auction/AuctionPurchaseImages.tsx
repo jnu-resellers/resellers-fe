@@ -1,5 +1,6 @@
 import { Flex, Img } from '@chakra-ui/react';
 import { generateImgCloudFrontUrl } from '../../utils/url';
+import { SimpleSlider } from './ImageSlider';
 
 export interface PurchaseImagesProps {
   imageNames: string[];
@@ -15,6 +16,7 @@ export const AuctionPurchaseImages = ({ imageNames }: PurchaseImagesProps) => {
       justify="center"
     >
       <Flex marginBottom="16rem">
+        <SimpleSlider imageNames={imageNames} />
         {imageNames.map((imageName) => (
           <Img
             key={imageName}

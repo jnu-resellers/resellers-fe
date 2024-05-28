@@ -1,5 +1,5 @@
 import { Box, Flex, Text, Divider } from '@chakra-ui/react';
-import { getAuctionPurchase } from 'src/apis/materials';
+import { getAuctionPurchase } from 'src/apis/auctions';
 import { useQuery } from '@tanstack/react-query';
 import { AuctionPurchaseDetails } from './AuctionPurchaseDetails';
 

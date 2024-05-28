@@ -10,8 +10,9 @@ const AuctionFeed = ({ selectedCategory }) => {
   const navigate = useNavigate();
 
   const { data: auctions, status } = useQuery({
-    queryKey: ['auctions'],
-    queryFn: getAuctionList,
+    queryKey: ['auctions', selectedCategory],
+
+    queryFn: () => getAuctionList(selectedCategory),
   });
 
   const [timeLefts, setTimeLefts] = useState({});

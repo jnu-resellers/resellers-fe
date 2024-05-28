@@ -10,17 +10,8 @@ import {
   TableContainer,
   Table,
 } from '@chakra-ui/react';
-import { getTradeInformation } from 'src/apis/materials';
-import { useQuery } from '@tanstack/react-query';
 
-const ProductInformation = () => {
-  const { data: productInfo, status } = useQuery({
-    queryKey: ['productInfo'],
-    queryFn: getTradeInformation,
-  });
-
-  if (status === 'error') return <>에러 상태</>;
-  if (status === 'pending') return <>로딩 중 ...</>;
+const ProductInformation = ({ productInfo, totalPrice }) => {
   return (
     <div>
       <Heading mt="24" as="h2" size="md">
@@ -60,10 +51,7 @@ const ProductInformation = () => {
           <Text as="span" mr="24">
             총 금액
           </Text>
-          {new Intl.NumberFormat('ko-KR', {
-            style: 'currency',
-            currency: 'KRW',
-          }).format(productInfo.price)}
+          {totalPrice.toLocaleString()}원
         </Heading>
       </Flex>
     </div>

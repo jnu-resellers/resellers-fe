@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Flex, Text, Box } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
-import { getAuctionList } from 'src/apis/materials';
+import { getAuctionList } from 'src/apis/auctions';
 import AuctionItem from './AuctionItem';
 import calculateTimeLeft from 'src/utils/calculateTimeLeft';
 

@@ -20,8 +20,12 @@ interface GetProductRes {
   };
 }
 
-export const getMaterials = async (): Promise<GetMaterialRes[]> => {
-  const response = await https.get('/board/materials');
+export const getMaterials = async (
+  selectedCategory: string
+): Promise<GetMaterialRes[]> => {
+  const response = await https.get(
+    `/board/materials?sortType=${selectedCategory}`
+  );
 
   return response.data.response.materials;
 };

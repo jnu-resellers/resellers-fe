@@ -1,52 +1,56 @@
 import { http, HttpResponse } from 'msw';
 import { generateFullApiUrl } from '../utils/url';
 
-const getMaterials = http.get(generateFullApiUrl('/board/materials'), () => {
-  return HttpResponse.json({
-    success: true,
-    response: {
-      materials: [
-        {
-          preSignedUrl:
-            'https://test-bucket.s3.ap-northeast-2.amazonaws.com/1_?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240405T134134Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=test-key%2F20240405%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Signature=d55632edf221054bde206601d44a25f86100017c8a1aa816972fb675dd38ce41',
-          id: 1,
-          productName: '응애글자넘어갔을시화면표시되는부분테스트를위한타이틀',
-          itemType: '냉장고/냉동고',
-          totalPrice: 2000,
-        },
-        {
-          preSignedUrl: null,
-          id: 2,
-          productName: '응애2',
-          itemType: '냉장고/냉동고',
-          totalPrice: 1000,
-        },
-        {
-          preSignedUrl: null,
-          id: 3,
-          productName: '응애3',
-          itemType: '쇼케이스',
-          totalPrice: 1000,
-        },
-        {
-          preSignedUrl: null,
-          id: 4,
-          productName: '응애3',
-          itemType: '세척기',
-          totalPrice: 1000,
-        },
-        {
-          preSignedUrl: null,
-          id: 5,
-          productName: '응애3',
-          itemType: '제빙기',
-          totalPrice: 1000,
-        },
-      ],
-    },
-    error: null,
-  });
-});
+const selectedCategory = '냉장고/냉동고';
+const getMaterials = http.get(
+  generateFullApiUrl(`/board/materials?sortType=${selectedCategory}`),
+  () => {
+    return HttpResponse.json({
+      success: true,
+      response: {
+        materials: [
+          {
+            preSignedUrl:
+              'https://test-bucket.s3.ap-northeast-2.amazonaws.com/1_?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240405T134134Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=test-key%2F20240405%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Signature=d55632edf221054bde206601d44a25f86100017c8a1aa816972fb675dd38ce41',
+            id: 1,
+            productName: '응애글자넘어갔을시화면표시되는부분테스트를위한타이틀',
+            itemType: '냉장고/냉동고',
+            totalPrice: 2000,
+          },
+          {
+            preSignedUrl: null,
+            id: 2,
+            productName: '응애2',
+            itemType: '냉장고/냉동고',
+            totalPrice: 1000,
+          },
+          {
+            preSignedUrl: null,
+            id: 3,
+            productName: '응애3',
+            itemType: '쇼케이스',
+            totalPrice: 1000,
+          },
+          {
+            preSignedUrl: null,
+            id: 4,
+            productName: '응애3',
+            itemType: '세척기',
+            totalPrice: 1000,
+          },
+          {
+            preSignedUrl: null,
+            id: 5,
+            productName: '응애3',
+            itemType: '제빙기',
+            totalPrice: 1000,
+          },
+        ],
+      },
+      error: null,
+    });
+  }
+);
 
 const id = 1;
 const getMaterial = http.get(
@@ -77,6 +81,7 @@ const getMaterial = http.get(
   }
 );
 
+//api 주소 변경
 const getTradeInformation = http.get(
   generateFullApiUrl('/board/material'),
   () => {

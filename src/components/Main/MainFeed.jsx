@@ -5,8 +5,8 @@ import { getMaterials } from 'src/apis/materials';
 
 const MainFeed = ({ selectedCategory }) => {
   const { data: materials, status } = useQuery({
-    queryKey: ['materials'],
-    queryFn: getMaterials,
+    queryKey: ['materials', selectedCategory],
+    queryFn: () => getMaterials(selectedCategory),
   });
 
   if (status === 'error') return <>에러 상태</>;

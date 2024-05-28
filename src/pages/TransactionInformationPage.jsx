@@ -5,9 +5,24 @@ import ProductInformation from '@/components/TransactionInformation/ProductInfor
 import SellerInformation from '@/components/TransactionInformation/SellerInformation';
 import { useNavigate } from 'react-router-dom';
 import PageTitle from '@/components/Form/PageTitle';
+import { useQuery } from '@tanstack/react-query';
+import { getTradeInformation } from 'src/apis/materials';
+import { useParams } from 'react-router-dom';
 
 const TransactionInformationPage = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
+
+  const { data: tradeInformation, status } = useQuery({
+    queryKey: ['tradeInformation', id],
+    queryFn: () => getTradeInformation(id),
+  });
+
+  if (status === 'loading') return <>로딩 중 ...</>;
+  if (status === 'error') return <>에러 상태</>;
+
+  const { buyProducts, sellerInfo, totalPrice } = tradeInformation.response;
+
   return (
     <PageLayout>
       <Header showIconsAndTexts={true} />
@@ -23,8 +38,8 @@ const TransactionInformationPage = () => {
           아래 계좌정보에 입금해주세요.
         </Heading>
       </Flex>
-      <ProductInformation />
-      <SellerInformation />
+      <ProductInformation productInfo={buyProducts} totalPrice={totalPrice} />
+      <SellerInformation sellerInfo={sellerInfo} />
       <Flex justify="flex-end">
         <Button
           mt="8"

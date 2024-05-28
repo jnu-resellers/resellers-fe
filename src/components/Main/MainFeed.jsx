@@ -2,6 +2,7 @@ import { Text, Card, CardBody, Grid, Box, Flex } from '@chakra-ui/react';
 import styled from 'styled-components';
 import { useQuery } from '@tanstack/react-query';
 import { getMaterials } from 'src/apis/materials';
+import { generateImgCloudFrontUrl } from '../../utils/url';
 
 const MainFeed = ({ selectedCategory }) => {
   const { data: materials, status } = useQuery({
@@ -24,7 +25,7 @@ const MainFeed = ({ selectedCategory }) => {
           {filteredMaterials.map((material) => (
             <Card key={material.id}>
               <ImageField
-                src={material.preSignedUrl}
+                src={generateImgCloudFrontUrl(material.fileName)}
                 alt={material.productName}
               />
               <CardBody fontSize="md">

@@ -1,11 +1,12 @@
 import https from './https';
 
 interface GetMaterialRes {
-  preSignedUrl: string;
+  fileName: string;
   id: number;
   productName: string;
   itemType: string; // TODO: 유니온 타입으로 제한 필요
   totalPrice: number;
+  isSold: string;
 }
 
 interface GetProductRes {
@@ -87,23 +88,6 @@ export const postMaterials = async (
   return response.data.response;
 };
 
-interface GetAuctionListRes {
-  contact: string;
-  preSignedUrl: string;
-  itemType: string;
-  productName: string;
-  bidCount: number;
-  startAt: string;
-  endAt: string;
-  price: number;
-  id: number;
-}
-
-export const getAuctionList = async (): Promise<GetAuctionListRes> => {
-  const response = await https.get('/auction');
-
-  return response.data.response.auctions;
-};
 interface GetPriceCheckRes {
   date: string;
   lowest: number;

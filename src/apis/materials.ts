@@ -33,31 +33,25 @@ export const getMaterials = async (
 };
 
 interface GetTradeInformationRes {
-  productName: string;
-  itemType: string;
-  price: number;
-  description: string;
-  defect: string;
-  contact: string;
-}
-
-export const getTradeInformation =
-  async (): Promise<GetTradeInformationRes> => {
-    const response = await https.get('/board/material');
-
-    return response.data.response;
+  buyProducts: {
+    productName: string;
+    description: string;
+    defect: string;
+  };
+  sellerInfo: {
+    contact: string;
   };
 
-interface GetSellerInformationRes {
-  contact: string;
+  totalPrice: number;
 }
 
-export const getSellerInformation =
-  async (): Promise<GetSellerInformationRes> => {
-    const response = await https.get('/seller');
+export const getTradeInformation = async (
+  id: number
+): Promise<GetTradeInformationRes> => {
+  const response = await https.get(`/trade/${id}`);
 
-    return response.data.response;
-  };
+  return response.data.response;
+};
 
 export const getMaterial = async (id: number): Promise<GetProductRes> => {
   const response = await https.get(`/board/materials/${id}`);

@@ -1,4 +1,5 @@
 import { Flex, Img } from '@chakra-ui/react';
+import { generateImgCloudFrontUrl } from '../../utils/url';
 
 export interface PurchaseImagesProps {
   imageNames: string[];
@@ -17,7 +18,7 @@ export const AuctionPurchaseImages = ({ imageNames }: PurchaseImagesProps) => {
         {imageNames.map((imageName) => (
           <Img
             key={imageName}
-            src={imageName}
+            src={generateImgCloudFrontUrl(imageName)}
             alt={imageName}
             w="100%"
             h="100%"

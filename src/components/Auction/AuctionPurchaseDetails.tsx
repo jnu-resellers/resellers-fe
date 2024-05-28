@@ -5,6 +5,7 @@ import { AuctionPurchaseProps } from './AuctionPurchase';
 import { theme } from '@chakra-ui/react';
 import { AuctionPurchaseModal } from './AuctionPurchaseModal';
 import { useAuction } from '@/hooks/Auction/useAuction';
+import { AuctionTime } from './AuctionTime';
 
 export const AuctionPurchaseDetails = ({
   imageNames,
@@ -18,7 +19,7 @@ export const AuctionPurchaseDetails = ({
   description,
   defect,
 }: AuctionPurchaseProps) => {
-  const { isModalOpen, openModal, closeModal, restTimeChecker } = useAuction();
+  const { isModalOpen, openModal, closeModal } = useAuction();
 
   const priceFormatter = (price: number) => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -65,11 +66,7 @@ export const AuctionPurchaseDetails = ({
               입찰 하기
             </Button>
           </Flex>
-          <Flex flexDirection="column">
-            <Box>{startAt}</Box>
-            <Box>{endAt}</Box>
-            <Box>{restTimeChecker(startAt, endAt)}</Box>
-          </Flex>
+          <AuctionTime startAt={startAt} endAt={endAt} />
         </Flex>
         <Text fontSize="x-large" fontWeight="600" marginBottom="2rem">
           설명

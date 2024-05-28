@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 export const useAuction = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [restTime, setRestTime] = useState('');
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -12,32 +11,22 @@ export const useAuction = () => {
     setIsModalOpen(false);
   };
 
-  const restTimeChecker = (startAt: string, endAt: string) => {
-    const startAtDate = new Date(startAt);
-    const endAtDate = new Date(endAt);
-    const timeDifference = endAtDate.getTime() - startAtDate.getTime();
-    const millisecondsInSecond = 1000;
-    const millisecondsInMinute = millisecondsInSecond * 60;
-    const millisecondsInHour = millisecondsInMinute * 60;
-    const millisecondsInDay = millisecondsInHour * 24;
-    const days = Math.floor(timeDifference / millisecondsInDay);
-    const hours = Math.floor(
-      (timeDifference % millisecondsInDay) / millisecondsInHour
-    );
-    const minutes = Math.floor(
-      (timeDifference % millisecondsInHour) / millisecondsInMinute
-    );
-    const seconds = Math.floor(
-      (timeDifference % millisecondsInMinute) / millisecondsInSecond
-    );
-
-    const formatNumber = (num: number) => num.toString().padStart(2, '0');
-
-    const formattedTime = `${days}일 ${formatNumber(hours)}:${formatNumber(
-      minutes
-    )}:${formatNumber(seconds)}`;
-    return formattedTime;
+  const restTimeChecker = (endAt: string) => {
+    const now = new Date();
+    const end = new Date(endAt);
+    const diff = end.getTime() - now.getTime();
+    const day = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    const formatTime = `${day}일 ${hours}시간 ${minutes}분 ${seconds}초`;
+    return formatTime;
   };
 
-  return { isModalOpen, openModal, closeModal, restTimeChecker };
+  return {
+    isModalOpen,
+    openModal,
+    closeModal,
+    restTimeChecker,
+  };
 };

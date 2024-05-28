@@ -3,13 +3,15 @@ import { EditIcon } from '@chakra-ui/icons';
 import { RiAuctionFill } from 'react-icons/ri';
 import Logo from '@/assets/logo.png';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface HeaderProps {
   showIconsAndTexts: boolean;
 }
 
 const Header = ({ showIconsAndTexts }: HeaderProps) => {
+  const navigate = useNavigate();
+
   return (
     <Box
       mb={24}
@@ -22,13 +24,39 @@ const Header = ({ showIconsAndTexts }: HeaderProps) => {
       </Link>
       {showIconsAndTexts && (
         <Box display="flex" alignItems="center">
-          <Icon as={EditIcon} w={6} h={6} ml={4} mr={2} />
-          <Text fontSize="xl" fontWeight="bold">
+          <Icon
+            cursor="pointer"
+            onClick={() => navigate('/product-form')}
+            as={EditIcon}
+            w={6}
+            h={6}
+            ml={4}
+            mr={2}
+          />
+          <Text
+            fontSize="xl"
+            fontWeight="bold"
+            cursor="pointer"
+            onClick={() => navigate('/product-form')}
+          >
             판매하기
           </Text>
+
           <Box h={8} width="2px" bg="gray.600" mx={6} />
-          <Icon as={RiAuctionFill} w={6} h={6} mr={2} />
-          <Text fontSize="xl" fontWeight="bold">
+          <Icon
+            cursor="pointer"
+            onClick={() => navigate('/auction')}
+            as={RiAuctionFill}
+            w={6}
+            h={6}
+            mr={2}
+          />
+          <Text
+            fontSize="xl"
+            fontWeight="bold"
+            cursor="pointer"
+            onClick={() => navigate('/auction')}
+          >
             경매
           </Text>
         </Box>

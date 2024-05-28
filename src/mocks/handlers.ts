@@ -274,6 +274,7 @@ const getAuctionPurchase = http.get(generateFullApiUrl('/auction/1'), () => {
       writer: '황대선',
       description: '상품설명',
       defect: '상품결함',
+      priceUnit: 10000,
     },
     error: null,
   });

@@ -26,6 +26,7 @@ interface GetAuctionPurchaseRes {
   writer: string;
   description: string;
   defect: string;
+  priceUnit: number;
 }
 
 export const getAuctionPurchase = async (

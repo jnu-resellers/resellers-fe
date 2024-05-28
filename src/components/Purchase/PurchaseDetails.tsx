@@ -10,7 +10,8 @@ const priceFormatter = (price: number) => {
 
 export const PurchaseDetails = ({
   writer,
-  product: { productName, id, preSignedUrl, price, description, defect },
+  product: { id, productName, price, description, defect, fileNames },
+  contact,
 }: PurchaseProps) => {
   return (
     <Flex flexDirection="column" w="100%" m="2.25rem 2.25rem 0 0">
@@ -23,7 +24,7 @@ export const PurchaseDetails = ({
       <Divider orientation="horizontal" mb="1rem" />
       <Box key={id}>
         <Text fontSize="xxx-large">{priceFormatter(price)}원</Text>
-        <PurchaseImages preSignedUrl={preSignedUrl} />
+        <PurchaseImages fileNames={fileNames} />
         <Text fontSize="x-large" fontWeight="600" marginBottom="2rem">
           설명
         </Text>
@@ -32,6 +33,9 @@ export const PurchaseDetails = ({
           결함
         </Text>
         <DescriptionBox description={defect} />
+        <Text fontSize="x-large" fontWeight="600" marginBottom="2rem">
+          연락처: {contact}
+        </Text>
         <PriceCheck />
       </Box>
     </Flex>

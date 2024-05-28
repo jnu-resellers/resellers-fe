@@ -1,10 +1,10 @@
 import { Flex, Img } from '@chakra-ui/react';
-
+import { generateImgCloudFrontUrl } from '../../utils/url';
 export interface PurchaseImagesProps {
-  preSignedUrl: string[];
+  fileNames: string[];
 }
 
-export const PurchaseImages = (preSignedUrl: PurchaseImagesProps) => {
+export const PurchaseImages = ({ fileNames }: PurchaseImagesProps) => {
   return (
     <Flex
       flexDirection="row"
@@ -14,17 +14,16 @@ export const PurchaseImages = (preSignedUrl: PurchaseImagesProps) => {
       justify="center"
     >
       <Flex marginBottom="16rem">
-        {preSignedUrl.preSignedUrl.map((url, index) => (
+        {fileNames.map((fileName) => (
           <Img
-            key={index}
-            src={url}
-            alt="product"
+            key={fileName}
+            src={generateImgCloudFrontUrl(fileName)}
+            alt={fileName}
             w="100%"
             h="100%"
             maxW="20rem"
             maxH="20rem"
-            borderRadius="1rem"
-            flexDirection="row"
+            objectFit="cover"
           />
         ))}
       </Flex>

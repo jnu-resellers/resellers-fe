@@ -55,24 +55,19 @@ const getMaterial = http.get(
     return HttpResponse.json({
       success: true,
       response: {
-        writer: 'yunseng',
+        writer: '황대선',
         product: {
-          preSignedUrl: [
-            'https://test-bucket.s3.ap-northeast-2.amazonaws.com/13_?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240411T172245Z&X-Amz-SignedHeaders=content-type%3Bhost&X-Amz-Expires=600&X-Amz-Credential=test-key%2F20240411%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Signature=4e081486e21a911f27b7dff27ad5156fb042c3201755493ac8f0a52cd7e3db91',
-            'https://test-bucket.s3.ap-northeast-2.amazonaws.com/14_?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240411T172245Z&X-Amz-SignedHeaders=content-type%3Bhost&X-Amz-Expires=600&X-Amz-Credential=test-key%2F20240411%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Signature=8ecdd0ec5e349c2893611907ee6e584f1d7a59816f368f4b804fac89c1c304ea',
-          ],
+          fileNames: ['냉장고1.png', '냉장고13.jpeg', '냉장고25.jpeg'],
           id: 1,
-          productName: 'LG 냉장고',
-          price: 1200000,
-          description: '2년쓴 냉장고 입니다.',
-          defect: '문이 잘 안열려요.',
+          productName: '상품이름',
+          price: 200000,
+          description: '상품설명',
+          defect: '상품결함',
+          isSold: false,
         },
+        contact: '010-2293-5028',
       },
-      error: {
-        code: 'string',
-        reason: 'string',
-        status: 'string',
-      },
+      error: null,
     });
   }
 );
@@ -264,6 +259,27 @@ const getAuctionList = http.get(generateFullApiUrl('/auction'), () => {
   });
 });
 
+const getAuctionPurchase = http.get(generateFullApiUrl('/auction/1'), () => {
+  return HttpResponse.json({
+    success: true,
+    response: {
+      imageNames: ['냉장고1.png', '냉장고13.jpeg', '냉장고25.jpeg'],
+      itemType: '냉장고/냉동고',
+      productName: '상품이름',
+      bidCount: 5,
+      startAt: '2024-05-20T14:09:27',
+      endAt: '2024-06-03T14:09:27',
+      startPrice: 200000,
+      nowPrice: 500000,
+      writer: '황대선',
+      description: '상품설명',
+      defect: '상품결함',
+      priceUnit: 10000,
+    },
+    error: null,
+  });
+});
+
 export const handlers = [
   getMaterials,
   getTradeInformation,
@@ -271,6 +287,7 @@ export const handlers = [
   postMaterials,
   getMaterial,
   getAuctionList,
+  getAuctionPurchase,
   getTradePrice,
   postAuctions,
 ];

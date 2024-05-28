@@ -1,7 +1,17 @@
 import { useState } from 'react';
 
+interface useAuctionProps {
+  isModalOpen: boolean;
+  openModal: () => void;
+  closeModal: () => void;
+  handlePriceUnit: (priceUnit: number) => void;
+  restTimeChecker: (endAt: string) => string;
+  timeFormatter: (time: string) => string;
+}
+
 export const useAuction = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] =
+    useState<useAuctionProps['isModalOpen']>(false);
 
   const openModal = () => {
     setIsModalOpen(true);

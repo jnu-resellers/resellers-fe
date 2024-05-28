@@ -18,6 +18,7 @@ export const AuctionPurchaseDetails = ({
   writer,
   description,
   defect,
+  priceUnit,
 }: AuctionPurchaseProps) => {
   const { isModalOpen, openModal, closeModal } = useAuction();
 
@@ -77,7 +78,13 @@ export const AuctionPurchaseDetails = ({
         </Text>
         <DescriptionBox description={defect} />
       </Box>
-      {isModalOpen && <AuctionPurchaseModal closeModal={closeModal} />}
+      {isModalOpen && (
+        <AuctionPurchaseModal
+          closeModal={closeModal}
+          priceUnit={priceUnit}
+          nowPrice={nowPrice}
+        />
+      )}
     </Flex>
   );
 };

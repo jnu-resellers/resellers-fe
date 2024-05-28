@@ -15,6 +15,7 @@ export interface AuctionPurchaseProps {
   writer: string;
   description: string;
   defect: string;
+  priceUnit: number;
 }
 
 export const AuctionPurchase = () => {
@@ -51,6 +52,7 @@ export const AuctionPurchase = () => {
             writer={auction.writer}
             description={auction.description}
             defect={auction.defect}
+            priceUnit={auction.priceUnit}
           />
         </Box>
       </Flex>

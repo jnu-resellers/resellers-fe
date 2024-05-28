@@ -24,7 +24,7 @@ const AuctionFormPage = () => {
     mutationFn: postAuctions,
     onSuccess: () => {
       alert('정상적으로 등록되었습니다.');
-      navigate('/');
+      navigate('/auction');
     },
     onError: () => {
       alert('서버에 문제가 발생했습니다. 잠시 후 다시시도 해보세요.');
@@ -33,6 +33,22 @@ const AuctionFormPage = () => {
   const navigate = useNavigate();
 
   const onSubmitAuction = () => {
+    // This is really bad practice. You should validate the form before submitting.
+    if (
+      fileNameList.length === 0 ||
+      !productForm.contact ||
+      !productForm.defect ||
+      !productForm.description ||
+      !productForm.itemType ||
+      !productForm.price ||
+      !productForm.productName ||
+      !auctionForm.period ||
+      !auctionForm.priceUnit
+    ) {
+      alert('모든 항목을 입력해주세요.');
+      return;
+    }
+
     mutate({
       ...productForm,
       ...auctionForm,

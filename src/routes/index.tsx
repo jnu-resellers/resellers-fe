@@ -18,7 +18,7 @@ const routes = createBrowserRouter([
         element: <ProductFormPage />,
       },
       {
-        path: 'transaction-information',
+        path: 'transaction-information/:id',
         element: <TransactionInformationPage />,
       },
       {

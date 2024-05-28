@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw';
 import { generateFullApiUrl } from '../utils/url';
 
-const selectedCategory = '냉장고/냉동고';
+/*
 const getMaterials = http.get(
   generateFullApiUrl(`/board/materials?sortType=${selectedCategory}`),
   () => {
@@ -51,6 +51,7 @@ const getMaterials = http.get(
     });
   }
 );
+*/
 
 const id = 1;
 const getMaterial = http.get(
@@ -270,7 +271,7 @@ const getAuctionList = http.get(generateFullApiUrl('/auction'), () => {
 });
 
 export const handlers = [
-  getMaterials,
+  //getMaterials,
   getTradeInformation,
   getSellerInformation,
   postMaterials,

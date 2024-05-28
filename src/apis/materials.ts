@@ -21,12 +21,13 @@ interface GetProductRes {
 }
 
 export const getMaterials = async (
-  selectedCategory: string
+  sortType?: string
 ): Promise<GetMaterialRes[]> => {
-  const response = await https.get(
-    `/board/materials?sortType=${selectedCategory}`
-  );
+  const url = sortType
+    ? '/board/materials?sortType=' + sortType
+    : '/board/materials';
 
+  const response = await https.get(url);
   return response.data.response.materials;
 };
 

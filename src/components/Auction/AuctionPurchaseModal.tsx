@@ -9,7 +9,7 @@ import {
   Button,
   theme,
 } from '@chakra-ui/react';
-import { patchAuctionPrice } from 'src/apis/auctions';
+import { useAuctionMutate } from '@/hooks/Auction/useAuctionMutate';
 import { useAuction } from '@/hooks/Auction/useAuction';
 
 interface AuctionPurchaseModalProps {
@@ -23,7 +23,10 @@ export const AuctionPurchaseModal = ({
   nowPrice,
   closeModal,
 }: AuctionPurchaseModalProps) => {
+  const id = 1;
+  const auctionId = id;
   const { addedPrice, addPriceUnit, subtractPriceUnit } = useAuction();
+  const { patchAuctionPrice } = useAuctionMutate();
   return (
     <Modal isOpen={true} onClose={() => {}}>
       <ModalOverlay />
@@ -79,7 +82,7 @@ export const AuctionPurchaseModal = ({
             mx="1rem"
             color="white"
             onClick={() => {
-              patchAuctionPrice({ price: nowPrice, auctionId: 1 });
+              patchAuctionPrice(auctionId, addedPrice || nowPrice);
               closeModal();
             }}
           >

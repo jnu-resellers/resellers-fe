@@ -8,7 +8,7 @@ interface AuctionTimeProps {
 }
 
 export const AuctionTime = ({ startAt, endAt }: AuctionTimeProps) => {
-  const { restTimeChecker } = useAuction();
+  const { restTimeChecker, timeFormatter } = useAuction();
   const [restTime, setTime] = useState(restTimeChecker(endAt));
   useEffect(() => {
     const interval = setInterval(() => {
@@ -19,9 +19,9 @@ export const AuctionTime = ({ startAt, endAt }: AuctionTimeProps) => {
 
   return (
     <Flex flexDirection="column">
-      <Box>{startAt}</Box>
-      <Box>{endAt}</Box>
-      <Box>{restTime}</Box>
+      <Box>시작 시간 : {timeFormatter(startAt)}</Box>
+      <Box>종료 시간 : {timeFormatter(endAt)}</Box>
+      <Box>남은 시간 : {restTime}</Box>
     </Flex>
   );
 };

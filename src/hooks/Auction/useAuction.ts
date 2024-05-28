@@ -11,6 +11,23 @@ export const useAuction = () => {
     setIsModalOpen(false);
   };
 
+  const timeFormatter = (time: string) => {
+    const date = new Date(time);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    const second = date.getSeconds();
+    const formatTime = `${year}년 ${month < 10 ? `0${month}` : month}월 ${
+      day < 10 ? `0${day}` : day
+    }일 ${hour < 10 ? `0${hour}` : hour}시 ${
+      minute < 10 ? `0${minute}` : minute
+    }분 ${second < 10 ? `0${second}` : second}초`;
+
+    return formatTime;
+  };
+
   const restTimeChecker = (endAt: string) => {
     const now = new Date();
     const end = new Date(endAt);
@@ -28,5 +45,6 @@ export const useAuction = () => {
     openModal,
     closeModal,
     restTimeChecker,
+    timeFormatter,
   };
 };

@@ -3,13 +3,13 @@ import { Flex, Text } from '@chakra-ui/react';
 import styled from 'styled-components';
 import { generateImgCloudFrontUrl } from 'src/utils/url';
 
-const AuctionItem = ({ auction, timeLeft }) => {
+const AuctionItem = ({ auction, timeLeft, onClick }) => {
   const defaultTimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
   const actualTimeLeft = timeLeft || defaultTimeLeft;
   console.log(auction);
 
   return (
-    <Flex mb={8}>
+    <Flex mb={8} onClick={onClick} cursor="pointer">
       <ImageField src={generateImgCloudFrontUrl(auction.imageName)} />
       <TextField>
         <Text mb="1" color="gray.500" fontSize="xl">

@@ -1,10 +1,13 @@
 import { Text, Card, CardBody, Grid, Box, Flex } from '@chakra-ui/react';
 import styled from 'styled-components';
 import { useQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 import { getMaterials } from 'src/apis/materials';
 import { generateImgCloudFrontUrl } from '../../utils/url';
 
 const MainFeed = ({ selectedCategory }) => {
+  const navigate = useNavigate();
+
   const { data: materials, status } = useQuery({
     queryKey: ['materials', selectedCategory],
     queryFn: () => getMaterials(selectedCategory),
@@ -18,12 +21,19 @@ const MainFeed = ({ selectedCategory }) => {
       material.itemType === selectedCategory || selectedCategory === ''
   );
 
+  const handleCardClick = (id) => {
+    navigate(`/purchase/${id}`);
+  };
+
   return (
     <Box display="flex" justifyContent="center">
       {filteredMaterials.length > 0 ? (
         <Grid templateColumns="repeat(4, 1fr)" gap="10">
           {filteredMaterials.map((material) => (
-            <Card key={material.id}>
+            <Card
+              key={material.id}
+              onClick={() => handleCardClick(material.id)}
+            >
               <ImageField
                 src={generateImgCloudFrontUrl(material.fileName)}
                 alt={material.productName}

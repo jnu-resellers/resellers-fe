@@ -15,7 +15,7 @@ const TransactionInformationPage = () => {
       <Flex direction="column" align="center" justify="center" mt="6">
         <Heading mt="24" as="h2" size="3xl">
           <Text as="span" color="green.500">
-            주문 신청이 완료{' '}
+            주문 신청이 완료
           </Text>
           되었습니다.
         </Heading>

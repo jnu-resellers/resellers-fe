@@ -25,8 +25,12 @@ interface GetAuctionListRes {
   auctionId: number;
 }
 
-export const getAuctionList = async (): Promise<GetAuctionListRes> => {
-  const response = await https.get('/auction');
+export const getAuctionList = async (
+  sortType?: string
+): Promise<GetAuctionListRes> => {
+  const url = sortType ? '/auction?sortType=' + sortType : '/auction';
+
+  const response = await https.get(url);
 
   return response.data.response.auctions;
 };

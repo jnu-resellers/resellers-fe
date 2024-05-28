@@ -27,6 +27,16 @@ export const AuctionPurchaseModal = ({
   const auctionId = id;
   const { addedPrice, addPriceUnit, subtractPriceUnit } = useAuction();
   const { patchAuctionPrice } = useAuctionMutate();
+  const submitPrice = () => {
+    if (addedPrice === 0) {
+      alert('현재가 보다 높은 입찰가를 설정해주세요.');
+      return;
+    }
+    patchAuctionPrice(auctionId, addedPrice || nowPrice);
+    closeModal();
+    window.location.reload();
+  };
+
   return (
     <Modal isOpen={true} onClose={() => {}}>
       <ModalOverlay />
@@ -82,8 +92,7 @@ export const AuctionPurchaseModal = ({
             mx="1rem"
             color="white"
             onClick={() => {
-              patchAuctionPrice(auctionId, addedPrice || nowPrice);
-              closeModal();
+              submitPrice();
             }}
           >
             입찰하기

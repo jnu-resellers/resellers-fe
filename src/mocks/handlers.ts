@@ -1,57 +1,64 @@
 import { http, HttpResponse } from 'msw';
 import { generateFullApiUrl } from '../utils/url';
 
-/*
-const getMaterials = http.get(
-  generateFullApiUrl(`/board/materials?sortType=${selectedCategory}`),
-  () => {
-    return HttpResponse.json({
-      success: true,
-      response: {
-        materials: [
-          {
-            preSignedUrl:
-              'https://test-bucket.s3.ap-northeast-2.amazonaws.com/1_?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240405T134134Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=test-key%2F20240405%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Signature=d55632edf221054bde206601d44a25f86100017c8a1aa816972fb675dd38ce41',
-            id: 1,
-            productName: '응애글자넘어갔을시화면표시되는부분테스트를위한타이틀',
-            itemType: '냉장고/냉동고',
-            totalPrice: 2000,
-          },
-          {
-            preSignedUrl: null,
-            id: 2,
-            productName: '응애2',
-            itemType: '냉장고/냉동고',
-            totalPrice: 1000,
-          },
-          {
-            preSignedUrl: null,
-            id: 3,
-            productName: '응애3',
-            itemType: '쇼케이스',
-            totalPrice: 1000,
-          },
-          {
-            preSignedUrl: null,
-            id: 4,
-            productName: '응애3',
-            itemType: '세척기',
-            totalPrice: 1000,
-          },
-          {
-            preSignedUrl: null,
-            id: 5,
-            productName: '응애3',
-            itemType: '제빙기',
-            totalPrice: 1000,
-          },
-        ],
-      },
-      error: null,
-    });
-  }
-);
-*/
+const getMaterials = http.get(generateFullApiUrl(`/board/materials`), () => {
+  return HttpResponse.json({
+    success: true,
+    response: {
+      materials: [
+        {
+          fileName: '냉장고12.png',
+          id: 12,
+          productName: '상품이름12',
+          itemType: '냉장고/냉동고',
+          totalPrice: 380000,
+          isSold: false,
+        },
+        {
+          fileName: '냉장고11.png',
+          id: 11,
+          productName: '상품이름11',
+          itemType: '냉장고/냉동고',
+          totalPrice: 480000,
+          isSold: false,
+        },
+        {
+          fileName: '냉장고10.png',
+          id: 10,
+          productName: '상품이름10',
+          itemType: '냉장고/냉동고',
+          totalPrice: 500000,
+          isSold: false,
+        },
+        {
+          fileName: '냉장고9.png',
+          id: 9,
+          productName: '상품이름9',
+          itemType: '냉장고/냉동고',
+          totalPrice: 278500,
+          isSold: false,
+        },
+        {
+          fileName: '냉장고8.png',
+          id: 8,
+          productName: '상품이름8',
+          itemType: '냉장고/냉동고',
+          totalPrice: 380000,
+          isSold: false,
+        },
+        {
+          fileName: '냉장고7.png',
+          id: 7,
+          productName: '상품이름7',
+          itemType: '냉장고/냉동고',
+          totalPrice: 350000,
+          isSold: false,
+        },
+      ],
+    },
+    error: null,
+  });
+});
 
 const id = 1;
 const getMaterial = http.get(
@@ -82,24 +89,23 @@ const getMaterial = http.get(
   }
 );
 
-//api 주소 변경
-const getTradeInformation = http.get(
-  generateFullApiUrl('/board/material'),
-  () => {
-    return HttpResponse.json({
-      success: true,
-      response: {
-        productName: 'LG 냉장고',
-        itemType: '냉장고/냉동고',
-        price: 100000,
-        description: '어쩌구 저쩌구',
-        defect: '문이 잘 안열려요.',
-        contact: '010-0000-0000',
+const getTradeInformation = http.get(generateFullApiUrl('/trade'), () => {
+  return HttpResponse.json({
+    success: true,
+    response: {
+      buyProducts: {
+        productName: '상품이름',
+        defect: '상품결함',
+        description: '상품설명',
       },
-      error: null,
-    });
-  }
-);
+      sellerInfo: {
+        contact: '010-2293-5028',
+      },
+      totalPrice: 200000,
+    },
+    error: null,
+  });
+});
 
 const postMaterials = http.post(generateFullApiUrl('/board/material'), () => {
   return HttpResponse.json({
@@ -121,16 +127,6 @@ const postMaterials = http.post(generateFullApiUrl('/board/material'), () => {
           ],
         },
       ],
-    },
-    error: null,
-  });
-});
-
-const getSellerInformation = http.get(generateFullApiUrl('/seller'), () => {
-  return HttpResponse.json({
-    success: true,
-    response: {
-      contact: '010-0000-0000',
     },
     error: null,
   });
@@ -271,12 +267,11 @@ const getAuctionList = http.get(generateFullApiUrl('/auction'), () => {
 });
 
 export const handlers = [
-  //getMaterials,
+  getMaterials,
   getTradeInformation,
-  getSellerInformation,
   postMaterials,
   getMaterial,
-  //getAuctionList,
+  getAuctionList,
   getTradePrice,
   postAuctions,
 ];

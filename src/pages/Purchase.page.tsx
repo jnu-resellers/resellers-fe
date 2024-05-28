@@ -5,7 +5,7 @@ import Header from '@/components/Header';
 export const PurchasePage = () => {
   return (
     <PageLayout>
-      <Header />
+      <Header showIconsAndTexts={true} />
       <Purchase />
     </PageLayout>
   );

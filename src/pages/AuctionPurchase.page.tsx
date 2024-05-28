@@ -5,7 +5,7 @@ import Header from '@/components/Header';
 export const AuctionPurchasePage = () => {
   return (
     <PageLayout>
-      <Header />
+      <Header showIconsAndTexts={false} />
       <AuctionPurchase />
     </PageLayout>
   );

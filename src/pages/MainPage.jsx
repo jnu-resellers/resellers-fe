@@ -11,7 +11,7 @@ const MainPage = () => {
   };
   return (
     <PageLayout>
-      <Header />
+      <Header showIconsAndTexts={true} />
       <CategorySelect onCategorySelect={handleCategorySelect} />
       <MainFeed selectedCategory={selectedCategory} />
     </PageLayout>

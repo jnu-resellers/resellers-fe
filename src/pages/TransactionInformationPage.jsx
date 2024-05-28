@@ -10,7 +10,7 @@ const TransactionInformationPage = () => {
   const navigate = useNavigate();
   return (
     <PageLayout>
-      <Header />
+      <Header showIconsAndTexts={true} />
       <PageTitle title="거래 정보" />
       <Flex direction="column" align="center" justify="center" mt="6">
         <Heading mt="24" as="h2" size="3xl">

@@ -276,7 +276,7 @@ export const handlers = [
   getSellerInformation,
   postMaterials,
   getMaterial,
-  getAuctionList,
+  //getAuctionList,
   getTradePrice,
   postAuctions,
 ];

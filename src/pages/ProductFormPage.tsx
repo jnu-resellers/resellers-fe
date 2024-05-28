@@ -39,7 +39,7 @@ const ProductFormPage = () => {
   };
   return (
     <PageLayout>
-      <Header />
+      <Header showIconsAndTexts={true} />
       <PageTitle title="기자재 판매 등록" />
       <Box my={12}>
         <FormInput

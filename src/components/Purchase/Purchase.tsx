@@ -78,6 +78,7 @@ export const Purchase = () => {
             fontWeight="600"
             justifyContent="center"
             float="right"
+            isDisabled={material.product.isSold}
             onClick={onSubmitOrder}
           >
             주문 신청

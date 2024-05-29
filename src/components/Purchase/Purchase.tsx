@@ -52,14 +52,10 @@ export const Purchase = () => {
             contact={material.contact}
           />
           <Button
-            display="flex"
-            bgColor={theme.colors.orange[200]}
+            px={28}
+            py={6}
             color="white"
-            w="16rem"
-            h="4rem"
-            fontSize="1.25rem"
-            fontWeight="600"
-            justifyContent="center"
+            bgColor={theme.colors.orange[300]}
             float="right"
             onClick={() => onOrder(materialId)}
           >

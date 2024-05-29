@@ -34,10 +34,13 @@ const MainFeed = ({ selectedCategory }) => {
               key={material.id}
               onClick={() => handleCardClick(material.id)}
             >
-              <ImageField
-                src={generateImgCloudFrontUrl(material.fileName)}
-                alt={material.productName}
-              />
+              <ImageWrapper>
+                <ImageField
+                  src={generateImgCloudFrontUrl(material.fileName)}
+                  alt={material.productName}
+                />
+                {material.isSold && <SoldOutText>SOLD OUT</SoldOutText>}
+              </ImageWrapper>
               <CardBody fontSize="md">
                 <Text mb="3">
                   {material.productName.length > 15
@@ -65,8 +68,29 @@ const MainFeed = ({ selectedCategory }) => {
 
 export default MainFeed;
 
-const ImageField = styled.img`
+const ImageWrapper = styled.div`
+  position: relative;
   height: 23rem;
   width: 18rem;
+`;
+
+const ImageField = styled.img`
+  height: 100%;
+  width: 100%;
   background-color: #cacaca;
+`;
+
+const SoldOutText = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
 `;

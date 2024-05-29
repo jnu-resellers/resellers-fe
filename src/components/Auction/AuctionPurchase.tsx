@@ -3,6 +3,7 @@ import { getAuctionPurchase } from 'src/apis/auctions';
 import { useQuery } from '@tanstack/react-query';
 import { AuctionPurchaseDetails } from './AuctionPurchaseDetails';
 import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export interface AuctionPurchaseProps {
   imageNames: string[];
@@ -26,6 +27,13 @@ export const AuctionPurchase = () => {
     queryKey: ['auction', id],
     queryFn: () => getAuctionPurchase(auctionId),
   });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      getAuctionPurchase(auctionId);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [auction?.nowPrice, auction?.bidCount]);
 
   if (status === 'error') return <>에러 상태</>;
   if (status === 'pending') return <>로딩 중 ...</>;

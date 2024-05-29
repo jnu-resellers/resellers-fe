@@ -3,7 +3,8 @@ import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import { Flex, Img } from '@chakra-ui/react';
 import { generateImgCloudFrontUrl } from '../../utils/url';
-
+import prevArrow from '../../assets/prevArrow.svg';
+import nextArrow from '../../assets/nextArrow.svg';
 export interface PurchaseImagesProps {
   imageNames: string[];
 }
@@ -18,7 +19,7 @@ export const PrevArrow = (props: {
     <div>
       <img
         className={className}
-        src="../../../src/assets/prevArrow.svg"
+        src={prevArrow}
         style={{ ...style, display: 'block' }}
         onClick={onClick}
       />
@@ -36,7 +37,7 @@ export const NextArrow = (props: {
     <div>
       <img
         className={className}
-        src="../../../src/assets/nextArrow.svg"
+        src={nextArrow}
         style={{ ...style, display: 'block' }}
         onClick={onClick}
       />

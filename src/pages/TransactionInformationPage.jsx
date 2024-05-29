@@ -18,10 +18,10 @@ const TransactionInformationPage = () => {
     queryFn: () => getTradeInformation(id),
   });
 
-  if (status === 'loading') return <>로딩 중 ...</>;
+  if (status === 'loading' || !tradeInformation) return <>로딩 중 ...</>;
   if (status === 'error') return <>에러 상태</>;
-
-  const { buyProducts, sellerInfo, totalPrice } = tradeInformation.response;
+  console.log(tradeInformation);
+  const { buyProducts, sellerInfo, totalPrice } = tradeInformation;
 
   return (
     <PageLayout>

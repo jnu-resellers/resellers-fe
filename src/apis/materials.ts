@@ -31,6 +31,7 @@ export const getMaterials = async (
     : '/board/materials';
 
   const response = await https.get(url);
+
   return response.data.response.materials;
 };
 

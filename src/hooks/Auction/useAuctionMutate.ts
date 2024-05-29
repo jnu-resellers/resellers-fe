@@ -13,15 +13,18 @@ export const useAuctionMutate = () => {
       price: number,
       mutateOption?: Omit<
         MutateOptions<patchAuctionBidRes, Error, unknown>,
-        'onSettled'
+        'onSuccess' | 'onError'
       >
     ) => {
       mutate(
         { auctionId, price },
         {
           ...mutateOption,
-          onSettled: (data) => {
-            if (!data) throw new Error('data is undefined');
+          onSuccess: () => {
+            alert('입찰이 완료되었습니다.');
+          },
+          onError: (error) => {
+            console.error(error);
           },
         }
       );

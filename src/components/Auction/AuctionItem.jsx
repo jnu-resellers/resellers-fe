@@ -6,7 +6,6 @@ import { generateImgCloudFrontUrl } from 'src/utils/url';
 const AuctionItem = ({ auction, timeLeft, onClick }) => {
   const defaultTimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
   const actualTimeLeft = timeLeft || defaultTimeLeft;
-  console.log(auction);
 
   return (
     <Flex mb={8} onClick={onClick} cursor="pointer">
@@ -51,6 +50,7 @@ const ImageField = styled.img`
   height: 23rem;
   width: 18rem;
   background-color: #cacaca;
+  border: 0.01rem solid #aaa;
   object-fit: cover;
 `;
 

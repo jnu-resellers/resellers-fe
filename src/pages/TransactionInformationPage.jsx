@@ -20,7 +20,7 @@ const TransactionInformationPage = () => {
 
   if (status === 'loading' || !tradeInformation) return <>로딩 중 ...</>;
   if (status === 'error') return <>에러 상태</>;
-  console.log(tradeInformation);
+
   const { buyProducts, sellerInfo, totalPrice } = tradeInformation;
 
   return (

@@ -33,7 +33,6 @@ export const Purchase = () => {
   if (status === 'error') return <>에러 상태</>;
   if (status === 'pending') return <>로딩 중 ...</>;
 
-  console.log(material);
   const onOrder = (id: number) => {
     navigate(`/transaction-information/${id}`);
   };

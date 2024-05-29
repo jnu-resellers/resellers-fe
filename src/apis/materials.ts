@@ -96,3 +96,23 @@ export const getTradePrice = async (): Promise<GetPriceCheckRes[]> => {
 
   return response.data.response;
 };
+
+export interface PostOrderReq {
+  productId: number;
+  materialId: number;
+  quantity: number;
+}
+interface PostOrderRes {
+  tradeId: number;
+}
+export const postOrder = async (
+  postOrderReqest: PostOrderReq
+): Promise<PostOrderRes> => {
+  const response = await https.post('/trade', postOrderReqest);
+  return response.data.response;
+};
+
+export const postTradeComplete = async (id: number) => {
+  const response = await https.post(`/trade/complete/${id}`);
+  return response.data.response;
+};

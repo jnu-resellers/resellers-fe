@@ -3,11 +3,15 @@ import { useEffect, useRef } from 'react';
 import { getTradePrice } from 'src/apis/materials';
 import { useQuery } from '@tanstack/react-query';
 
-export const PriceCheck = () => {
+interface PriceCheckProps {
+  itemType: string;
+}
+
+export const PriceCheck = ({ itemType }: PriceCheckProps) => {
   const chartRef = useRef<ApexCharts | null>(null);
   const { data } = useQuery({
     queryKey: ['tradePrice'],
-    queryFn: getTradePrice,
+    queryFn: () => getTradePrice(itemType),
   });
 
   useEffect(() => {

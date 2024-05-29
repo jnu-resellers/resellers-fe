@@ -1,35 +1,82 @@
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Slider from 'react-slick';
 import { Flex, Img } from '@chakra-ui/react';
 import { generateImgCloudFrontUrl } from '../../utils/url';
-import { SimpleSlider } from './ImageSlider';
-
+import prevArrow from '../../assets/prevArrow.svg';
+import nextArrow from '../../assets/nextArrow.svg';
 export interface PurchaseImagesProps {
   imageNames: string[];
 }
 
+export const PrevArrow = (props: {
+  className?: string;
+  style?: React.CSSProperties;
+  onClick?: () => void;
+}) => {
+  const { className, style, onClick } = props;
+  return (
+    <div>
+      <img
+        className={className}
+        src={prevArrow}
+        style={{ ...style, display: 'block' }}
+        onClick={onClick}
+      />
+    </div>
+  );
+};
+
+export const NextArrow = (props: {
+  className?: string;
+  style?: React.CSSProperties;
+  onClick?: () => void;
+}) => {
+  const { className, style, onClick } = props;
+  return (
+    <div>
+      <img
+        className={className}
+        src={nextArrow}
+        style={{ ...style, display: 'block' }}
+        onClick={onClick}
+      />
+    </div>
+  );
+};
+
 export const AuctionPurchaseImages = ({ imageNames }: PurchaseImagesProps) => {
+  const settings = {
+    dots: true,
+    arrows: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    vertical: true,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
+  };
   return (
     <Flex
       flexDirection="row"
       w="100%"
-      m="2.25rem 2.25rem 0rem 8rem "
-      maxW="20rem"
+      m="2.25rem"
+      maxW="30rem"
       justify="center"
     >
-      <Flex marginBottom="16rem">
-        <SimpleSlider imageNames={imageNames} />
-        {imageNames.map((imageName) => (
+      <Slider {...settings}>
+        {imageNames.map((imageName: string) => (
           <Img
             key={imageName}
             src={generateImgCloudFrontUrl(imageName)}
             alt={imageName}
             w="100%"
             h="100%"
-            maxW="20rem"
-            maxH="20rem"
-            objectFit="cover"
+            maxW="30rem"
+            maxH="30rem"
           />
         ))}
-      </Flex>
+      </Slider>
     </Flex>
   );
 };

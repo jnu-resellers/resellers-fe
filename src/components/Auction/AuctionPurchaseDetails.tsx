@@ -51,14 +51,11 @@ export const AuctionPurchaseDetails = ({
               입찰 건수 : {bidCount}
             </Box>
             <Button
-              display="flex"
-              bgColor={theme.colors.orange[200]}
+              px={28}
+              py={6}
               color="white"
-              w="16rem"
-              h="4rem"
-              fontSize="1.25rem"
-              fontWeight="600"
-              justifyContent="center"
+              bgColor={theme.colors.orange[300]}
+              float="right"
               marginTop="2rem"
               onClick={() => {
                 openModal();
@@ -66,6 +63,10 @@ export const AuctionPurchaseDetails = ({
             >
               입찰 하기
             </Button>
+            <Box color="red" fontSize="1rem" mt="2rem">
+              입찰 및 낙찰 시에는 취소가 되지 않으니 상품 문의 시에는 입찰전
+              고객센터를 통해 문의 후 입찰 부탁드립니다
+            </Box>
           </Flex>
           <AuctionTime startAt={startAt} endAt={endAt} />
         </Flex>

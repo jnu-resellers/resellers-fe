@@ -16,6 +16,7 @@ export interface PurchaseProps {
     defect: string;
     isSold?: boolean;
   };
+  itemType: string;
   contact: string;
 }
 
@@ -43,7 +44,6 @@ export const Purchase = () => {
     });
   };
 
-  const CATEGORY = '요식업'; //TODO: 카테고리 받아오기 추가
   const { data: material, status } = useQuery({
     queryKey: ['material', materialId],
     queryFn: () => getMaterial(materialId),
@@ -58,25 +58,22 @@ export const Purchase = () => {
         <Text fontSize="xx-large" fontWeight="600" mr="2rem">
           기자재 거래
         </Text>
-        <Text fontSize="larger">업종 : {CATEGORY}</Text>
+        <Text fontSize="larger">업종 : {material.itemType}</Text>
       </Flex>
       <Divider orientation="horizontal" />
       <Flex flexDirection="column">
         <Box w="100%" mr="8rem">
           <PurchaseDetails
+            itemType={material.itemType}
             writer={material.writer}
             product={material.product}
             contact={material.contact}
           />
           <Button
-            display="flex"
-            bgColor={theme.colors.orange[200]}
+            px={28}
+            py={6}
             color="white"
-            w="16rem"
-            h="4rem"
-            fontSize="1.25rem"
-            fontWeight="600"
-            justifyContent="center"
+            bgColor={theme.colors.orange[300]}
             float="right"
             isDisabled={material.product.isSold}
             onClick={onSubmitOrder}

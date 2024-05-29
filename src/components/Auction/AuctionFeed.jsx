@@ -11,8 +11,9 @@ const AuctionFeed = ({ selectedCategory }) => {
 
   const { data: auctions, status } = useQuery({
     queryKey: ['auctions', selectedCategory],
-
     queryFn: () => getAuctionList(selectedCategory),
+    refetchInterval: 1500,
+    refetchIntervalInBackground: false,
   });
 
   const [timeLefts, setTimeLefts] = useState({});

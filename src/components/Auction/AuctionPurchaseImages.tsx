@@ -8,7 +8,7 @@ export interface PurchaseImagesProps {
   imageNames: string[];
 }
 
-const PrevArrow = (props: {
+export const PrevArrow = (props: {
   className?: string;
   style?: React.CSSProperties;
   onClick?: () => void;
@@ -26,7 +26,7 @@ const PrevArrow = (props: {
   );
 };
 
-const NextArrow = (props: {
+export const NextArrow = (props: {
   className?: string;
   style?: React.CSSProperties;
   onClick?: () => void;
@@ -73,7 +73,6 @@ export const AuctionPurchaseImages = ({ imageNames }: PurchaseImagesProps) => {
             h="100%"
             maxW="30rem"
             maxH="30rem"
-            objectFit="cover"
           />
         ))}
       </Slider>

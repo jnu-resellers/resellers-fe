@@ -20,12 +20,10 @@ export const useAuctionMutate = () => {
         { auctionId, price },
         {
           ...mutateOption,
-          onSuccess: (data) => {
-            if (!data) throw new Error('data is undefined');
+          onSuccess: () => {
             alert('입찰이 완료되었습니다.');
           },
           onError: (error) => {
-            alert(error);
             console.error(error);
           },
         }

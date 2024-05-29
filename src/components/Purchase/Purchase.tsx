@@ -21,9 +21,7 @@ export interface PurchaseProps {
 export const Purchase = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  // const id = 1;
   const materialId = Number(id);
-
   const CATEGORY = '요식업'; //TODO: 카테고리 받아오기 추가
   const { data: material, status } = useQuery({
     queryKey: ['material', materialId],

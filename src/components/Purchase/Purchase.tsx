@@ -1,8 +1,9 @@
 import { Box, Button, Flex, Text, Divider, theme } from '@chakra-ui/react';
 import { PurchaseDetails } from './PurchaseDetails';
 import { getMaterial } from 'src/apis/materials';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
+import { postOrder } from 'src/apis/materials';
 
 export interface PurchaseProps {
   writer: string;
@@ -19,9 +20,29 @@ export interface PurchaseProps {
 }
 
 export const Purchase = () => {
-  const navigate = useNavigate();
   const { id } = useParams();
   const materialId = Number(id);
+  const navigate = useNavigate();
+
+  const { mutate } = useMutation({
+    mutationFn: postOrder,
+    onSuccess: (response) => {
+      const tradeId = response.tradeId;
+      navigate(`/transaction-information/${tradeId}`);
+    },
+    onError: () => {
+      alert('서버에 문제가 발생했습니다. 잠시 후 다시 시도 해보세요.');
+    },
+  });
+
+  const onSubmitOrder = () => {
+    mutate({
+      productId: materialId,
+      materialId: materialId,
+      quantity: 1,
+    });
+  };
+
   const CATEGORY = '요식업'; //TODO: 카테고리 받아오기 추가
   const { data: material, status } = useQuery({
     queryKey: ['material', materialId],
@@ -30,10 +51,6 @@ export const Purchase = () => {
 
   if (status === 'error') return <>에러 상태</>;
   if (status === 'pending') return <>로딩 중 ...</>;
-
-  const onOrder = (id: number) => {
-    navigate(`/transaction-information/${id}`);
-  };
 
   return (
     <Box w="100%">
@@ -61,7 +78,7 @@ export const Purchase = () => {
             fontWeight="600"
             justifyContent="center"
             float="right"
-            onClick={() => onOrder(materialId)}
+            onClick={onSubmitOrder}
           >
             주문 신청
           </Button>

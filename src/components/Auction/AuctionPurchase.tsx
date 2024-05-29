@@ -26,6 +26,7 @@ export const AuctionPurchase = () => {
     queryKey: ['auction', id],
     queryFn: () => getAuctionPurchase(auctionId),
     refetchInterval: 1000,
+    refetchIntervalInBackground: false,
   });
 
   if (status === 'error') return <>에러 상태</>;

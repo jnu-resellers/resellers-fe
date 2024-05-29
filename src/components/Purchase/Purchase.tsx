@@ -23,7 +23,6 @@ export const Purchase = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const materialId = Number(id);
-  const CATEGORY = '요식업'; //TODO: 카테고리 받아오기 추가
   const { data: material, status } = useQuery({
     queryKey: ['material', materialId],
     queryFn: () => getMaterial(materialId),
@@ -42,7 +41,7 @@ export const Purchase = () => {
         <Text fontSize="xx-large" fontWeight="600" mr="2rem">
           기자재 거래
         </Text>
-        <Text fontSize="larger">업종 : {CATEGORY}</Text>
+        <Text fontSize="larger">업종 : {material.itemType}</Text>
       </Flex>
       <Divider orientation="horizontal" />
       <Flex flexDirection="column">

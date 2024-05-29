@@ -12,6 +12,7 @@ export const PurchaseDetails = ({
   writer,
   product: { id, productName, price, description, defect, fileNames },
   contact,
+  itemType,
 }: PurchaseProps) => {
   return (
     <Flex flexDirection="column" w="100%" m="2.25rem 2.25rem 0 0">
@@ -36,7 +37,7 @@ export const PurchaseDetails = ({
         <Text fontSize="x-large" fontWeight="600" marginBottom="2rem">
           연락처: {contact}
         </Text>
-        <PriceCheck />
+        <PriceCheck itemType={itemType} />
       </Box>
     </Flex>
   );

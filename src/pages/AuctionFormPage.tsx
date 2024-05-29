@@ -58,7 +58,7 @@ const AuctionFormPage = () => {
 
   return (
     <PageLayout>
-      <Header showIconsAndTexts={false} />
+      <Header showIconsAndTexts={true} />
       <PageTitle title="기자재 경매 목록" />
       <Box my={12}>
         <SectionTitle title="경매 정보" />

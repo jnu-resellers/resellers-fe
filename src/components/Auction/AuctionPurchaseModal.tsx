@@ -34,7 +34,6 @@ export const AuctionPurchaseModal = ({
     }
     patchAuctionPrice(auctionId, addedPrice || nowPrice);
     closeModal();
-    window.location.reload();
   };
 
   return (

@@ -2,6 +2,7 @@ import { Box, Flex, Text, Divider } from '@chakra-ui/react';
 import { getAuctionPurchase } from 'src/apis/auctions';
 import { useQuery } from '@tanstack/react-query';
 import { AuctionPurchaseDetails } from './AuctionPurchaseDetails';
+import { useParams } from 'react-router-dom';
 
 export interface AuctionPurchaseProps {
   imageNames: string[];
@@ -19,11 +20,13 @@ export interface AuctionPurchaseProps {
 }
 
 export const AuctionPurchase = () => {
-  const id = 1; //TODO: list 에서 id 받아오기
-
+  const { id } = useParams();
+  const auctionId = Number(id);
   const { data: auction, status } = useQuery({
     queryKey: ['auction', id],
-    queryFn: () => getAuctionPurchase(id),
+    queryFn: () => getAuctionPurchase(auctionId),
+    refetchInterval: 1000,
+    refetchIntervalInBackground: false,
   });
 
   if (status === 'error') return <>에러 상태</>;

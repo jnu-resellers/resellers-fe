@@ -111,12 +111,6 @@ const AuctionFormPage = () => {
         </Text>
       </Box>
       <Box>
-        <FormInput
-          title="가격"
-          placeholder="숫자만 기입해주세요."
-          value={productForm.price}
-          onChange={onChangeProduct('price')}
-        />
         <FormTextArea
           title="설명"
           placeholder="상품에 대한 자세한 정보를 작성해주세요!"

@@ -15,6 +15,7 @@ export interface PurchaseProps {
     defect: string;
     isSold?: boolean;
   };
+  itemType: string;
   contact: string;
 }
 
@@ -47,6 +48,7 @@ export const Purchase = () => {
       <Flex flexDirection="column">
         <Box w="100%" mr="8rem">
           <PurchaseDetails
+            itemType={material.itemType}
             writer={material.writer}
             product={material.product}
             contact={material.contact}

@@ -20,6 +20,7 @@ interface GetProductRes {
     defect: string;
     isSold?: boolean;
   };
+  itemType: string;
   contact: string;
 }
 
@@ -91,8 +92,12 @@ interface GetPriceCheckRes {
   average: number;
 }
 
-export const getTradePrice = async (): Promise<GetPriceCheckRes[]> => {
-  const response = await https.get('/trade/price');
+export const getTradePrice = async (
+  itemType: string
+): Promise<GetPriceCheckRes[]> => {
+  const queryParams = new URLSearchParams();
+  queryParams.set('itemType', itemType);
+  const response = await https.get(`/trade/price?${queryParams}`);
 
   return response.data.response;
 };

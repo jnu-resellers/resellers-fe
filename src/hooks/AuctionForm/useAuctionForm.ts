@@ -17,7 +17,7 @@ const auctionFormReducer = (
 ) => {
   switch (action.type) {
     case 'priceUnit':
-      if (isNonNegativeInteger(action.payload)) {
+      if (isNonNegativeInteger(action.payload) || action.payload === '') {
         return { ...state, priceUnit: action.payload };
       }
       return state;

@@ -31,7 +31,7 @@ const productFormReducer = (
     case 'defect':
       return { ...state, defect: action.payload };
     case 'price':
-      if (isNonNegativeInteger(action.payload)) {
+      if (isNonNegativeInteger(action.payload) || action.payload === '') {
         return { ...state, price: action.payload };
       }
       return state;

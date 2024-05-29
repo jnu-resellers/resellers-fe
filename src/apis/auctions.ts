@@ -34,3 +34,42 @@ export const getAuctionList = async (
 
   return response.data.response.auctions;
 };
+
+interface GetAuctionPurchaseRes {
+  imageNames: string[];
+  itemType: string;
+  productName: string;
+  bidCount: number;
+  startAt: string;
+  endAt: string;
+  startPrice: number;
+  nowPrice: number;
+  writer: string;
+  description: string;
+  defect: string;
+  priceUnit: number;
+}
+
+export const getAuctionPurchase = async (
+  id: number
+): Promise<GetAuctionPurchaseRes> => {
+  const response = await https.get(`/auction/${id}`);
+
+  return response.data.response;
+};
+
+export interface patchAuctionBidReq {
+  auctionId: number;
+  price: number;
+}
+
+export interface patchAuctionBidRes {
+  response: null;
+}
+
+export const patchAuctionPrice = async (
+  request: patchAuctionBidReq
+): Promise<patchAuctionBidRes> => {
+  const response = await https.patch('/auction', request);
+  return response.data;
+};

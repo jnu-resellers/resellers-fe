@@ -12,13 +12,15 @@ interface GetMaterialRes {
 interface GetProductRes {
   writer: string;
   product: {
-    preSignedUrl: string[];
+    fileNames: string[];
     id: number;
     productName: string;
     price: number;
     description: string;
     defect: string;
+    isSold?: boolean;
   };
+  contact: string;
 }
 
 export const getMaterials = async (

@@ -40,9 +40,8 @@ const TransactionInformationPage = () => {
       </Flex>
       <ProductInformation productInfo={buyProducts} totalPrice={totalPrice} />
       <SellerInformation sellerInfo={sellerInfo} />
-      <Flex justify="flex-end">
+      <Flex justify="space-between" mt="8">
         <Button
-          mt="8"
           px="16"
           py="4"
           color="white"
@@ -52,6 +51,17 @@ const TransactionInformationPage = () => {
           }}
         >
           홈으로 돌아가기
+        </Button>
+        <Button
+          px="16"
+          py="4"
+          color="white"
+          bgColor={theme.colors.gray[400]}
+          onClick={() => {
+            navigate('/');
+          }}
+        >
+          입금 완료
         </Button>
       </Flex>
     </PageLayout>

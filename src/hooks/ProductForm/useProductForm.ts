@@ -1,4 +1,5 @@
 import { ChangeEvent, useReducer } from 'react';
+import { isNonNegativeInteger } from 'src/utils/validator';
 
 interface ProductFormState {
   productName: string;
@@ -30,7 +31,10 @@ const productFormReducer = (
     case 'defect':
       return { ...state, defect: action.payload };
     case 'price':
-      return { ...state, price: action.payload };
+      if (isNonNegativeInteger(action.payload)) {
+        return { ...state, price: action.payload };
+      }
+      return state;
     default:
       throw new Error(`not valid action type: ${action.type}`);
   }

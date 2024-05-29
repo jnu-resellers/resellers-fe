@@ -12,13 +12,15 @@ interface GetMaterialRes {
 interface GetProductRes {
   writer: string;
   product: {
-    preSignedUrl: string[];
+    fileNames: string[];
     id: number;
     productName: string;
     price: number;
     description: string;
     defect: string;
+    isSold?: boolean;
   };
+  contact: string;
 }
 
 export const getMaterials = async (
@@ -29,6 +31,7 @@ export const getMaterials = async (
     : '/board/materials';
 
   const response = await https.get(url);
+
   return response.data.response.materials;
 };
 

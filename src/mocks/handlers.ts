@@ -283,11 +283,11 @@ const getAuctionPurchase = http.get(generateFullApiUrl('/auction/1'), () => {
 });
 
 export const handlers = [
-  getMaterials,
-  getTradeInformation,
+  //getMaterials,
+  //getTradeInformation,
   postMaterials,
-  getMaterial,
-  getAuctionList,
+  //getMaterial,
+  //getAuctionList,
   getAuctionPurchase,
   getTradePrice,
   postAuctions,

@@ -7,13 +7,15 @@ import { useNavigate, useParams } from 'react-router-dom';
 export interface PurchaseProps {
   writer: string;
   product: {
-    preSignedUrl: string[];
+    fileNames: string[];
     id: number;
     productName: string;
     price: number;
     description: string;
     defect: string;
+    isSold?: boolean;
   };
+  contact: string;
 }
 
 export const Purchase = () => {
@@ -50,6 +52,7 @@ export const Purchase = () => {
           <PurchaseDetails
             writer={material.writer}
             product={material.product}
+            contact={material.contact}
           />
           <Button
             display="flex"

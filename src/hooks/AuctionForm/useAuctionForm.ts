@@ -1,4 +1,5 @@
 import { ChangeEvent, useReducer } from 'react';
+import { isNonNegativeInteger } from 'src/utils/validator';
 
 interface AuctionFormState {
   priceUnit: string;
@@ -16,7 +17,10 @@ const auctionFormReducer = (
 ) => {
   switch (action.type) {
     case 'priceUnit':
-      return { ...state, priceUnit: action.payload };
+      if (isNonNegativeInteger(action.payload)) {
+        return { ...state, price: action.payload };
+      }
+      return state;
     case 'period':
       return { ...state, period: action.payload };
     default:

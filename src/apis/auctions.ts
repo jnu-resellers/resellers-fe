@@ -14,6 +14,27 @@ export const postAuctions = async (
   return response.data;
 };
 
+interface GetAuctionListRes {
+  imageName: string;
+  itemType: string;
+  productName: string;
+  bidCount: number;
+  startAt: string;
+  endAt: string;
+  price: number;
+  auctionId: number;
+}
+
+export const getAuctionList = async (
+  sortType?: string
+): Promise<GetAuctionListRes> => {
+  const url = sortType ? '/auction?sortType=' + sortType : '/auction';
+
+  const response = await https.get(url);
+
+  return response.data.response.auctions;
+};
+
 interface GetAuctionPurchaseRes {
   imageNames: string[];
   itemType: string;

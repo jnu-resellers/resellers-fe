@@ -18,7 +18,7 @@ const routes = createBrowserRouter([
         element: <ProductFormPage />,
       },
       {
-        path: 'transaction-information',
+        path: 'transaction-information/:id',
         element: <TransactionInformationPage />,
       },
       {
@@ -26,11 +26,11 @@ const routes = createBrowserRouter([
         element: <MainPage />,
       },
       {
-        path: 'purchase',
+        path: 'purchase/:id',
         element: <PurchasePage />,
       },
       {
-        path: 'auction-purchase',
+        path: 'auction-purchase/:id',
         element: <AuctionPurchasePage />,
       },
       {

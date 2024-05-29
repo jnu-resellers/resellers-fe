@@ -6,8 +6,6 @@ import {
   TableContainer,
   Table,
 } from '@chakra-ui/react';
-import { getSellerInformation } from 'src/apis/materials';
-import { useQuery } from '@tanstack/react-query';
 
 const SELLER_INFO = {
   bankName: '카카오뱅크',
@@ -15,14 +13,7 @@ const SELLER_INFO = {
   accountHolder: '곽민준',
 };
 
-const SellerInformation = () => {
-  const { data: sellerInfo, status } = useQuery({
-    queryKey: ['sellerInfo'],
-    queryFn: getSellerInformation,
-  });
-
-  if (status === 'error') return <>에러 상태</>;
-  if (status === 'pending') return <>로딩 중 ...</>;
+const SellerInformation = ({ sellerInfo }) => {
   return (
     <div>
       <Heading mt="12" as="h2" size="md">

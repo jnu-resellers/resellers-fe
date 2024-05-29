@@ -1,17 +1,25 @@
 import { useState, useEffect } from 'react';
 import { Flex, Text, Box } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
-import { getAuctionList } from 'src/apis/materials';
+import { useNavigate } from 'react-router-dom';
+import { getAuctionList } from 'src/apis/auctions';
 import AuctionItem from './AuctionItem';
 import calculateTimeLeft from 'src/utils/calculateTimeLeft';
 
 const AuctionFeed = ({ selectedCategory }) => {
+  const navigate = useNavigate();
+
   const { data: auctions, status } = useQuery({
-    queryKey: ['auctions'],
-    queryFn: getAuctionList,
+    queryKey: ['auctions', selectedCategory],
+
+    queryFn: () => getAuctionList(selectedCategory),
   });
 
   const [timeLefts, setTimeLefts] = useState({});
+
+  const handleAuctionItemClick = (id) => {
+    navigate(`/auction-purchase/${id}`);
+  };
 
   useEffect(() => {
     const updateTimes = () => {
@@ -43,6 +51,7 @@ const AuctionFeed = ({ selectedCategory }) => {
           {filteredAuctions && filteredAuctions.length > 0 ? (
             filteredAuctions.map((auction) => (
               <AuctionItem
+                onClick={() => handleAuctionItemClick(auction.auctionId)}
                 key={auction.auctionId}
                 auction={auction}
                 timeLeft={timeLefts[auction.auctionId]}

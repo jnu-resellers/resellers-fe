@@ -5,17 +5,32 @@ import ProductInformation from '@/components/TransactionInformation/ProductInfor
 import SellerInformation from '@/components/TransactionInformation/SellerInformation';
 import { useNavigate } from 'react-router-dom';
 import PageTitle from '@/components/Form/PageTitle';
+import { useQuery } from '@tanstack/react-query';
+import { getTradeInformation } from 'src/apis/materials';
+import { useParams } from 'react-router-dom';
 
 const TransactionInformationPage = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
+
+  const { data: tradeInformation, status } = useQuery({
+    queryKey: ['tradeInformation', id],
+    queryFn: () => getTradeInformation(id),
+  });
+
+  if (status === 'loading' || !tradeInformation) return <>로딩 중 ...</>;
+  if (status === 'error') return <>에러 상태</>;
+
+  const { buyProducts, sellerInfo, totalPrice } = tradeInformation;
+
   return (
     <PageLayout>
-      <Header />
+      <Header showIconsAndTexts={true} />
       <PageTitle title="거래 정보" />
       <Flex direction="column" align="center" justify="center" mt="6">
         <Heading mt="24" as="h2" size="3xl">
           <Text as="span" color="green.500">
-            주문 신청이 완료{' '}
+            주문 신청이 완료
           </Text>
           되었습니다.
         </Heading>
@@ -23,11 +38,10 @@ const TransactionInformationPage = () => {
           아래 계좌정보에 입금해주세요.
         </Heading>
       </Flex>
-      <ProductInformation />
-      <SellerInformation />
-      <Flex justify="flex-end">
+      <ProductInformation productInfo={buyProducts} totalPrice={totalPrice} />
+      <SellerInformation sellerInfo={sellerInfo} />
+      <Flex justify="space-between" mt="8">
         <Button
-          mt="8"
           px="16"
           py="4"
           color="white"
@@ -37,6 +51,17 @@ const TransactionInformationPage = () => {
           }}
         >
           홈으로 돌아가기
+        </Button>
+        <Button
+          px="16"
+          py="4"
+          color="white"
+          bgColor={theme.colors.gray[400]}
+          onClick={() => {
+            navigate('/');
+          }}
+        >
+          입금 완료
         </Button>
       </Flex>
     </PageLayout>

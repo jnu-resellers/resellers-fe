@@ -2,7 +2,7 @@ import { Box, Button, Flex, Text, Divider, theme } from '@chakra-ui/react';
 import { PurchaseDetails } from './PurchaseDetails';
 import { getMaterial } from 'src/apis/materials';
 import { useQuery } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export interface PurchaseProps {
   writer: string;
@@ -20,19 +20,21 @@ export interface PurchaseProps {
 
 export const Purchase = () => {
   const navigate = useNavigate();
-  const id = 1; //TODO: main 에서 id 받아오기
+  const { id } = useParams();
+  const materialId = Number(id);
   const CATEGORY = '요식업'; //TODO: 카테고리 받아오기 추가
   const { data: material, status } = useQuery({
-    queryKey: ['material', id],
-    queryFn: () => getMaterial(id),
+    queryKey: ['material', materialId],
+    queryFn: () => getMaterial(materialId),
   });
 
   if (status === 'error') return <>에러 상태</>;
   if (status === 'pending') return <>로딩 중 ...</>;
 
-  const onOrder = () => {
-    navigate('/transaction-information');
+  const onOrder = (id: number) => {
+    navigate(`/transaction-information/${id}`);
   };
+
   return (
     <Box w="100%">
       <Flex justifyContent="start" alignItems="center">
@@ -59,7 +61,7 @@ export const Purchase = () => {
             fontWeight="600"
             justifyContent="center"
             float="right"
-            onClick={onOrder}
+            onClick={() => onOrder(materialId)}
           >
             주문 신청
           </Button>

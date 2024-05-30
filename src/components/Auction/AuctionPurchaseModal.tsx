@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { useAuctionMutate } from '@/hooks/Auction/useAuctionMutate';
 import { useAuction } from '@/hooks/Auction/useAuction';
+import { useParams } from 'react-router-dom';
 
 interface AuctionPurchaseModalProps {
   priceUnit: number;
@@ -23,8 +24,8 @@ export const AuctionPurchaseModal = ({
   nowPrice,
   closeModal,
 }: AuctionPurchaseModalProps) => {
-  const id = 1;
-  const auctionId = id;
+  const { id } = useParams();
+  const auctionId = Number(id);
   const { addedPrice, addPriceUnit, subtractPriceUnit } = useAuction();
   const { patchAuctionPrice } = useAuctionMutate();
   const submitPrice = () => {

@@ -9,9 +9,10 @@ import {
   Button,
   theme,
 } from '@chakra-ui/react';
-import { useAuctionMutate } from '@/hooks/Auction/useAuctionMutate';
+import { patchAuctionPrice } from 'src/apis/auctions';
 import { useAuction } from '@/hooks/Auction/useAuction';
 import { useParams } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
 
 interface AuctionPurchaseModalProps {
   priceUnit: number;
@@ -27,15 +28,17 @@ export const AuctionPurchaseModal = ({
   const { id } = useParams();
   const auctionId = Number(id);
   const { addedPrice, addPriceUnit, subtractPriceUnit } = useAuction();
-  const { patchAuctionPrice } = useAuctionMutate();
-  const submitPrice = () => {
-    if (addedPrice === 0) {
-      alert('현재가 보다 높은 입찰가를 설정해주세요.');
-      return;
-    }
-    patchAuctionPrice(auctionId, addedPrice || nowPrice);
-    closeModal();
-  };
+  const { mutate } = useMutation({
+    mutationKey: ['auction'],
+    mutationFn: patchAuctionPrice,
+    onSuccess: () => {
+      alert('입찰에 성공했습니다.');
+      closeModal();
+    },
+    onError: () => {
+      alert('입찰에 실패했습니다.');
+    },
+  });
 
   return (
     <Modal isOpen={true} onClose={() => {}}>
@@ -92,7 +95,11 @@ export const AuctionPurchaseModal = ({
             mx="1rem"
             color="white"
             onClick={() => {
-              submitPrice();
+              if (addedPrice === 0) {
+                alert('현재가 보다 높은 입찰가를 설정해주세요.');
+                return;
+              }
+              mutate({ auctionId, price: addedPrice || nowPrice });
             }}
           >
             입찰하기

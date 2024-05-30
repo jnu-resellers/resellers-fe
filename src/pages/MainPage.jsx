@@ -9,9 +9,14 @@ const MainPage = () => {
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
   };
+
+  const handleLogoClick = () => {
+    setSelectedCategory('');
+  };
+
   return (
     <PageLayout>
-      <Header showIconsAndTexts={true} />
+      <Header showIconsAndTexts={true} onLogoClick={handleLogoClick} />
       <CategorySelect onCategorySelect={handleCategorySelect} />
       <MainFeed selectedCategory={selectedCategory} />
     </PageLayout>

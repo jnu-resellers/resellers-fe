@@ -25,7 +25,7 @@ export const AuctionPurchase = () => {
   const { data: auction, status } = useQuery({
     queryKey: ['auction', id],
     queryFn: () => getAuctionPurchase(auctionId),
-    refetchInterval: 1000,
+    refetchInterval: 3000,
     refetchIntervalInBackground: false,
   });
 

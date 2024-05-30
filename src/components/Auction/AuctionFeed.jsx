@@ -12,7 +12,7 @@ const AuctionFeed = ({ selectedCategory }) => {
   const { data: auctions, status } = useQuery({
     queryKey: ['auctions', selectedCategory],
     queryFn: () => getAuctionList(selectedCategory),
-    refetchInterval: 1500,
+    refetchInterval: 3000,
     refetchIntervalInBackground: false,
   });
 

@@ -9,7 +9,7 @@ export interface PurchaseProps {
   writer: string;
   product: {
     fileNames: string[];
-    id: number;
+    productId: number;
     productName: string;
     price: number;
     description: string;

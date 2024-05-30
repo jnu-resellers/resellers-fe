@@ -78,6 +78,7 @@ const ImageField = styled.img`
   height: 100%;
   width: 100%;
   background-color: #cacaca;
+  object-fit: cover;
 `;
 
 const SoldOutText = styled.div`

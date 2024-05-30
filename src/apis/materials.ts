@@ -13,7 +13,7 @@ interface GetProductRes {
   writer: string;
   product: {
     fileNames: string[];
-    id: number;
+    productId: number;
     productName: string;
     price: number;
     description: string;

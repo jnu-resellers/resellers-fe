@@ -36,18 +36,22 @@ export const Purchase = () => {
     },
   });
 
-  const onSubmitOrder = () => {
-    mutate({
-      productId: materialId,
-      materialId: materialId,
-      quantity: 1,
-    });
-  };
-
   const { data: material, status } = useQuery({
     queryKey: ['material', materialId],
     queryFn: () => getMaterial(materialId),
   });
+
+  const onSubmitOrder = () => {
+    if (material?.product.productId !== undefined) {
+      mutate({
+        productId: material.product.productId,
+        materialId: materialId,
+        quantity: 1,
+      });
+    } else {
+      alert('서버에 문제가 발생했습니다. 잠시 후 다시 시도 해보세요.');
+    }
+  };
 
   if (status === 'error') return <>에러 상태</>;
   if (status === 'pending') return <>로딩 중 ...</>;

@@ -10,7 +10,7 @@ const priceFormatter = (price: number) => {
 
 export const PurchaseDetails = ({
   writer,
-  product: { id, productName, price, description, defect, fileNames },
+  product: { productId, productName, price, description, defect, fileNames },
   contact,
   itemType,
 }: PurchaseProps) => {
@@ -23,7 +23,7 @@ export const PurchaseDetails = ({
         {writer}
       </Text>
       <Divider orientation="horizontal" mb="1rem" />
-      <Box key={id}>
+      <Box key={productId}>
         <Text fontSize="xxx-large">{priceFormatter(price)}원</Text>
         <PurchaseImages fileNames={fileNames} />
         <Text fontSize="x-large" fontWeight="600" marginBottom="2rem">

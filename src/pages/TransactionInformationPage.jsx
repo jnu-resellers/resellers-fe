@@ -5,13 +5,26 @@ import ProductInformation from '@/components/TransactionInformation/ProductInfor
 import SellerInformation from '@/components/TransactionInformation/SellerInformation';
 import { useNavigate } from 'react-router-dom';
 import PageTitle from '@/components/Form/PageTitle';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation } from '@tanstack/react-query';
 import { getTradeInformation } from 'src/apis/materials';
 import { useParams } from 'react-router-dom';
+import { postTradeComplete } from 'src/apis/materials';
 
 const TransactionInformationPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const tradeId = Number(id);
+
+  const { mutate } = useMutation({
+    mutationFn: postTradeComplete,
+    onSuccess: () => {
+      alert('입금이 완료되었습니다.');
+      navigate('/');
+    },
+    onError: () => {
+      alert('서버에 문제가 발생했습니다. 잠시 후 다시 시도 해보세요.');
+    },
+  });
 
   const { data: tradeInformation, status } = useQuery({
     queryKey: ['tradeInformation', id],
@@ -58,7 +71,7 @@ const TransactionInformationPage = () => {
           color="white"
           bgColor={theme.colors.gray[400]}
           onClick={() => {
-            navigate('/');
+            mutate(tradeId);
           }}
         >
           입금 완료

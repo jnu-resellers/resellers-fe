@@ -7,9 +7,10 @@ import { Link, useNavigate } from 'react-router-dom';
 
 interface HeaderProps {
   showIconsAndTexts: boolean;
+  onLogoClick?: () => void;
 }
 
-const Header = ({ showIconsAndTexts }: HeaderProps) => {
+const Header = ({ showIconsAndTexts, onLogoClick }: HeaderProps) => {
   const navigate = useNavigate();
 
   return (
@@ -20,7 +21,7 @@ const Header = ({ showIconsAndTexts }: HeaderProps) => {
       justifyContent="space-between"
     >
       <Link to="/">
-        <LogoImg src={Logo} />
+        <LogoImg src={Logo} onClick={onLogoClick} />
       </Link>
       {showIconsAndTexts && (
         <Box display="flex" alignItems="center">
@@ -68,6 +69,7 @@ const Header = ({ showIconsAndTexts }: HeaderProps) => {
 const LogoImg = styled.img`
   width: 15rem;
   height: 2.5rem;
+  cursor: pointer;
 `;
 
 export default Header;

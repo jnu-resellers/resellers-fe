@@ -71,7 +71,7 @@ export default MainFeed;
 const ImageWrapper = styled.div`
   position: relative;
   height: 23rem;
-  width: 18rem;
+  width: 17rem;
 `;
 
 const ImageField = styled.img`

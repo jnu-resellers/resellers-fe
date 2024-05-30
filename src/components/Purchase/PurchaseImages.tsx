@@ -24,7 +24,7 @@ export const PurchaseImages = ({ fileNames }: PurchaseImagesProps) => {
       flexDirection="row"
       w="100%"
       m="2.25rem"
-      maxW="30rem"
+      maxW="32rem"
       justify="center"
     >
       <Slider {...settings}>
@@ -33,8 +33,8 @@ export const PurchaseImages = ({ fileNames }: PurchaseImagesProps) => {
             key={fileName}
             src={generateImgCloudFrontUrl(fileName)}
             alt={fileName}
-            w="100%"
-            h="100%"
+            w="20rem"
+            h="30rem"
             maxW="30rem"
             maxH="30rem"
           />

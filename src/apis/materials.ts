@@ -63,6 +63,16 @@ export const getMaterial = async (id: number): Promise<GetProductRes> => {
   return response.data.response;
 };
 
+interface GetCategoryListRes {
+  response: string[];
+}
+
+export const getCategoryList = async (): Promise<GetCategoryListRes> => {
+  const response = await https.get(`/board/materials/category`);
+
+  return response.data.response;
+};
+
 interface PostMaterialRes {
   // FIXME: impl response type
 }

@@ -1,6 +1,9 @@
 import { Heading, Box, Grid, Text } from '@chakra-ui/react';
+import { useState } from 'react';
 
 const CategorySelect = ({ onCategorySelect }) => {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
   const categories = [
     '냉장고/냉동고',
     '쇼케이스',
@@ -15,6 +18,11 @@ const CategorySelect = ({ onCategorySelect }) => {
     '주방잡화',
   ];
 
+  const handleCategorySelect = (category) => {
+    setSelectedCategory(category);
+    onCategorySelect(category);
+  };
+
   return (
     <div>
       <Heading size="md" mb="4">
@@ -27,7 +35,8 @@ const CategorySelect = ({ onCategorySelect }) => {
               <Text
                 as="span"
                 cursor="pointer"
-                onClick={() => onCategorySelect(category)}
+                fontWeight={selectedCategory === category ? 'bold' : 'normal'}
+                onClick={() => handleCategorySelect(category)}
               >
                 {category}
               </Text>

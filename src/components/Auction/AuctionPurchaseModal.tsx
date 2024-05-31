@@ -99,7 +99,10 @@ export const AuctionPurchaseModal = ({
                 alert('현재가 보다 높은 입찰가를 설정해주세요.');
                 return;
               }
-              mutate({ auctionId, price: addedPrice || nowPrice });
+              mutate({
+                auctionId,
+                price: addedPrice,
+              });
             }}
           >
             입찰하기

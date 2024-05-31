@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Text, theme } from '@chakra-ui/react';
-import Header from '../components/Header';
+import Header from '../components/common/Header';
 import useAuctionForm from '../hooks/AuctionForm/useAuctionForm';
 import useProductForm from '../hooks/ProductForm/useProductForm';
 import PageLayout from '../layouts/PageLayout';

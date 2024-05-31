@@ -1,4 +1,4 @@
-import Header from '@/components/Header';
+import Header from '@/components/common/Header';
 import PageLayout from '@/layouts/PageLayout';
 import { Heading, Flex, Text, theme, Button } from '@chakra-ui/react';
 import ProductInformation from '@/components/TransactionInformation/ProductInformation';

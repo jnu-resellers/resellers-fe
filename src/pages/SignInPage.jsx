@@ -41,7 +41,7 @@ const CenterContainer = styled.div`
   width: 100%;
   flex-direction: column;
   align-items: center;
-  margin-top: 10rem;
+  margin-top: 8rem;
 `;
 
 const LogoImg = styled.img`

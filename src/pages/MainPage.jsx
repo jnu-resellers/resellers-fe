@@ -17,7 +17,10 @@ const MainPage = () => {
   return (
     <PageLayout>
       <Header showIconsAndTexts={true} onLogoClick={handleLogoClick} />
-      <CategorySelect onCategorySelect={handleCategorySelect} />
+      <CategorySelect
+        selectedCategory={selectedCategory}
+        onCategorySelect={handleCategorySelect}
+      />
       <MainFeed selectedCategory={selectedCategory} />
     </PageLayout>
   );

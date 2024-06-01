@@ -15,6 +15,11 @@ const CategorySelect = ({ selectedCategory, onCategorySelect }) => {
     onCategorySelect(category);
   };
 
+  const handleCategorySelect = (category) => {
+    setSelectedCategory(category);
+    onCategorySelect(category);
+  };
+
   return (
     <div>
       <Heading size="md" mb="4">

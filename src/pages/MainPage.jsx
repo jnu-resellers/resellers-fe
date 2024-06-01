@@ -1,5 +1,5 @@
 import MainFeed from '@/components/Main/MainFeed';
-import Header from '@/components/Header';
+import Header from '@/components/common/Header';
 import PageLayout from '@/layouts/PageLayout';
 import CategorySelect from '@/components/Main/CategorySelect';
 import { useState } from 'react';

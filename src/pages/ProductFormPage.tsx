@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Text, theme } from '@chakra-ui/react';
 import PageLayout from '@/layouts/PageLayout';
-import Header from '@/components/Header';
+import Header from '@/components/common/Header';
 import useProductForm from '../hooks/ProductForm/useProductForm';
 import { useMutation } from '@tanstack/react-query';
 import { postMaterials } from '../apis/materials';

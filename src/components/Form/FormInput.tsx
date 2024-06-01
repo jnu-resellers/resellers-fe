@@ -7,16 +7,27 @@ interface FormInputProps {
   value: string;
   placeholder: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  smallSize?: boolean;
 }
 
-const FormInput = ({ title, value, placeholder, onChange }: FormInputProps) => {
+const FormInput = ({
+  title,
+  value,
+  placeholder,
+  onChange,
+  smallSize = false,
+}: FormInputProps) => {
   return (
     <Flex align="center" mb={10}>
       <FormInputTitle title={title} />
       <Input
         placeholder={placeholder}
         size="md"
-        w={{ base: '20rem', sm: '20rem', md: '20rem', lg: '40rem' }}
+        w={
+          smallSize
+            ? { base: '15rem', sm: '15rem', md: '15rem', lg: '21.5rem' }
+            : { base: '20rem', sm: '20rem', md: '20rem', lg: '40rem' }
+        }
         value={value}
         onChange={onChange}
       />

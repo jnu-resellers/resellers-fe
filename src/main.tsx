@@ -8,10 +8,6 @@ const enableMocking = async () => {
   if (import.meta.env.PROD) {
     return;
   }
-
-  const { worker } = await import('./mocks/worker.ts');
-
-  return worker.start();
 };
 
 enableMocking().then(() => {

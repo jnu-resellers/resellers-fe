@@ -25,6 +25,7 @@ export const AuctionPurchaseModal = ({
   nowPrice,
   closeModal,
 }: AuctionPurchaseModalProps) => {
+  const memberId = localStorage.getItem('userId');
   const { id } = useParams();
   const auctionId = Number(id);
   const { addedPrice, addPriceUnit, subtractPriceUnit } = useAuction();
@@ -95,6 +96,11 @@ export const AuctionPurchaseModal = ({
             mx="1rem"
             color="white"
             onClick={() => {
+              if (!memberId) {
+                alert('로그인이 필요한 서비스입니다.');
+                return;
+              }
+
               if (addedPrice === 0) {
                 alert('현재가 보다 높은 입찰가를 설정해주세요.');
                 return;
@@ -102,6 +108,7 @@ export const AuctionPurchaseModal = ({
               mutate({
                 auctionId,
                 price: addedPrice,
+                memberId: +memberId,
               });
             }}
           >

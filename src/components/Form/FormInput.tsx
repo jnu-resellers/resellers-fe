@@ -5,6 +5,7 @@ import FormInputTitle from './FormInputTitle';
 interface FormInputProps {
   title: string;
   value: string;
+  type?: string;
   placeholder: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   smallSize?: boolean;
@@ -15,12 +16,14 @@ const FormInput = ({
   value,
   placeholder,
   onChange,
+  type,
   smallSize = false,
 }: FormInputProps) => {
   return (
     <Flex align="center" mb={10}>
       <FormInputTitle title={title} />
       <Input
+        type={!type ? 'text' : type}
         placeholder={placeholder}
         size="md"
         w={

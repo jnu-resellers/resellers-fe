@@ -14,10 +14,12 @@ import FormTextArea from '../components/Form/FormTextArea';
 import PageTitle from '../components/Form/PageTitle';
 import FormSelect from '../components/Form/FormSelect';
 import { MATERIAL_CATEGORYS } from '../constants/options';
+import { LS_MEMBER_ID } from 'src/constants/lsKey';
 
 // TODO: need validation check
 // TODO: image upload logic
 const ProductFormPage = () => {
+  const memberId = localStorage.getItem(LS_MEMBER_ID);
   const { state: productForm, onChange } = useProductForm();
   const { fileNameList, onUploadFile } = useImageUpload();
   const { mutate } = useMutation({
@@ -32,6 +34,10 @@ const ProductFormPage = () => {
   });
   const navigate = useNavigate();
   const onSubmitMaterial = () => {
+    if (!memberId) {
+      alert('로그인이 필요한 서비스입니다.');
+      return;
+    }
     // This is really bad practice. You should validate the form before submitting.
     if (
       fileNameList.length === 0 ||
@@ -48,6 +54,7 @@ const ProductFormPage = () => {
     mutate({
       ...productForm,
       fileNames: fileNameList,
+      memberId: +memberId,
     });
   };
   return (

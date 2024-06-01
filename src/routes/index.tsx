@@ -7,7 +7,7 @@ import MainPage from '@/pages/MainPage';
 import { AuctionPurchasePage } from '@/pages/AuctionPurchase.page';
 import AuctionListPage from '@/pages/AuctionListPage';
 import AuctionFormPage from '../pages/AuctionFormPage';
-import SigninPage from '@/pages/SigninPage';
+import SignInPage from '@/pages/SignInPage';
 
 const routes = createBrowserRouter([
   {
@@ -44,7 +44,7 @@ const routes = createBrowserRouter([
       },
       {
         path: `signin`,
-        element: <SigninPage />,
+        element: <SignInPage />,
       },
     ],
   },

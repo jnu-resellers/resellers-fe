@@ -24,7 +24,7 @@ export const Purchase = () => {
   const { id } = useParams();
   const materialId = Number(id);
   const navigate = useNavigate();
-
+  const memberId = localStorage.getItem('userId');
   const { mutate } = useMutation({
     mutationFn: postOrder,
     onSuccess: (response) => {
@@ -42,11 +42,16 @@ export const Purchase = () => {
   });
 
   const onSubmitOrder = () => {
+    if (!memberId) {
+      alert('로그인이 필요한 서비스입니다.');
+      return;
+    }
     if (material?.product.productId !== undefined) {
       mutate({
         productId: material.product.productId,
         materialId: materialId,
         quantity: 1,
+        memberId: +memberId,
       });
     } else {
       alert('서버에 문제가 발생했습니다. 잠시 후 다시 시도 해보세요.');

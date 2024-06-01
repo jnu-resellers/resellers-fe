@@ -17,6 +17,7 @@ import SectionTitle from '../components/Form/SectionTitle';
 import PageTitle from '../components/Form/PageTitle';
 
 const AuctionFormPage = () => {
+  const memberId = localStorage.getItem('userId');
   const { state: productForm, onChange: onChangeProduct } = useProductForm();
   const { state: auctionForm, onChange: onChangeAuction } = useAuctionForm();
   const { fileNameList, onUploadFile } = useImageUpload();
@@ -33,6 +34,10 @@ const AuctionFormPage = () => {
   const navigate = useNavigate();
 
   const onSubmitAuction = () => {
+    if (!memberId) {
+      alert('로그인이 필요한 서비스입니다.');
+      return;
+    }
     // This is really bad practice. You should validate the form before submitting.
     if (
       fileNameList.length === 0 ||
@@ -53,6 +58,7 @@ const AuctionFormPage = () => {
       ...productForm,
       ...auctionForm,
       fileNames: fileNameList,
+      memberId: +memberId,
     });
   };
 

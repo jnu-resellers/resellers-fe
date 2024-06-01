@@ -23,7 +23,7 @@ const SigninPage = () => {
         >
           로그인
         </Button>
-        <Link to="signup">
+        <Link to="/signup">
           <Text p={2} mt={4} color="#5a5a5a">
             계정 생성하기
           </Text>

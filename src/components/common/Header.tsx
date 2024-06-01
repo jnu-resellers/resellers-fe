@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
 import IconTextLink from './IconTextLink';
 import { useState } from 'react';
+import { LS_MEMBER_ID } from 'src/constants/lsKey';
 
 interface HeaderProps {
   showIconsAndTexts: boolean;
@@ -16,13 +17,13 @@ interface HeaderProps {
 const Header = ({ showIconsAndTexts, onLogoClick }: HeaderProps) => {
   const navigate = useNavigate();
   const [isNotLogin, setIsNotLogin] = useState<boolean>(
-    !localStorage.getItem('userId')
+    !localStorage.getItem(LS_MEMBER_ID)
   );
   const onLogin = () => {
     navigate('/signin');
   };
   const onLogout = () => {
-    localStorage.removeItem('userId');
+    localStorage.removeItem(LS_MEMBER_ID);
     setIsNotLogin(true);
     alert('로그아웃 되었습니다.');
     navigate('/');

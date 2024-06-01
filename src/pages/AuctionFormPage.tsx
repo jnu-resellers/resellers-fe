@@ -15,9 +15,10 @@ import FormInput from '../components/Form/FormInput';
 import FormTextArea from '../components/Form/FormTextArea';
 import SectionTitle from '../components/Form/SectionTitle';
 import PageTitle from '../components/Form/PageTitle';
+import { LS_MEMBER_ID } from 'src/constants/lsKey';
 
 const AuctionFormPage = () => {
-  const memberId = localStorage.getItem('userId');
+  const memberId = localStorage.getItem(LS_MEMBER_ID);
   const { state: productForm, onChange: onChangeProduct } = useProductForm();
   const { state: auctionForm, onChange: onChangeAuction } = useAuctionForm();
   const { fileNameList, onUploadFile } = useImageUpload();

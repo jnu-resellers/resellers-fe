@@ -14,11 +14,12 @@ import FormTextArea from '../components/Form/FormTextArea';
 import PageTitle from '../components/Form/PageTitle';
 import FormSelect from '../components/Form/FormSelect';
 import { MATERIAL_CATEGORYS } from '../constants/options';
+import { LS_MEMBER_ID } from 'src/constants/lsKey';
 
 // TODO: need validation check
 // TODO: image upload logic
 const ProductFormPage = () => {
-  const memberId = localStorage.getItem('userId');
+  const memberId = localStorage.getItem(LS_MEMBER_ID);
   const { state: productForm, onChange } = useProductForm();
   const { fileNameList, onUploadFile } = useImageUpload();
   const { mutate } = useMutation({

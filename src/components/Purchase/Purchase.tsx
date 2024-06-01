@@ -4,6 +4,7 @@ import { getMaterial } from 'src/apis/materials';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import { postOrder } from 'src/apis/materials';
+import { LS_MEMBER_ID } from 'src/constants/lsKey';
 
 export interface PurchaseProps {
   writer: string;
@@ -24,7 +25,7 @@ export const Purchase = () => {
   const { id } = useParams();
   const materialId = Number(id);
   const navigate = useNavigate();
-  const memberId = localStorage.getItem('userId');
+  const memberId = localStorage.getItem(LS_MEMBER_ID);
   const { mutate } = useMutation({
     mutationFn: postOrder,
     onSuccess: (response) => {

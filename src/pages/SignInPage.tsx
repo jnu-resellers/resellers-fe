@@ -8,6 +8,7 @@ import { ChangeEvent, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { PostLoginReq, PostLoginRes, postLogin } from 'src/apis/auth';
 import { AxiosError } from 'axios';
+import { LS_MEMBER_ID } from 'src/constants/lsKey';
 
 const SigninPage = () => {
   const [id, setId] = useState('');
@@ -24,7 +25,7 @@ const SigninPage = () => {
   const { mutate } = useMutation<PostLoginRes, AxiosError, PostLoginReq>({
     mutationFn: postLogin,
     onSuccess: (data) => {
-      localStorage.setItem('userId', data.response.toString());
+      localStorage.setItem(LS_MEMBER_ID, data.response.toString());
       navigate('/');
     },
     onError: (error) => {

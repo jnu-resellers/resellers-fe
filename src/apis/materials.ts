@@ -87,6 +87,7 @@ export interface PostMaterialReq {
   description: string;
   defect: string;
   contact: string;
+  memberId: number;
 }
 
 export const postMaterials = async (
@@ -116,6 +117,7 @@ export interface PostOrderReq {
   productId: number;
   materialId: number;
   quantity: number;
+  memberId: number;
 }
 interface PostOrderRes {
   tradeId: number;

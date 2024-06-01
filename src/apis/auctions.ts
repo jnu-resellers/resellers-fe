@@ -61,6 +61,7 @@ export const getAuctionPurchase = async (
 export interface patchAuctionBidReq {
   auctionId: number;
   price: number;
+  memberId: number;
 }
 
 export interface patchAuctionBidRes {

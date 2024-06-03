@@ -9,6 +9,7 @@ import AuctionListPage from '@/pages/AuctionListPage';
 import AuctionFormPage from '../pages/AuctionFormPage';
 import SignInPage from '@/pages/SignInPage';
 import SignUpPage from '@/pages/SignUpPage';
+import InfoPage from '@/pages/InfoPage';
 
 const routes = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const routes = createBrowserRouter([
       {
         path: `signup`,
         element: <SignUpPage />,
+      },
+      {
+        path: `community`,
+        element: <InfoPage />,
       },
     ],
   },

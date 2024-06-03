@@ -1,6 +1,7 @@
 import { Box } from '@chakra-ui/react';
 import { EditIcon } from '@chakra-ui/icons';
-import { IoPersonCircleOutline } from 'react-icons/io5';
+import { BsFillHousesFill } from 'react-icons/bs';
+import { BsPersonCircle } from 'react-icons/bs';
 import { RiAuctionFill } from 'react-icons/ri';
 import Logo from '@/assets/logo.png';
 import styled from 'styled-components';
@@ -37,7 +38,7 @@ const Header = ({ showIconsAndTexts, onLogoClick }: HeaderProps) => {
       {showIconsAndTexts && (
         <Box display="flex" alignItems="center">
           <IconTextLink
-            icon={IoPersonCircleOutline}
+            icon={BsPersonCircle}
             text={isNotLogin ? '로그인' : '로그아웃'}
             onClick={isNotLogin ? onLogin : onLogout}
           />
@@ -52,6 +53,12 @@ const Header = ({ showIconsAndTexts, onLogoClick }: HeaderProps) => {
             icon={RiAuctionFill}
             text="경매"
             onClick={() => navigate('/auction')}
+          />
+          <Box h={8} width="2px" bg="gray.600" mx={6} />
+          <IconTextLink
+            icon={BsFillHousesFill}
+            text="커뮤니티"
+            onClick={() => navigate('/community')}
           />
         </Box>
       )}

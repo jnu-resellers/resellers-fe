@@ -54,7 +54,7 @@ const SigninPage = () => {
         <FormInput
           smallSize={true}
           title="아이디"
-          placeholder="상품명 작성"
+          placeholder="아이디 입력"
           value={id}
           onChange={handleIdChange}
         />
@@ -62,7 +62,7 @@ const SigninPage = () => {
           smallSize={true}
           title="비밀번호"
           type="password"
-          placeholder="상품명 작성"
+          placeholder="비밀번호 입력"
           value={password}
           onChange={handlePasswordChange}
         />

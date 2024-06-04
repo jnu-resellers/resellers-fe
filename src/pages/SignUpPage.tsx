@@ -1,15 +1,15 @@
 import PageLayout from '@/layouts/PageLayout';
 import Header from '@/components/common/Header';
 import PageTitle from '@/components/Form/PageTitle';
-import { Box, Button, theme, Flex } from '@chakra-ui/react';
+import { Box, Button, theme, Flex, Text } from '@chakra-ui/react';
 import FormInput from '@/components/Form/FormInput';
 import { useNavigate } from 'react-router-dom';
 import useSignUpForm from '@/hooks/SignUp/useSignUpForm';
 import { useMutation } from '@tanstack/react-query';
-import { postSignUp } from 'src/apis/auth';
+import { getDuplicateId, postSignUp } from 'src/apis/auth';
 
 const SignUpPage = () => {
-  const { state, onChange } = useSignUpForm();
+  const { state, onChange, enableEmail, disableEmail } = useSignUpForm();
   const navigate = useNavigate();
   const { mutate } = useMutation({
     mutationFn: postSignUp,
@@ -32,7 +32,13 @@ const SignUpPage = () => {
       bankName,
       accountNumber,
       contact,
+      isEnableEmail,
     } = state;
+
+    if (!isEnableEmail) {
+      alert('아이디 중복 확인을 눌러주세요.');
+    }
+
     if (password !== passwordConfirm) {
       alert('비밀번호가 일치하지 않습니다.');
       return;
@@ -47,6 +53,21 @@ const SignUpPage = () => {
       contact,
     });
   };
+
+  const onCheckDuplicated = () => {
+    getDuplicateId({ email: state.email }).then((res) => {
+      if (res.response === '사용 가능한 아이디입니다.') {
+        enableEmail();
+        alert('중복확인이 완료되었습니다.');
+        return;
+      }
+      if (res.response === '중복된 아이디입니다.') {
+        disableEmail();
+        alert('중복된 아이디입니다.');
+      }
+    });
+  };
+
   return (
     <PageLayout>
       <Header showIconsAndTexts={true} />
@@ -75,10 +96,17 @@ const SignUpPage = () => {
             bgColor="white"
             border="1px"
             borderColor="gray.300"
+            onClick={onCheckDuplicated}
           >
             중복 확인
           </Button>
+          <Text mt={2} ml={4} color={state.isEnableEmail ? 'green' : 'red'}>
+            {state.isEnableEmail
+              ? '중복확인이 완료되었습니다.'
+              : 'id 중복확인을 해주세요.'}
+          </Text>
         </Flex>
+
         <FormInput
           type="password"
           smallSize

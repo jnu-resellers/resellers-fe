@@ -8,11 +8,13 @@ interface SignUpFormState {
   bankName: string;
   accountNumber: string;
   contact: string;
+  isEnableEmail: boolean;
 }
 
 interface ProductFormAction {
-  type: keyof SignUpFormState;
+  type: keyof SignUpFormState | 'enableEmail' | 'disableEmail';
   payload: string;
+  booleanPayload?: boolean;
 }
 
 const signUpFormReducer = (
@@ -23,7 +25,7 @@ const signUpFormReducer = (
     case 'name':
       return { ...state, name: action.payload };
     case 'email':
-      return { ...state, email: action.payload };
+      return { ...state, email: action.payload, isEnableEmail: false };
     case 'password':
       return { ...state, password: action.payload };
     case 'bankName':
@@ -34,6 +36,10 @@ const signUpFormReducer = (
       return { ...state, contact: action.payload };
     case 'passwordConfirm':
       return { ...state, passwordConfirm: action.payload };
+    case 'enableEmail':
+      return { ...state, isEnableEmail: true };
+    case 'disableEmail':
+      return { ...state, isEnableEmail: false };
     default:
       throw new Error(`not valid action type: ${action.type}`);
   }
@@ -48,6 +54,7 @@ const useSignUpForm = () => {
     accountNumber: '',
     contact: '',
     passwordConfirm: '',
+    isEnableEmail: false,
   });
 
   const onChange = (type: keyof SignUpFormState) => {
@@ -58,7 +65,14 @@ const useSignUpForm = () => {
     };
   };
 
-  return { state, onChange };
+  const enableEmail = () => {
+    dispatch({ type: 'enableEmail', payload: '' });
+  };
+
+  const disableEmail = () => {
+    dispatch({ type: 'disableEmail', payload: '' });
+  };
+  return { state, onChange, enableEmail, disableEmail };
 };
 
 export default useSignUpForm;

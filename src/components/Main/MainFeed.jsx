@@ -1,9 +1,11 @@
-import { Text, Card, CardBody, Grid, Box, Flex } from '@chakra-ui/react';
+import { Text, Card, CardBody, Grid, Box } from '@chakra-ui/react';
 import styled from 'styled-components';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { getMaterials } from 'src/apis/materials';
 import { generateImgCloudFrontUrl } from '../../utils/url';
+
+const MAX_PRODUCT_NAME_LENGTH = 26;
 
 const MainFeed = ({ selectedCategory }) => {
   const navigate = useNavigate();
@@ -41,17 +43,23 @@ const MainFeed = ({ selectedCategory }) => {
                 />
                 {material.isSold && <SoldOutText>SOLD OUT</SoldOutText>}
               </ImageWrapper>
-              <CardBody fontSize="md">
+              <CardBody
+                fontSize="md"
+                display="flex"
+                flexDirection="column"
+                justifyContent="space-between"
+              >
                 <Text mb="3">
-                  {material.productName.length > 15
-                    ? `${material.productName.substring(0, 15)} ···`
+                  {material.productName.length > MAX_PRODUCT_NAME_LENGTH
+                    ? `${material.productName.substring(
+                        0,
+                        MAX_PRODUCT_NAME_LENGTH
+                      )} ···`
                     : material.productName}
                 </Text>
-                <Flex justifyContent="space-between">
-                  <Text fontWeight="bold">
-                    {material.totalPrice.toLocaleString()}원
-                  </Text>
-                </Flex>
+                <Text fontWeight="bold">
+                  {material.totalPrice.toLocaleString()}원
+                </Text>
               </CardBody>
             </Card>
           ))}

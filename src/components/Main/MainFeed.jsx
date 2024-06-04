@@ -28,7 +28,7 @@ const MainFeed = ({ selectedCategory }) => {
   return (
     <Box display="flex" justifyContent="center">
       {filteredMaterials.length > 0 ? (
-        <Grid templateColumns="repeat(4, 1fr)" gap="10">
+        <Grid templateColumns="repeat(5, 1fr)" gap="10">
           {filteredMaterials.map((material) => (
             <Card
               key={material.id}
@@ -48,7 +48,6 @@ const MainFeed = ({ selectedCategory }) => {
                     : material.productName}
                 </Text>
                 <Flex justifyContent="space-between">
-                  <Text color="gray.500">{material.itemType}</Text>
                   <Text fontWeight="bold">
                     {material.totalPrice.toLocaleString()}원
                   </Text>
@@ -70,8 +69,8 @@ export default MainFeed;
 
 const ImageWrapper = styled.div`
   position: relative;
-  height: 23rem;
-  width: 17rem;
+  height: 13rem;
+  width: 13rem;
 `;
 
 const ImageField = styled.img`
@@ -79,6 +78,9 @@ const ImageField = styled.img`
   width: 100%;
   background-color: #cacaca;
   object-fit: cover;
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 const SoldOutText = styled.div`

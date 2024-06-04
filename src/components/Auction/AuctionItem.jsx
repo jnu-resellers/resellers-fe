@@ -52,6 +52,9 @@ const ImageField = styled.img`
   background-color: #cacaca;
   border: 0.01rem solid #aaa;
   object-fit: cover;
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 const TextField = styled.div`

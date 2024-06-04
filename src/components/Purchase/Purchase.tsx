@@ -68,7 +68,7 @@ export const Purchase = () => {
         <Text fontSize="xx-large" fontWeight="600" mr="2rem">
           기자재 거래
         </Text>
-        <Text fontSize="larger">업종 : {material.itemType}</Text>
+        <Text fontSize="larger">상품 카테고리 : {material.itemType}</Text>
       </Flex>
       <Divider orientation="horizontal" />
       <Flex flexDirection="column">

@@ -20,7 +20,7 @@ const AuctionListPage = () => {
 
   return (
     <PageLayout>
-      <Header showIconsAndTexts={false} />
+      <Header showIconsAndTexts={true} />
       <Flex alignItems="center" justifyContent="space-between" mb={4}>
         <AuctionTitle title="기자재 경매 목록" />
         <Button

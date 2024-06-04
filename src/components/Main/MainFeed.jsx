@@ -1,4 +1,4 @@
-import { Text, Card, CardBody, Grid, Box, Flex } from '@chakra-ui/react';
+import { Text, Card, CardBody, Grid, Box } from '@chakra-ui/react';
 import styled from 'styled-components';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
@@ -41,17 +41,20 @@ const MainFeed = ({ selectedCategory }) => {
                 />
                 {material.isSold && <SoldOutText>SOLD OUT</SoldOutText>}
               </ImageWrapper>
-              <CardBody fontSize="md">
+              <CardBody
+                fontSize="md"
+                display="flex"
+                flexDirection="column"
+                justifyContent="space-between"
+              >
                 <Text mb="3">
-                  {material.productName.length > 15
-                    ? `${material.productName.substring(0, 15)} ···`
+                  {material.productName.length > 26
+                    ? `${material.productName.substring(0, 26)} ···`
                     : material.productName}
                 </Text>
-                <Flex justifyContent="space-between">
-                  <Text fontWeight="bold">
-                    {material.totalPrice.toLocaleString()}원
-                  </Text>
-                </Flex>
+                <Text fontWeight="bold">
+                  {material.totalPrice.toLocaleString()}원
+                </Text>
               </CardBody>
             </Card>
           ))}

@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { getMaterials } from 'src/apis/materials';
 import { generateImgCloudFrontUrl } from '../../utils/url';
 
+const MAX_PRODUCT_NAME_LENGTH = 26;
+
 const MainFeed = ({ selectedCategory }) => {
   const navigate = useNavigate();
 
@@ -48,8 +50,11 @@ const MainFeed = ({ selectedCategory }) => {
                 justifyContent="space-between"
               >
                 <Text mb="3">
-                  {material.productName.length > 26
-                    ? `${material.productName.substring(0, 26)} ···`
+                  {material.productName.length > MAX_PRODUCT_NAME_LENGTH
+                    ? `${material.productName.substring(
+                        0,
+                        MAX_PRODUCT_NAME_LENGTH
+                      )} ···`
                     : material.productName}
                 </Text>
                 <Text fontWeight="bold">

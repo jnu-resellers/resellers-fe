@@ -31,8 +31,8 @@ const SignUpPage = () => {
       passwordConfirm,
       bankName,
       accountNumber,
-      contact,
       isEnableEmail,
+      contact,
     } = state;
 
     if (!isEnableEmail) {
@@ -45,14 +45,7 @@ const SignUpPage = () => {
       return;
     }
 
-    if (
-      !name ||
-      !password ||
-      !passwordConfirm ||
-      !bankName ||
-      !accountNumber ||
-      !contact
-    ) {
+    if (!name || !password || !passwordConfirm || !bankName || !accountNumber) {
       alert('빈 칸 없이 입력해주세요.');
       return;
     }

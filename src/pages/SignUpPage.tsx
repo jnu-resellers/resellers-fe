@@ -45,6 +45,18 @@ const SignUpPage = () => {
       return;
     }
 
+    if (
+      !name ||
+      !password ||
+      !passwordConfirm ||
+      !bankName ||
+      !accountNumber ||
+      !contact
+    ) {
+      alert('빈 칸 없이 입력해주세요.');
+      return;
+    }
+
     mutate({
       name,
       email,

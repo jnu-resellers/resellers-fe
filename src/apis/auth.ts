@@ -32,3 +32,17 @@ export const postSignUp = async (request: PostSignUpReq) => {
   const response = await https.post('/member', request);
   return response.data;
 };
+
+interface GetDuplicateIdRequest {
+  email: string;
+}
+
+interface GetDuplicateIdResponse {
+  success: boolean;
+  response: string;
+  error: null | string;
+}
+export const getDuplicateId = async ({ email }: GetDuplicateIdRequest) => {
+  const response = await https.get(`/member/duplication?email=${email}`);
+  return response.data as GetDuplicateIdResponse;
+};

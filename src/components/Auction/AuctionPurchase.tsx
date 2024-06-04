@@ -38,7 +38,7 @@ export const AuctionPurchase = () => {
         <Text fontSize="xx-large" fontWeight="600" mr="2rem">
           기자재 거래
         </Text>
-        <Text fontSize="larger">업종 : {auction.itemType}</Text>
+        <Text fontSize="larger">상품 카테고리 : {auction.itemType}</Text>
       </Flex>
       <Divider orientation="horizontal" />
       <Flex flexDirection="column">

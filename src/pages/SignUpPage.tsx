@@ -37,6 +37,7 @@ const SignUpPage = () => {
 
     if (!isEnableEmail) {
       alert('아이디 중복 확인을 눌러주세요.');
+      return;
     }
 
     if (password !== passwordConfirm) {

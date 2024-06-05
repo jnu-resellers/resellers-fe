@@ -39,9 +39,9 @@ const ProductInformation = ({ productInfo, totalPrice }) => {
           </Thead>
           <Tbody>
             <Tr>
-              <Td>{productInfo.productName}</Td>
-              <Td>{productInfo.description}</Td>
-              <Td>{productInfo.defect}</Td>
+              <Td whiteSpace="normal">{productInfo.productName}</Td>
+              <Td whiteSpace="normal">{productInfo.description}</Td>
+              <Td whiteSpace="normal">{productInfo.defect}</Td>
             </Tr>
           </Tbody>
         </Table>

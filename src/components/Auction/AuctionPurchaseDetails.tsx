@@ -5,9 +5,7 @@ import {
   Button,
   Accordion,
   AccordionItem,
-  AccordionButton,
   AccordionPanel,
-  AccordionIcon,
   Tooltip,
 } from '@chakra-ui/react';
 import { DescriptionBox } from '../Purchase/DescriptionBox';
@@ -18,6 +16,7 @@ import { useAuction } from '@/hooks/Auction/useAuction';
 import { AuctionTime } from './AuctionTime';
 import AuctionBidList from './AuctionBidList';
 import CurrentPriceStat from './CurrentPriceStat';
+import AuctionAccordionHeader from './AuctionAccordionHeader';
 
 interface AuctionPurchaseDetailProps {
   imageNames: string[];
@@ -102,49 +101,19 @@ export const AuctionPurchaseDetails = ({
         </Flex>
         <Accordion defaultIndex={[0, 1, 2]} mb={4} allowMultiple>
           <AccordionItem>
-            <AccordionButton>
-              <Text
-                fontSize="x-large"
-                fontWeight="600"
-                flex="1"
-                textAlign="left"
-              >
-                입찰현황
-              </Text>
-              <AccordionIcon />
-            </AccordionButton>
+            <AuctionAccordionHeader title="입찰 현황" />
             <AccordionPanel>
               <AuctionBidList auctionId={auctionId} />
             </AccordionPanel>
           </AccordionItem>
           <AccordionItem>
-            <AccordionButton>
-              <Text
-                fontSize="x-large"
-                fontWeight="600"
-                flex="1"
-                textAlign="left"
-              >
-                설명
-              </Text>
-              <AccordionIcon />
-            </AccordionButton>
+            <AuctionAccordionHeader title="설명" />
             <AccordionPanel>
               <DescriptionBox description={description} />
             </AccordionPanel>
           </AccordionItem>
           <AccordionItem>
-            <AccordionButton>
-              <Text
-                fontSize="x-large"
-                fontWeight="600"
-                flex="1"
-                textAlign="left"
-              >
-                결함
-              </Text>
-              <AccordionIcon />
-            </AccordionButton>
+            <AuctionAccordionHeader title="결함" />
             <AccordionPanel>
               <DescriptionBox description={defect} />
             </AccordionPanel>

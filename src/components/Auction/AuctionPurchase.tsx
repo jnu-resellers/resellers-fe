@@ -21,7 +21,7 @@ export const AuctionPurchase = () => {
     <Box w="100%">
       <Flex justifyContent="start" alignItems="center">
         <Text fontSize="xx-large" fontWeight="600" mr="2rem">
-          기자재 거래
+          기자재 경매
         </Text>
         <Text fontSize="larger">상품 카테고리 : {auction.itemType}</Text>
       </Flex>

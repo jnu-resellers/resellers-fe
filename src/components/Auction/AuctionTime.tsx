@@ -1,4 +1,4 @@
-import { Box, Flex } from '@chakra-ui/react';
+import { Flex, Text, theme } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 import { useAuction } from '@/hooks/Auction/useAuction';
 
@@ -18,10 +18,10 @@ export const AuctionTime = ({ startAt, endAt }: AuctionTimeProps) => {
   }, [restTime]);
 
   return (
-    <Flex flexDirection="column">
-      <Box>시작 시간 : {timeFormatter(startAt)}</Box>
-      <Box>종료 시간 : {timeFormatter(endAt)}</Box>
-      <Box>남은 시간 : {restTime}</Box>
+    <Flex flexDirection="column" color={theme.colors.gray[400]}>
+      <Text fontSize="small">시작 시간 : {timeFormatter(startAt)}</Text>
+      <Text fontSize="small">종료 시간 : {timeFormatter(endAt)}</Text>
+      <Text fontSize="small">남은 시간 : {restTime}</Text>
     </Flex>
   );
 };

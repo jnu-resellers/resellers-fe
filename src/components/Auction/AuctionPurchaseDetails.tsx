@@ -10,6 +10,11 @@ import {
   AccordionPanel,
   AccordionIcon,
   Tooltip,
+  Stat,
+  StatLabel,
+  StatNumber,
+  StatHelpText,
+  StatArrow,
 } from '@chakra-ui/react';
 import { DescriptionBox } from '../Purchase/DescriptionBox';
 import { AuctionPurchaseImages } from './AuctionPurchaseImages';
@@ -57,28 +62,38 @@ export const AuctionPurchaseDetails = ({
 
   return (
     <Flex flexDirection="column" w="100%" m="2.25rem 2.25rem 0 0">
-      <Text fontSize="xx-large" fontWeight="500" mb="1.25rem">
-        {productName}
-      </Text>
-      <Flex justifyContent="space-between" alignItems="center">
-        <Box fontSize="2.5rem" fontWeight="600">
-          현재 가격 : {priceFormatter(nowPrice)}원
-        </Box>
-        <Text fontSize="larger" mb="1.25rem">
-          {writer}
-        </Text>
-      </Flex>
-      <Divider orientation="horizontal" mb="1rem" />
       <Box>
-        <AuctionPurchaseImages imageNames={imageNames} />
-        <Flex justifyContent="space-between" marginBottom="4rem">
-          <Flex flexDirection="column">
-            <Box fontSize="1.5rem" color={theme.colors.gray[500]}>
+        <Flex gap={10} mb={8}>
+          <AuctionPurchaseImages imageNames={imageNames} />
+          <Flex flexDirection="column" justifyContent="center">
+            <Text fontSize="2.5rem" fontWeight="500">
+              {productName}
+            </Text>
+            <Text fontSize="larger" mb={4} color={theme.colors.gray[400]}>
+              판매자: {writer}
+            </Text>
+            <Text mb={2} color={theme.colors.gray[400]}>
               시작가격 : {priceFormatter(startPrice)}원
+            </Text>
+            <Box mb={4}>
+              <Stat>
+                <StatLabel>현재 가격</StatLabel>
+                <StatNumber>{priceFormatter(nowPrice)}원</StatNumber>
+                <Tooltip
+                  padding={2}
+                  label="시작가 대비 얼마나 올랐는지 알려드려요."
+                >
+                  <StatHelpText>
+                    <StatArrow type="increase" />
+                    {(((nowPrice - startPrice) / startPrice) * 100).toFixed(2)}%
+                  </StatHelpText>
+                </Tooltip>
+              </Stat>
             </Box>
-            <Box fontSize="2rem" fontWeight="600">
+            <Box fontSize="larger" fontWeight="600">
               입찰 건수 : {bidCount}
             </Box>
+            <AuctionTime startAt={startAt} endAt={endAt} />
             <Tooltip
               hasArrow
               label="입찰 및 낙찰 시에는 취소가 되지 않으니 상품 문의 시에는 입찰전
@@ -101,7 +116,6 @@ export const AuctionPurchaseDetails = ({
               </Button>
             </Tooltip>
           </Flex>
-          <AuctionTime startAt={startAt} endAt={endAt} />
         </Flex>
         <Accordion defaultIndex={[0, 1, 2]} mb={4} allowMultiple>
           <AccordionItem>

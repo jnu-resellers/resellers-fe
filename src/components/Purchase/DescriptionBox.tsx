@@ -1,4 +1,4 @@
-import { Box, Divider, Text } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 
 interface DescriptionBoxProps {
   description: string;
@@ -10,7 +10,6 @@ export const DescriptionBox = ({ description }: DescriptionBoxProps) => {
       <Text mb="2rem" p="2rem">
         {description}
       </Text>
-      <Divider orientation="horizontal" />
     </Box>
   );
 };

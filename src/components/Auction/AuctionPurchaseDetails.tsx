@@ -1,11 +1,39 @@
-import { Flex, Text, Box, Divider, Button } from '@chakra-ui/react';
+import {
+  Flex,
+  Text,
+  Box,
+  Divider,
+  Button,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+  Tooltip,
+} from '@chakra-ui/react';
 import { DescriptionBox } from '../Purchase/DescriptionBox';
 import { AuctionPurchaseImages } from './AuctionPurchaseImages';
-import { AuctionPurchaseProps } from './AuctionPurchase';
 import { theme } from '@chakra-ui/react';
 import { AuctionPurchaseModal } from './AuctionPurchaseModal';
 import { useAuction } from '@/hooks/Auction/useAuction';
 import { AuctionTime } from './AuctionTime';
+import AuctionBidList from './AuctionBidList';
+
+interface AuctionPurchaseDetailProps {
+  imageNames: string[];
+  itemType: string;
+  productName: string;
+  bidCount: number;
+  startAt: string;
+  endAt: string;
+  startPrice: number;
+  nowPrice: number;
+  writer: string;
+  description: string;
+  defect: string;
+  priceUnit: number;
+  auctionId: number;
+}
 
 export const AuctionPurchaseDetails = ({
   imageNames,
@@ -19,7 +47,8 @@ export const AuctionPurchaseDetails = ({
   description,
   defect,
   priceUnit,
-}: AuctionPurchaseProps) => {
+  auctionId,
+}: AuctionPurchaseDetailProps) => {
   const { isModalOpen, openModal, closeModal } = useAuction();
 
   const priceFormatter = (price: number) => {
@@ -50,34 +79,80 @@ export const AuctionPurchaseDetails = ({
             <Box fontSize="2rem" fontWeight="600">
               입찰 건수 : {bidCount}
             </Box>
-            <Button
-              px={28}
-              py={6}
-              color="white"
-              bgColor={theme.colors.orange[300]}
-              float="right"
-              marginTop="2rem"
-              onClick={() => {
-                openModal();
-              }}
+            <Tooltip
+              hasArrow
+              label="입찰 및 낙찰 시에는 취소가 되지 않으니 상품 문의 시에는 입찰전
+              고객센터를 통해 문의 후 입찰 부탁드립니다."
+              bg="red.600"
+              padding={4}
             >
-              입찰 하기
-            </Button>
-            <Box color="red" fontSize="1rem" mt="2rem">
-              입찰 및 낙찰 시에는 취소가 되지 않으니 상품 문의 시에는 입찰전
-              고객센터를 통해 문의 후 입찰 부탁드립니다
-            </Box>
+              <Button
+                px={28}
+                py={6}
+                color="white"
+                bgColor={theme.colors.orange[300]}
+                float="right"
+                marginTop="2rem"
+                onClick={() => {
+                  openModal();
+                }}
+              >
+                입찰 하기
+              </Button>
+            </Tooltip>
           </Flex>
           <AuctionTime startAt={startAt} endAt={endAt} />
         </Flex>
-        <Text fontSize="x-large" fontWeight="600" marginBottom="2rem">
-          설명
-        </Text>
-        <DescriptionBox description={description} />
-        <Text fontSize="x-large" fontWeight="600" marginBottom="2rem">
-          결함
-        </Text>
-        <DescriptionBox description={defect} />
+        <Accordion defaultIndex={[0, 1, 2]} mb={4} allowMultiple>
+          <AccordionItem>
+            <AccordionButton>
+              <Text
+                fontSize="x-large"
+                fontWeight="600"
+                flex="1"
+                textAlign="left"
+              >
+                입찰현황
+              </Text>
+              <AccordionIcon />
+            </AccordionButton>
+            <AccordionPanel>
+              <AuctionBidList auctionId={auctionId} />
+            </AccordionPanel>
+          </AccordionItem>
+          <AccordionItem>
+            <AccordionButton>
+              <Text
+                fontSize="x-large"
+                fontWeight="600"
+                flex="1"
+                textAlign="left"
+              >
+                설명
+              </Text>
+              <AccordionIcon />
+            </AccordionButton>
+            <AccordionPanel>
+              <DescriptionBox description={description} />
+            </AccordionPanel>
+          </AccordionItem>
+          <AccordionItem>
+            <AccordionButton>
+              <Text
+                fontSize="x-large"
+                fontWeight="600"
+                flex="1"
+                textAlign="left"
+              >
+                결함
+              </Text>
+              <AccordionIcon />
+            </AccordionButton>
+            <AccordionPanel>
+              <DescriptionBox description={defect} />
+            </AccordionPanel>
+          </AccordionItem>
+        </Accordion>
       </Box>
       {isModalOpen && (
         <AuctionPurchaseModal

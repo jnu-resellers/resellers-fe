@@ -4,21 +4,6 @@ import { useQuery } from '@tanstack/react-query';
 import { AuctionPurchaseDetails } from './AuctionPurchaseDetails';
 import { useParams } from 'react-router-dom';
 
-export interface AuctionPurchaseProps {
-  imageNames: string[];
-  itemType: string;
-  productName: string;
-  bidCount: number;
-  startAt: string;
-  endAt: string;
-  startPrice: number;
-  nowPrice: number;
-  writer: string;
-  description: string;
-  defect: string;
-  priceUnit: number;
-}
-
 export const AuctionPurchase = () => {
   const { id } = useParams();
   const auctionId = Number(id);
@@ -56,6 +41,7 @@ export const AuctionPurchase = () => {
             description={auction.description}
             defect={auction.defect}
             priceUnit={auction.priceUnit}
+            auctionId={auctionId}
           />
         </Box>
       </Flex>

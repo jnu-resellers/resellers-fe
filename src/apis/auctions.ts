@@ -89,5 +89,5 @@ export const getAuctionBidList = async ({
   auctionId,
 }: GetAuctionBidListRequest) => {
   const response = await https.get(`/auction/${auctionId}/bid`);
-  return response.data as GetAuctionBidListResponse;
+  return response.data.response as GetAuctionBidListResponse;
 };

@@ -12,7 +12,7 @@ import {
 import { patchAuctionPrice } from 'src/apis/auctions';
 import { useAuction } from '@/hooks/Auction/useAuction';
 import { useParams } from 'react-router-dom';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { LS_MEMBER_ID } from 'src/constants/lsKey';
 
 interface AuctionPurchaseModalProps {
@@ -30,11 +30,15 @@ export const AuctionPurchaseModal = ({
   const { id } = useParams();
   const auctionId = Number(id);
   const { addedPrice, addPriceUnit, subtractPriceUnit } = useAuction();
+  const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationKey: ['auction'],
     mutationFn: patchAuctionPrice,
     onSuccess: () => {
       alert('입찰에 성공했습니다.');
+      queryClient.invalidateQueries({
+        queryKey: ['auctionBidList'],
+      });
       closeModal();
     },
     onError: () => {

@@ -74,3 +74,20 @@ export const patchAuctionPrice = async (
   const response = await https.patch('/auction', request);
   return response.data;
 };
+
+interface GetAuctionBidListRequest {
+  auctionId: number;
+}
+
+interface GetAuctionBidListResponse {
+  bids: Array<{
+    nickname: string;
+    price: number;
+  }>;
+}
+export const getAuctionBidList = async ({
+  auctionId,
+}: GetAuctionBidListRequest) => {
+  const response = await https.get(`/auction/${auctionId}/bid`);
+  return response.data.response as GetAuctionBidListResponse;
+};

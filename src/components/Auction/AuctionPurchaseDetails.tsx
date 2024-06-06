@@ -2,7 +2,6 @@ import {
   Flex,
   Text,
   Box,
-  Divider,
   Button,
   Accordion,
   AccordionItem,
@@ -10,11 +9,6 @@ import {
   AccordionPanel,
   AccordionIcon,
   Tooltip,
-  Stat,
-  StatLabel,
-  StatNumber,
-  StatHelpText,
-  StatArrow,
 } from '@chakra-ui/react';
 import { DescriptionBox } from '../Purchase/DescriptionBox';
 import { AuctionPurchaseImages } from './AuctionPurchaseImages';
@@ -23,6 +17,7 @@ import { AuctionPurchaseModal } from './AuctionPurchaseModal';
 import { useAuction } from '@/hooks/Auction/useAuction';
 import { AuctionTime } from './AuctionTime';
 import AuctionBidList from './AuctionBidList';
+import CurrentPriceStat from './CurrentPriceStat';
 
 interface AuctionPurchaseDetailProps {
   imageNames: string[];
@@ -61,7 +56,7 @@ export const AuctionPurchaseDetails = ({
   };
 
   return (
-    <Flex flexDirection="column" w="100%" m="2.25rem 2.25rem 0 0">
+    <Flex flexDirection="column" w="100%">
       <Box>
         <Flex gap={10} mb={8}>
           <AuctionPurchaseImages imageNames={imageNames} />
@@ -76,19 +71,7 @@ export const AuctionPurchaseDetails = ({
               시작가격 : {priceFormatter(startPrice)}원
             </Text>
             <Box mb={4}>
-              <Stat>
-                <StatLabel>현재 가격</StatLabel>
-                <StatNumber>{priceFormatter(nowPrice)}원</StatNumber>
-                <Tooltip
-                  padding={2}
-                  label="시작가 대비 얼마나 올랐는지 알려드려요."
-                >
-                  <StatHelpText>
-                    <StatArrow type="increase" />
-                    {(((nowPrice - startPrice) / startPrice) * 100).toFixed(2)}%
-                  </StatHelpText>
-                </Tooltip>
-              </Stat>
+              <CurrentPriceStat nowPrice={nowPrice} startPrice={startPrice} />
             </Box>
             <Box fontSize="larger" fontWeight="600">
               입찰 건수 : {bidCount}

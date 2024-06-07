@@ -57,15 +57,21 @@ export const AuctionPurchaseImages = ({ imageNames }: PurchaseImagesProps) => {
     nextArrow: <NextArrow />,
   };
   return (
-    <Flex flexDirection="row" w="100%" m="2.25rem" maxW="32rem">
+    <Flex
+      flexDirection="row"
+      w="100%"
+      m={{ base: 2, sm: 4, lg: '2.25rem' }}
+      maxW={{ base: '100%', lg: '32rem' }}
+      justify="center"
+    >
       <Slider {...settings}>
         {imageNames.map((imageName: string) => (
           <Img
             key={imageName}
             src={generateImgCloudFrontUrl(imageName)}
             alt={imageName}
-            w="20rem"
-            h="30rem"
+            w={{ base: '15rem', sm: '20rem', lg: '30rem' }}
+            h={{ base: '15rem', sm: '20rem', lg: '30rem' }}
             maxW="30rem"
             maxH="30rem"
           />

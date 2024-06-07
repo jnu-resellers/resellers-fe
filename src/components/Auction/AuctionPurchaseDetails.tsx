@@ -55,15 +55,22 @@ export const AuctionPurchaseDetails = ({
   };
 
   return (
-    <Flex flexDirection="column" w="100%">
+    <Flex flexDirection="column" w="100%" p={{ base: 2, sm: 4, lg: '2.25rem' }}>
       <Box>
-        <Flex gap={10} mb={8}>
+        <Flex gap={10} mb={8} flexWrap="wrap">
           <AuctionPurchaseImages imageNames={imageNames} />
           <Flex flexDirection="column" justifyContent="center">
-            <Text fontSize="2.5rem" fontWeight="500">
+            <Text
+              fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}
+              fontWeight="500"
+            >
               {productName}
             </Text>
-            <Text fontSize="larger" mb={4} color={theme.colors.gray[400]}>
+            <Text
+              fontSize={{ base: 'md', sm: 'lg', md: 'xl' }}
+              mb={4}
+              color={theme.colors.gray[400]}
+            >
               판매자: {writer}
             </Text>
             <Text mb={2} color={theme.colors.gray[400]}>
@@ -72,27 +79,23 @@ export const AuctionPurchaseDetails = ({
             <Box mb={4}>
               <CurrentPriceStat nowPrice={nowPrice} startPrice={startPrice} />
             </Box>
-            <Box fontSize="larger" fontWeight="600">
+            <Box fontSize={{ base: 'md', sm: 'lg', md: 'xl' }} fontWeight="600">
               입찰 건수 : {bidCount}
             </Box>
             <AuctionTime startAt={startAt} endAt={endAt} />
             <Tooltip
               hasArrow
-              label="입찰 및 낙찰 시에는 취소가 되지 않으니 상품 문의 시에는 입찰전
-              고객센터를 통해 문의 후 입찰 부탁드립니다."
+              label="입찰 및 낙찰 시에는 취소가 되지 않으니 상품 문의 시에는 입찰전 고객센터를 통해 문의 후 입찰 부탁드립니다."
               bg="red.600"
               padding={4}
             >
               <Button
-                px={28}
-                py={6}
+                px={{ base: 4, lg: 28 }}
+                py={{ base: 2, lg: 6 }}
                 color="white"
                 bgColor={theme.colors.orange[300]}
-                float="right"
-                marginTop="2rem"
-                onClick={() => {
-                  openModal();
-                }}
+                mt={{ base: '1rem', lg: '2rem' }}
+                onClick={openModal}
               >
                 입찰 하기
               </Button>

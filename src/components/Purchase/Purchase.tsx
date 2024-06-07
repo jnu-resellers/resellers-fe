@@ -63,16 +63,22 @@ export const Purchase = () => {
   if (status === 'pending') return <>로딩 중 ...</>;
 
   return (
-    <Box w="100%">
-      <Flex justifyContent="start" alignItems="center">
-        <Text fontSize="xx-large" fontWeight="600" mr="2rem">
+    <Box w="100%" p={{ base: 2, sm: 4, md: 6 }}>
+      <Flex justifyContent="start" alignItems="center" flexWrap="wrap">
+        <Text
+          fontSize={{ base: 'xl', sm: '2xl', md: '3xl', lg: '4xl' }}
+          fontWeight="600"
+          mr={{ base: '0', md: '2rem' }}
+        >
           기자재 거래
         </Text>
-        <Text fontSize="larger">상품 카테고리 : {material.itemType}</Text>
+        <Text fontSize={{ base: 'md', sm: 'lg', md: 'xl' }}>
+          상품 카테고리 : {material.itemType}
+        </Text>
       </Flex>
       <Divider orientation="horizontal" />
       <Flex flexDirection="column">
-        <Box w="100%" mr="8rem">
+        <Box w="100%">
           <PurchaseDetails
             itemType={material.itemType}
             writer={material.writer}
@@ -80,11 +86,11 @@ export const Purchase = () => {
             contact={material.contact}
           />
           <Button
-            px={28}
-            py={6}
+            px={{ base: 4, lg: 28 }}
+            py={{ base: 2, lg: 6 }}
             color="white"
             bgColor={theme.colors.orange[300]}
-            float="right"
+            alignSelf="flex-end"
             isDisabled={material.product.isSold}
             onClick={onSubmitOrder}
           >

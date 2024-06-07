@@ -22,6 +22,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import IconTextLink from './IconTextLink';
 import { useState } from 'react';
 import { LS_MEMBER_ID } from 'src/constants/lsKey';
+import { FaTruck } from 'react-icons/fa';
 
 interface HeaderProps {
   showIconsAndTexts: boolean;
@@ -134,8 +135,20 @@ const Header = ({ showIconsAndTexts, onLogoClick }: HeaderProps) => {
               onClick={() => navigate('/community')}
               mb={mb}
             />
+            <Box
+              h={8}
+              width="2px"
+              bg="gray.600"
+              mx={6}
+              display={{ base: 'none', md: 'block' }}
+            />
+            <IconTextLink
+              icon={FaTruck}
+              text="배송 제휴"
+              onClick={() => navigate('/delivery-partner')}
+              mb={mb}
+            />
           </Box>
-
           <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
             <DrawerOverlay />
             <DrawerContent>
@@ -172,6 +185,15 @@ const Header = ({ showIconsAndTexts, onLogoClick }: HeaderProps) => {
                     text="커뮤니티"
                     onClick={() => {
                       navigate('/community');
+                      onClose();
+                    }}
+                    mb={mb}
+                  />
+                   <IconTextLink
+                    icon={FaTruck}
+                    text="배송 제휴"
+                    onClick={() => {
+                      navigate('/delivery-partner');
                       onClose();
                     }}
                     mb={mb}

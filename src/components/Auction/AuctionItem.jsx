@@ -1,6 +1,4 @@
-// AuctionItem.js
-import { Flex, Text } from '@chakra-ui/react';
-import styled from 'styled-components';
+import { Flex, Text, Box, Image } from '@chakra-ui/react';
 import { generateImgCloudFrontUrl } from 'src/utils/url';
 
 const AuctionItem = ({ auction, timeLeft, onClick }) => {
@@ -8,17 +6,45 @@ const AuctionItem = ({ auction, timeLeft, onClick }) => {
   const actualTimeLeft = timeLeft || defaultTimeLeft;
 
   return (
-    <Flex mb={8} onClick={onClick} cursor="pointer">
-      <ImageField src={generateImgCloudFrontUrl(auction.imageName)} />
-      <TextField>
-        <Text mb="1" color="gray.500" fontSize="xl">
+    <Flex
+      mb={8}
+      onClick={onClick}
+      cursor="pointer"
+      flexDirection={{ base: 'column', md: 'row' }}
+      alignItems="center"
+    >
+      <Image
+        src={generateImgCloudFrontUrl(auction.imageName)}
+        height={{ base: '20rem', md: '23rem' }}
+        width={{ base: '100%', md: '18rem' }}
+        bg="gray.300"
+        border="1px solid #aaa"
+        objectFit="cover"
+        _hover={{ opacity: 0.8 }}
+      />
+      <Box
+        height={{ base: 'auto', md: '23rem' }}
+        width={{ base: '100%', md: '57rem' }}
+        border="1px solid #aaa"
+        p={{ base: 4, md: 8 }}
+        mt={{ base: 0, md: 0 }}
+      >
+        <Text mb="1" color="gray.500" fontSize={{ base: 'lg', md: 'xl' }}>
           {auction.itemType}
         </Text>
-        <Text fontWeight="bold" fontSize="xl">
+        <Text fontWeight="bold" fontSize={{ base: 'xl', md: 'xl' }}>
           {auction.productName}
         </Text>
-        <Flex align="end">
-          <Text w="35%" mt="52" color="gray.500" fontSize="xl">
+        <Flex
+          align={{ base: 'flex-start', md: 'end' }}
+          flexDirection={{ base: 'column', md: 'row' }}
+          mt={{ base: 2, md: 8 }}
+        >
+          <Text
+            w={{ base: '100%', md: '35%' }}
+            color="gray.500"
+            fontSize={{ base: 'lg', md: 'xl' }}
+          >
             {actualTimeLeft.days === 0 &&
             actualTimeLeft.hours === 0 &&
             actualTimeLeft.minutes === 0 &&
@@ -26,47 +52,28 @@ const AuctionItem = ({ auction, timeLeft, onClick }) => {
               ? '경매 종료'
               : `남은 시간: ${actualTimeLeft.days}일 ${actualTimeLeft.hours}시간 ${actualTimeLeft.minutes}분 ${actualTimeLeft.seconds}초`}
           </Text>
-          <FlexContainer>
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems={{ base: 'flex-start', md: 'flex-end' }}
+            width={{ base: '100%', md: '65%' }}
+            mt={{ base: 4, md: 36 }}
+          >
             <Text
               fontWeight="bold"
-              fontSize="xl"
+              fontSize={{ base: 'lg', md: 'xl' }}
               color={auction.bidCount > 9 ? 'red.500' : 'black'}
             >
               입찰 {auction.bidCount}건
             </Text>
-            <Text fontWeight="bold" fontSize="24">
+            <Text fontWeight="bold" fontSize={{ base: 'xl', md: '24px' }}>
               현재가 {auction.price.toLocaleString()}원
             </Text>
-          </FlexContainer>
+          </Box>
         </Flex>
-      </TextField>
+      </Box>
     </Flex>
   );
 };
 
 export default AuctionItem;
-
-const ImageField = styled.img`
-  height: 23rem;
-  width: 18rem;
-  background-color: #cacaca;
-  border: 0.01rem solid #aaa;
-  object-fit: cover;
-  &:hover {
-    opacity: 0.8;
-  }
-`;
-
-const TextField = styled.div`
-  height: 23rem;
-  width: 57rem;
-  border: 0.01rem solid #aaa;
-  padding: 2rem;
-`;
-
-const FlexContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  width: 68%;
-`;

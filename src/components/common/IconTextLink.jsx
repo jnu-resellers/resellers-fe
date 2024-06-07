@@ -1,8 +1,8 @@
 import { Box, Icon, Text } from '@chakra-ui/react';
 import styled from 'styled-components';
 
-const IconTextLink = ({ icon, text, onClick }) => (
-  <ClickableBox onClick={onClick}>
+const IconTextLink = ({ icon, text, onClick, mb }) => (
+  <ClickableBox onClick={onClick} mb={mb}>
     <Icon as={icon} w={6} h={6} mr={4} />
     <Text fontSize="xl" fontWeight="bold">
       {text}

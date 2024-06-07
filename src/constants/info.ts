@@ -22,21 +22,21 @@ export const KNOWHOW_CONTENT = [
   },
   {
     id: 4,
-    title: 'MZ세대 취향 저격한 양 많고 건강한 가성비 메뉴는?',
+    title: 'MZ세대 취향 저격한 양 많고 건강한 가성비 메뉴',
     image:
       'https://ceo-cdn.baemin.com/optimize?src=https%3A%2F%2Fceoimg.cdn.baemin.com%2Fceoimg-ym4g%2Fi%2F2024%2F5%2F7%2F01hx8m434dfqhy8kc4has2js5c.png&w=280',
     url: 'https://ceo.baemin.com/knowhow/12598',
   },
   {
     id: 5,
-    title: '우리 가게 인스타그램 광고📱이렇게 하시면 됩니다!',
+    title: '우리 가게 인스타그램 광고는📱이렇게 하세요!',
     image:
       'https://ceo-cdn.baemin.com/optimize?src=https%3A%2F%2Fceoimg.cdn.baemin.com%2Ffw%2FceoImage%2F2022%2F10%2F24%2F41206556_1666610804038.png&w=280',
     url: 'https://ceo.baemin.com/knowhow/12334',
   },
   {
     id: 6,
-    title: '프로모션 시작 전, 사장님이 새겨야 할 명언 다섯가지 🫡',
+    title: '마케팅 시작 전, 사장님이 새겨야 할 명언 5가지 🫡',
     image:
       'https://ceo-cdn.baemin.com/optimize?src=https%3A%2F%2Fceoimg.cdn.baemin.com%2Fceoimg-ym4g%2Fi%2F2023%2F11%2F29%2F01hgcxr9mrerbz4axhg493ja17.png&w=280',
     url: 'https://ceo.baemin.com/knowhow/11981',

@@ -13,7 +13,16 @@ interface PageLayoutProps extends PropsWithChildren {}
 const PageLayout = ({ children }: PageLayoutProps) => {
   return (
     <Center w="100%">
-      <Box w={{ lg: '100%', xl: '80rem' }} p={10}>
+      <Box
+        w={{
+          base: '100%',
+          sm: '90%',
+          md: '85%',
+          lg: '85%',
+          xl: '80rem',
+        }}
+        p={{ base: 4, sm: 6, md: 8, lg: 8, xl: 10 }}
+      >
         {children}
       </Box>
     </Center>

@@ -8,7 +8,12 @@ const Section = ({ title, items, columns, textPosition }) => {
 
   return (
     <>
-      <Text as="h3" fontSize={20} fontWeight="bold" my={6}>
+      <Text
+        as="h3"
+        fontSize={{ base: '18', md: '20' }}
+        fontWeight="bold"
+        my={6}
+      >
         {title}
       </Text>
       <SimpleGrid columns={columns} spacing={6}>
@@ -22,14 +27,14 @@ const Section = ({ title, items, columns, textPosition }) => {
             {textPosition === 'right' ? (
               <HStack spacing={4} align="flex-start">
                 <HImageField src={item.image} />
-                <Text width="45%" fontSize={14} fontWeight="medium">
+                <Text width="45%" fontSize={16} fontWeight="medium">
                   {item.title}
                 </Text>
               </HStack>
             ) : (
               <VStack spacing={4} align="flex-start">
                 <VImageField src={item.image} />
-                <Text width="100%" fontSize={14} fontWeight="medium">
+                <Text width="100%" fontSize={16} fontWeight="medium">
                   {item.title}
                 </Text>
               </VStack>

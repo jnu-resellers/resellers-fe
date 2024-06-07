@@ -17,25 +17,25 @@ const InfoPage = () => {
       <Section
         title="장사 노하우 🤫"
         items={KNOWHOW_CONTENT}
-        columns={3}
+        columns={[1, 2, 3]}
         textPosition="right"
       />
       <Section
         title="소상공인 지원 🎁"
         items={SUPPORT_CONTENT}
-        columns={2}
+        columns={[1, 2]}
         textPosition="below"
       />
       <Section
         title="지금 뜨는 인기 콘텐츠 🔥"
         items={HOT_CONTENT}
-        columns={3}
+        columns={[1, 2, 3]}
         textPosition="right"
       />
       <Section
         title="장사에 도움이 되는 필수 교육 📚"
         items={EDU_CONTENT}
-        columns={3}
+        columns={[1, 2, 3]}
         textPosition="below"
       />
     </PageLayout>

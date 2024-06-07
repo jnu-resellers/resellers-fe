@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
 import IconTextLink from './IconTextLink';
 import { LS_MEMBER_ID } from 'src/constants/lsKey';
+import { FaTruck } from 'react-icons/fa';
 
 interface HeaderProps {
   showIconsAndTexts: boolean;
@@ -54,6 +55,12 @@ const Header = ({ showIconsAndTexts, onLogoClick }: HeaderProps) => {
             icon={BsFillHousesFill}
             text="커뮤니티"
             onClick={() => navigate('/community')}
+          />
+          <Box h={8} width="2px" bg="gray.600" mx={6} />
+          <IconTextLink
+            icon={FaTruck}
+            text="배송 제휴"
+            onClick={() => navigate('/delivery-partner')}
           />
         </Box>
       )}

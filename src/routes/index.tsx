@@ -11,6 +11,7 @@ import SignInPage from '@/pages/SignInPage';
 import SignUpPage from '@/pages/SignUpPage';
 import InfoPage from '@/pages/InfoPage';
 import MyPage from '../pages/MyPage';
+import { DeliveryPartnerPage } from '@/pages/DeliveryPartnerPage';
 
 const routes = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ const routes = createBrowserRouter([
       {
         path: 'me',
         element: <MyPage />,
+      },
+      {
+        path: `delivery-partner`,
+        element: <DeliveryPartnerPage />,
       },
     ],
   },

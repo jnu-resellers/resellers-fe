@@ -7,7 +7,6 @@ import Logo from '@/assets/logo.png';
 import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
 import IconTextLink from './IconTextLink';
-import { useState } from 'react';
 import { LS_MEMBER_ID } from 'src/constants/lsKey';
 
 interface HeaderProps {
@@ -17,17 +16,13 @@ interface HeaderProps {
 
 const Header = ({ showIconsAndTexts, onLogoClick }: HeaderProps) => {
   const navigate = useNavigate();
-  const [isNotLogin, setIsNotLogin] = useState<boolean>(
-    !localStorage.getItem(LS_MEMBER_ID)
-  );
+  const isNotLogin = !localStorage.getItem(LS_MEMBER_ID);
+
   const onLogin = () => {
     navigate('/signin');
   };
-  const onLogout = () => {
-    localStorage.removeItem(LS_MEMBER_ID);
-    setIsNotLogin(true);
-    alert('로그아웃 되었습니다.');
-    navigate('/');
+  const redirectToMyPage = () => {
+    navigate('/me');
   };
 
   return (
@@ -39,8 +34,8 @@ const Header = ({ showIconsAndTexts, onLogoClick }: HeaderProps) => {
         <Box display="flex" alignItems="center">
           <IconTextLink
             icon={BsPersonCircle}
-            text={isNotLogin ? '로그인' : '로그아웃'}
-            onClick={isNotLogin ? onLogin : onLogout}
+            text={isNotLogin ? '로그인' : '마이페이지'}
+            onClick={isNotLogin ? onLogin : redirectToMyPage}
           />
           <Box h={8} width="2px" bg="gray.600" mx={6} />
           <IconTextLink

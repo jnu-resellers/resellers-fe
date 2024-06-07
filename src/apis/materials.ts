@@ -1,3 +1,4 @@
+import { GetResponseBody } from './common';
 import https from './https';
 
 interface GetMaterialRes {
@@ -6,7 +7,7 @@ interface GetMaterialRes {
   productName: string;
   itemType: string; // TODO: 유니온 타입으로 제한 필요
   totalPrice: number;
-  isSold: string;
+  isSold: boolean;
 }
 
 interface GetProductRes {
@@ -132,4 +133,40 @@ export const postOrder = async (
 export const postTradeComplete = async (id: number) => {
   const response = await https.post(`/trade/complete/${id}`);
   return response.data.response;
+};
+
+interface GetRegisteredMaterialRequest {
+  memberId: number;
+}
+
+interface GetRegisteredMaterialResponse {
+  materials: GetMaterialRes[];
+}
+
+export const getRegisteredMaterial = async ({
+  memberId,
+}: GetRegisteredMaterialRequest) => {
+  const response = await https.get(`/board/materials/member/${memberId}`);
+  return response.data as GetResponseBody<GetRegisteredMaterialResponse>;
+};
+
+interface GetPurchaseMaterialRequest {
+  memberId: number;
+}
+
+interface GetPurchaseMaterialResponse {
+  materials: Array<
+    Omit<GetMaterialRes, 'isSold' | 'id'> & {
+      tradeId: number;
+      tradeConfirmed: boolean;
+      materialId: number;
+    }
+  >;
+}
+
+export const getPurchaseMaterial = async ({
+  memberId,
+}: GetPurchaseMaterialRequest) => {
+  const response = await https.get(`/trade/member/${memberId}`);
+  return response.data as GetResponseBody<GetPurchaseMaterialResponse>;
 };

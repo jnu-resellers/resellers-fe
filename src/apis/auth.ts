@@ -1,3 +1,4 @@
+import { GetResponseBody } from './common';
 import https from './https';
 
 export interface PostLoginReq {
@@ -45,4 +46,22 @@ interface GetDuplicateIdResponse {
 export const getDuplicateId = async ({ email }: GetDuplicateIdRequest) => {
   const response = await https.get(`/member/duplication?email=${email}`);
   return response.data as GetDuplicateIdResponse;
+};
+
+interface GetUserInfoRequest {
+  memberId: number;
+}
+
+interface GetUserInfoResponse {
+  nickname: string;
+  email: string;
+  contact: string;
+  bankName: string;
+  accountNumber: string;
+  memberId: number;
+}
+
+export const getUserInfo = async ({ memberId }: GetUserInfoRequest) => {
+  const response = await https.get(`/member/${memberId}/info`);
+  return response.data as GetResponseBody<GetUserInfoResponse>;
 };

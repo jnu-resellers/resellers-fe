@@ -30,11 +30,21 @@ const MainFeed = ({ selectedCategory }) => {
   return (
     <Box display="flex" justifyContent="center">
       {filteredMaterials.length > 0 ? (
-        <Grid templateColumns="repeat(5, 1fr)" gap="10">
+        <Grid
+          templateColumns={{
+            base: 'repeat(2, 1fr)',
+            sm: 'repeat(3, 1fr)',
+            md: 'repeat(4, 1fr)',
+            lg: 'repeat(4, 1fr)',
+            xl: 'repeat(5, 1fr)',
+          }}
+          gap={{ base: '4', md: '6', lg: '10' }}
+        >
           {filteredMaterials.map((material) => (
             <Card
               key={material.id}
               onClick={() => handleCardClick(material.id)}
+              cursor="pointer"
             >
               <ImageWrapper>
                 <ImageField
@@ -44,10 +54,11 @@ const MainFeed = ({ selectedCategory }) => {
                 {material.isSold && <SoldOutText>SOLD OUT</SoldOutText>}
               </ImageWrapper>
               <CardBody
-                fontSize="md"
+                fontSize={{ base: 'sm', md: 'md', lg: 'md' }}
                 display="flex"
                 flexDirection="column"
                 justifyContent="space-between"
+                p={{ base: '2', md: '4', lg: '4' }}
               >
                 <Text mb="3">
                   {material.productName.length > MAX_PRODUCT_NAME_LENGTH
@@ -78,7 +89,7 @@ export default MainFeed;
 const ImageWrapper = styled.div`
   position: relative;
   height: 13rem;
-  width: 13rem;
+  width: 100%;
 `;
 
 const ImageField = styled.img`

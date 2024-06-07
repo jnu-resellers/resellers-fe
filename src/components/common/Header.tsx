@@ -20,7 +20,6 @@ import { RiAuctionFill } from 'react-icons/ri';
 import Logo from '@/assets/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import IconTextLink from './IconTextLink';
-import { useState } from 'react';
 import { LS_MEMBER_ID } from 'src/constants/lsKey';
 import { FaTruck } from 'react-icons/fa';
 
@@ -31,19 +30,14 @@ interface HeaderProps {
 
 const Header = ({ showIconsAndTexts, onLogoClick }: HeaderProps) => {
   const navigate = useNavigate();
-  const [isNotLogin, setIsNotLogin] = useState<boolean>(
-    !localStorage.getItem(LS_MEMBER_ID)
-  );
+  const isNotLogin = !localStorage.getItem(LS_MEMBER_ID);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const onLogin = () => {
     navigate('/signin');
   };
-  const onLogout = () => {
-    localStorage.removeItem(LS_MEMBER_ID);
-    setIsNotLogin(true);
-    alert('로그아웃 되었습니다.');
-    navigate('/');
+  const redirectToMyPage = () => {
+    navigate('/me');
   };
 
   const mb = useBreakpointValue({ base: 4, md: 0 });
@@ -92,8 +86,8 @@ const Header = ({ showIconsAndTexts, onLogoClick }: HeaderProps) => {
           >
             <IconTextLink
               icon={BsPersonCircle}
-              text={isNotLogin ? '로그인' : '로그아웃'}
-              onClick={isNotLogin ? onLogin : onLogout}
+              text={isNotLogin ? '로그인' : '마이페이지'}
+              onClick={isNotLogin ? onLogin : redirectToMyPage}
               mb={mb}
             />
             <Box
@@ -158,8 +152,18 @@ const Header = ({ showIconsAndTexts, onLogoClick }: HeaderProps) => {
                 <VStack spacing={4} align="flex-start">
                   <IconTextLink
                     icon={BsPersonCircle}
-                    text={isNotLogin ? '로그인' : '로그아웃'}
-                    onClick={isNotLogin ? onLogin : onLogout}
+                    text={isNotLogin ? '로그인' : '마이페이지'}
+                    onClick={
+                      isNotLogin
+                        ? () => {
+                            onLogin();
+                            onClose();
+                          }
+                        : () => {
+                            redirectToMyPage();
+                            onClose();
+                          }
+                    }
                     mb={mb}
                   />
                   <IconTextLink
@@ -189,7 +193,7 @@ const Header = ({ showIconsAndTexts, onLogoClick }: HeaderProps) => {
                     }}
                     mb={mb}
                   />
-                   <IconTextLink
+                  <IconTextLink
                     icon={FaTruck}
                     text="배송 제휴"
                     onClick={() => {

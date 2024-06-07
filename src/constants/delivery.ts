@@ -100,7 +100,7 @@ export const DELIVERY_REVIEW: DeliveryReview[] = [
     id: 4,
     name: '민준 반찬',
     reviewCount: 8,
-    content: '카고퀵 자주 이용하겠습니다..! 물품도 문제없고 배송도 빨랐어요',
+    content: '카고퀵 자주 이용하겠습니다..! 물품도 문제없네요!',
     reviewCompany: DELIVERY_LIST[2],
   },
 ];

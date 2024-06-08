@@ -64,7 +64,7 @@ export const Purchase = () => {
 
   return (
     <Box w="100%" p={{ base: 2, sm: 4, md: 6 }}>
-      <Flex justifyContent="start" alignItems="center" flexWrap="wrap">
+      <Flex justifyContent="start" alignItems="center" flexWrap="wrap" gap={4}>
         <Text
           fontSize={{ base: 'xl', sm: '2xl', md: '3xl', lg: '4xl' }}
           fontWeight="600"

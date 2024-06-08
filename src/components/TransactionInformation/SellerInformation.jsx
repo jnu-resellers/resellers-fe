@@ -7,12 +7,6 @@ import {
   Table,
 } from '@chakra-ui/react';
 
-const SELLER_INFO = {
-  bankName: '카카오뱅크',
-  accountNumber: '3333-05-220-8939',
-  accountHolder: '곽민준',
-};
-
 const SellerInformation = ({ sellerInfo }) => {
   return (
     <div>
@@ -36,19 +30,19 @@ const SellerInformation = ({ sellerInfo }) => {
             <Tr>
               <Td fontSize={{ base: '12', md: '14' }}>은행명</Td>
               <Td textAlign="right" fontSize={{ base: '12', md: '14' }}>
-                {SELLER_INFO.bankName}
+                {sellerInfo.bankName}
               </Td>
             </Tr>
             <Tr>
               <Td fontSize={{ base: '12', md: '14' }}>계좌번호</Td>
               <Td textAlign="right" fontSize={{ base: '12', md: '14' }}>
-                {SELLER_INFO.accountNumber}
+                {sellerInfo.accountNumber}
               </Td>
             </Tr>
             <Tr>
               <Td fontSize={{ base: '12', md: '14' }}>예금주</Td>
               <Td textAlign="right" fontSize={{ base: '12', md: '14' }}>
-                {SELLER_INFO.accountHolder}
+                {sellerInfo.name}
               </Td>
             </Tr>
             <Tr>

@@ -83,6 +83,7 @@ interface GetAuctionBidListResponse {
   bids: Array<{
     nickname: string;
     price: number;
+    createdAt: string;
   }>;
 }
 export const getAuctionBidList = async ({

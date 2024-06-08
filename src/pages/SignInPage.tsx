@@ -1,6 +1,6 @@
 import PageLayout from '@/layouts/PageLayout';
 import styled from 'styled-components';
-import { Button, theme, Text } from '@chakra-ui/react';
+import { Button, theme, Text, Flex } from '@chakra-ui/react';
 import Logo from '@/assets/logo.png';
 import FormInput from '@/components/Form/FormInput';
 import { Link, useNavigate } from 'react-router-dom';
@@ -47,7 +47,13 @@ const SigninPage = () => {
 
   return (
     <PageLayout>
-      <CenterContainer>
+      <Flex
+        w="100%"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        mt={{ base: '12', md: '24' }}
+      >
         <Link to="/">
           <LogoImg src={Logo} />
         </Link>
@@ -68,11 +74,10 @@ const SigninPage = () => {
         />
         <Button
           mt={12}
-          px={64}
-          py={4}
           color="white"
           bgColor={theme.colors.orange[300]}
           onClick={handleLogin}
+          w="70%"
         >
           로그인
         </Button>
@@ -81,21 +86,12 @@ const SigninPage = () => {
             계정 생성하기
           </Text>
         </Link>
-      </CenterContainer>
+      </Flex>
     </PageLayout>
   );
 };
 
 export default SigninPage;
-
-const CenterContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 8rem;
-`;
 
 const LogoImg = styled.img`
   width: 15rem;

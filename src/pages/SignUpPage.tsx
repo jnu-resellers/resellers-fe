@@ -1,7 +1,7 @@
 import PageLayout from '@/layouts/PageLayout';
 import Header from '@/components/common/Header';
 import PageTitle from '@/components/Form/PageTitle';
-import { Box, Button, theme, Flex, Text } from '@chakra-ui/react';
+import { Box, Button, theme, Flex, Text, Card } from '@chakra-ui/react';
 import FormInput from '@/components/Form/FormInput';
 import { useNavigate } from 'react-router-dom';
 import useSignUpForm from '@/hooks/SignUp/useSignUpForm';
@@ -78,7 +78,7 @@ const SignUpPage = () => {
     <PageLayout>
       <Header showIconsAndTexts={true} />
       <PageTitle title="회원 가입" />
-      <Box my={12}>
+      <Flex my={12} flexDirection="column">
         <FormInput
           smallSize
           title="닉네임"
@@ -86,31 +86,39 @@ const SignUpPage = () => {
           onChange={onChange('name')}
           value={state.name}
         />
-        <Flex>
-          <Box>
-            <FormInput
-              smallSize
-              title="아이디"
-              placeholder="아이디"
-              onChange={onChange('email')}
-              value={state.email}
-            />
-          </Box>
-          <Button
-            ml={8}
-            color="black"
-            bgColor="white"
-            border="1px"
-            borderColor="gray.300"
-            onClick={onCheckDuplicated}
+        <Flex flexDirection="column">
+          <FormInput
+            smallSize
+            title="아이디"
+            placeholder="아이디"
+            onChange={onChange('email')}
+            value={state.email}
+          />
+          <Flex
+            align={{ base: 'center', md: '' }}
+            mb={10}
+            gap={{ base: '4', md: '0' }}
           >
-            중복 확인
-          </Button>
-          <Text mt={2} ml={4} color={state.isEnableEmail ? 'green' : 'red'}>
-            {state.isEnableEmail
-              ? '중복확인이 완료되었습니다.'
-              : 'id 중복확인을 해주세요.'}
-          </Text>
+            <Button
+              color="black"
+              bgColor="white"
+              border="1px"
+              borderColor="gray.300"
+              onClick={onCheckDuplicated}
+            >
+              중복 확인
+            </Button>
+            <Text
+              fontSize="0.8rem"
+              mt={2}
+              ml={4}
+              color={state.isEnableEmail ? 'green' : 'red'}
+            >
+              {state.isEnableEmail
+                ? '중복확인이 완료되었습니다.'
+                : 'id 중복확인을 해주세요.'}
+            </Text>
+          </Flex>
         </Flex>
 
         <FormInput
@@ -143,17 +151,16 @@ const SignUpPage = () => {
           onChange={onChange('accountNumber')}
           value={state.accountNumber}
         />
-      </Box>
-
-      <Button
-        px={64}
-        py={4}
-        color="white"
-        bgColor={theme.colors.orange[300]}
-        onClick={onSubmitSignUp}
-      >
-        회원가입
-      </Button>
+        <Button
+          color="white"
+          bgColor={theme.colors.orange[300]}
+          onClick={onSubmitSignUp}
+          w={{ base: '15rem', sm: '15rem', md: '15rem', lg: '21.5rem' }}
+          alignSelf="center"
+        >
+          회원가입
+        </Button>
+      </Flex>
     </PageLayout>
   );
 };

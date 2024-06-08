@@ -20,7 +20,12 @@ const FormInput = ({
   smallSize = false,
 }: FormInputProps) => {
   return (
-    <Flex align="center" mb={10}>
+    <Flex
+      align="center"
+      mb={10}
+      flexDirection={{ base: 'column', md: 'row' }}
+      gap={{ base: '4', md: '0' }}
+    >
       <FormInputTitle title={title} />
       <Input
         type={!type ? 'text' : type}

@@ -24,6 +24,7 @@ const ProductInformation = ({ productInfo, totalPrice }) => {
       <TableContainer
         mt="4"
         ml={{ base: '4', md: '0' }}
+        display={{ base: 'none', md: 'block' }}
         borderRadius="lg"
         border="1px"
         borderColor="gray.200"
@@ -55,6 +56,44 @@ const ProductInformation = ({ productInfo, totalPrice }) => {
               </Td>
               <Td whiteSpace="normal" fontSize={{ base: '10', md: '14' }}>
                 {productInfo.description}
+              </Td>
+              <Td whiteSpace="normal" fontSize={{ base: '10', md: '14' }}>
+                {productInfo.defect}
+              </Td>
+            </Tr>
+          </Tbody>
+        </Table>
+      </TableContainer>
+      <TableContainer
+        mt="4"
+        display={{ base: 'block', md: 'none' }}
+        borderRadius="lg"
+        border="1px"
+        borderColor="gray.200"
+        maxW="100%"
+        overflowX="auto"
+      >
+        <Table variant="simple">
+          <Tbody>
+            <Tr>
+              <Td fontSize={{ base: '12', md: '16' }} fontWeight="900">
+                제품명
+              </Td>
+              <Td whiteSpace="normal" fontSize={{ base: '10', md: '14' }}>
+                {productInfo.productName}
+              </Td>
+            </Tr>
+            <Tr>
+              <Td fontSize={{ base: '12', md: '16' }} fontWeight="900">
+                설명
+              </Td>
+              <Td whiteSpace="normal" fontSize={{ base: '10', md: '14' }}>
+                {productInfo.description}
+              </Td>
+            </Tr>
+            <Tr>
+              <Td fontSize={{ base: '12', md: '16' }} fontWeight="900">
+                결함
               </Td>
               <Td whiteSpace="normal" fontSize={{ base: '10', md: '14' }}>
                 {productInfo.defect}

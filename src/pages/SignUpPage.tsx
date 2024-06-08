@@ -1,7 +1,7 @@
 import PageLayout from '@/layouts/PageLayout';
 import Header from '@/components/common/Header';
 import PageTitle from '@/components/Form/PageTitle';
-import { Box, Button, theme, Flex, Text, Card } from '@chakra-ui/react';
+import { Button, theme, Flex, Text } from '@chakra-ui/react';
 import FormInput from '@/components/Form/FormInput';
 import { useNavigate } from 'react-router-dom';
 import useSignUpForm from '@/hooks/SignUp/useSignUpForm';

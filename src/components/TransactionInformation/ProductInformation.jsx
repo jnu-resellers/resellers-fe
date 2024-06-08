@@ -14,41 +14,58 @@ import {
 const ProductInformation = ({ productInfo, totalPrice }) => {
   return (
     <div>
-      <Heading mt="24" as="h2" size="md">
+      <Heading
+        mt={{ base: '6', md: '24' }}
+        as="h2"
+        size={{ base: 'sm', md: 'md' }}
+      >
         구매 상품 정보
       </Heading>
       <TableContainer
         mt="4"
+        ml={{ base: '4', md: '0' }}
         borderRadius="lg"
         border="1px"
         borderColor="gray.200"
+        maxW="100%"
+        overflowX="auto"
       >
         <Table mt="2" variant="simple">
           <Thead>
             <Tr>
-              <Th fontSize="16" fontWeight="900">
+              <Th fontSize={{ base: '12', md: '16' }} fontWeight="900">
                 제품명
               </Th>
-              <Th fontSize="16" fontWeight="900">
+              <Th fontSize={{ base: '12', md: '16' }} fontWeight="900">
                 설명
               </Th>
-              <Th width="33%" fontSize="16" fontWeight="900">
+              <Th
+                width={{ base: '50%', md: '33%' }}
+                fontSize={{ base: '12', md: '16' }}
+                fontWeight="900"
+              >
                 결함
               </Th>
             </Tr>
           </Thead>
           <Tbody>
             <Tr>
-              <Td whiteSpace="normal">{productInfo.productName}</Td>
-              <Td whiteSpace="normal">{productInfo.description}</Td>
-              <Td whiteSpace="normal">{productInfo.defect}</Td>
+              <Td whiteSpace="normal" fontSize={{ base: '10', md: '14' }}>
+                {productInfo.productName}
+              </Td>
+              <Td whiteSpace="normal" fontSize={{ base: '10', md: '14' }}>
+                {productInfo.description}
+              </Td>
+              <Td whiteSpace="normal" fontSize={{ base: '10', md: '14' }}>
+                {productInfo.defect}
+              </Td>
             </Tr>
           </Tbody>
         </Table>
       </TableContainer>
       <Flex mt="4" justify="flex-end">
-        <Heading as="h2" size="md">
-          <Text as="span" mr="24">
+        <Heading as="h2" size={{ base: 'sm', md: 'md' }}>
+          <Text as="span" mr={{ base: '2', md: '24' }}>
             총 금액
           </Text>
           {totalPrice.toLocaleString()}원

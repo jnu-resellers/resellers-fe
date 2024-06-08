@@ -16,7 +16,11 @@ const SELLER_INFO = {
 const SellerInformation = ({ sellerInfo }) => {
   return (
     <div>
-      <Heading mt="12" as="h2" size="md">
+      <Heading
+        mt={{ base: '6', md: '12' }}
+        as="h2"
+        size={{ base: 'sm', md: 'md' }}
+      >
         입금 정보
       </Heading>
       <TableContainer
@@ -24,24 +28,34 @@ const SellerInformation = ({ sellerInfo }) => {
         borderRadius="lg"
         border="1px"
         borderColor="gray.200"
+        maxW="100%"
+        overflowX="auto"
       >
         <Table mt="2" variant="simple">
           <Tbody>
             <Tr>
-              <Td>은행명</Td>
-              <Td textAlign="right">{SELLER_INFO.bankName}</Td>
+              <Td fontSize={{ base: '12', md: '14' }}>은행명</Td>
+              <Td textAlign="right" fontSize={{ base: '12', md: '14' }}>
+                {SELLER_INFO.bankName}
+              </Td>
             </Tr>
             <Tr>
-              <Td>계좌번호</Td>
-              <Td textAlign="right">{SELLER_INFO.accountNumber}</Td>
+              <Td fontSize={{ base: '12', md: '14' }}>계좌번호</Td>
+              <Td textAlign="right" fontSize={{ base: '12', md: '14' }}>
+                {SELLER_INFO.accountNumber}
+              </Td>
             </Tr>
             <Tr>
-              <Td>예금주</Td>
-              <Td textAlign="right">{SELLER_INFO.accountHolder}</Td>
+              <Td fontSize={{ base: '12', md: '14' }}>예금주</Td>
+              <Td textAlign="right" fontSize={{ base: '12', md: '14' }}>
+                {SELLER_INFO.accountHolder}
+              </Td>
             </Tr>
             <Tr>
-              <Td>연락 수단</Td>
-              <Td textAlign="right">{sellerInfo.contact}</Td>
+              <Td fontSize={{ base: '12', md: '14' }}>연락 수단</Td>
+              <Td textAlign="right" fontSize={{ base: '12', md: '14' }}>
+                {sellerInfo.contact}
+              </Td>
             </Tr>
           </Tbody>
         </Table>

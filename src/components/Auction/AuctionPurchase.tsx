@@ -18,16 +18,22 @@ export const AuctionPurchase = () => {
   if (status === 'pending') return <>로딩 중 ...</>;
 
   return (
-    <Box w="100%">
-      <Flex justifyContent="start" alignItems="center">
-        <Text fontSize="xx-large" fontWeight="600" mr="2rem">
+    <Box w="100%" p={{ base: 2, sm: 4, md: 6 }}>
+      <Flex justifyContent="start" alignItems="center" flexWrap="wrap">
+        <Text
+          fontSize={{ base: 'xl', sm: '2xl', md: '3xl', lg: '4xl' }}
+          fontWeight="600"
+          mr={{ base: '0', md: '2rem' }}
+        >
           기자재 경매
         </Text>
-        <Text fontSize="larger">상품 카테고리 : {auction.itemType}</Text>
+        <Text fontSize={{ base: 'md', sm: 'lg', md: 'xl' }}>
+          상품 카테고리 : {auction.itemType}
+        </Text>
       </Flex>
       <Divider orientation="horizontal" />
       <Flex flexDirection="column">
-        <Box w="100%" mr="8rem">
+        <Box w="100%">
           <AuctionPurchaseDetails
             imageNames={auction.imageNames}
             productName={auction.productName}

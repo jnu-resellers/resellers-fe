@@ -19,9 +19,15 @@ export const AuctionTime = ({ startAt, endAt }: AuctionTimeProps) => {
 
   return (
     <Flex flexDirection="column" color={theme.colors.gray[400]}>
-      <Text fontSize="small">시작 시간 : {timeFormatter(startAt)}</Text>
-      <Text fontSize="small">종료 시간 : {timeFormatter(endAt)}</Text>
-      <Text fontSize="small">남은 시간 : {restTime}</Text>
+      <Text fontSize={{ base: 'small', md: 'medium' }}>
+        시작 시간 : {timeFormatter(startAt)}
+      </Text>
+      <Text fontSize={{ base: 'small', md: 'medium' }}>
+        종료 시간 : {timeFormatter(endAt)}
+      </Text>
+      <Text fontSize={{ base: 'small', md: 'medium' }}>
+        남은 시간 : {restTime}
+      </Text>
     </Flex>
   );
 };

@@ -1,6 +1,6 @@
 import Header from '@/components/common/Header';
 import PageLayout from '@/layouts/PageLayout';
-import { Heading, Flex, Text, theme, Button } from '@chakra-ui/react';
+import { Heading, Flex, Text, Button, useTheme } from '@chakra-ui/react';
 import ProductInformation from '@/components/TransactionInformation/ProductInformation';
 import SellerInformation from '@/components/TransactionInformation/SellerInformation';
 import { useNavigate } from 'react-router-dom';
@@ -14,6 +14,7 @@ const TransactionInformationPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const tradeId = Number(id);
+  const theme = useTheme();
 
   const { mutate } = useMutation({
     mutationFn: postTradeComplete,
@@ -40,34 +41,55 @@ const TransactionInformationPage = () => {
     <PageLayout>
       <Header showIconsAndTexts={true} />
       <PageTitle title="거래 정보" />
-      <Flex direction="column" align="center" justify="center" mt="6">
-        <Heading mt="24" as="h2" size="3xl">
+      <Flex
+        direction="column"
+        align="center"
+        justify="center"
+        mt={{ base: '4', md: '6' }}
+      >
+        <Heading
+          mt={{ base: '12', md: '24' }}
+          as="h2"
+          size={{ base: 'lg', md: '3xl' }}
+          textAlign="center"
+        >
           <Text as="span" color="green.500">
             주문 신청이 완료
           </Text>
           되었습니다.
         </Heading>
-        <Heading mt="4" as="h3" size="lg">
+        <Heading
+          mt="4"
+          as="h3"
+          size={{ base: 'md', md: 'lg' }}
+          textAlign="center"
+        >
           아래 계좌정보에 입금해주세요.
         </Heading>
       </Flex>
       <ProductInformation productInfo={buyProducts} totalPrice={totalPrice} />
       <SellerInformation sellerInfo={sellerInfo} />
-      <Flex justify="space-between" mt="8">
+      <Flex
+        justify={{ base: 'center', md: 'space-between' }}
+        mt="8"
+        wrap="wrap"
+      >
         <Button
-          px="16"
-          py="4"
+          px={{ base: '8', md: '16' }}
+          py={{ base: '2', md: '4' }}
           color="white"
           bgColor={theme.colors.orange[200]}
           onClick={() => {
             navigate('/');
           }}
+          mb={{ base: '4', md: '0' }}
+          mr={{ base: '2', md: '0' }}
         >
           홈으로 돌아가기
         </Button>
         <Button
-          px="16"
-          py="4"
+          px={{ base: '8', md: '16' }}
+          py={{ base: '2', md: '4' }}
           color="white"
           bgColor={theme.colors.gray[400]}
           onClick={() => {

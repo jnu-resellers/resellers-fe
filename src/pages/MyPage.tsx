@@ -8,6 +8,8 @@ import { Navigate } from 'react-router-dom';
 import ProfileCard from '../components/MyPage/ProfileCard';
 import MyMaterialList from '../components/MyPage/MyMaterialList';
 import MyPurchaseList from '../components/MyPage/MyPurchaseList';
+import MyRegisteredAuctionList from '../components/MyPage/MyRegisteredAuctionList';
+import MyBidAuctionList from '../components/MyPage/MyBidAuctionList';
 
 const MyPage = () => {
   const rawMemberId = localStorage.getItem(LS_MEMBER_ID);
@@ -24,8 +26,10 @@ const MyPage = () => {
       <ProfileCard userId={+rawMemberId} />
       <Tabs mt={8}>
         <TabList>
-          <Tab>구매 내역</Tab>
-          <Tab>판매 내역</Tab>
+          <Tab>기자재 구매</Tab>
+          <Tab>기자재 판매</Tab>
+          <Tab>경매 등록</Tab>
+          <Tab>경매 입찰</Tab>
           <Tab>회원정보 수정</Tab>
         </TabList>
         <TabPanels>
@@ -34,6 +38,12 @@ const MyPage = () => {
           </TabPanel>
           <TabPanel>
             <MyMaterialList userId={+rawMemberId} />
+          </TabPanel>
+          <TabPanel>
+            <MyRegisteredAuctionList userId={+rawMemberId} />
+          </TabPanel>
+          <TabPanel>
+            <MyBidAuctionList userId={+rawMemberId} />
           </TabPanel>
           <TabPanel>
             <CustomerServiceCard />

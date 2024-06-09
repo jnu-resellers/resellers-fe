@@ -2,6 +2,9 @@ import { Flex, Box, Text, Wrap, WrapItem, Img } from '@chakra-ui/react';
 import { DELIVERY_REVIEW } from 'src/constants/delivery';
 
 export const DeliveryReview = () => {
+  const onClickDelivery = (url: string) => {
+    window.open(url, '_blank');
+  };
   return (
     <Flex
       mt="4rem"
@@ -47,6 +50,7 @@ export const DeliveryReview = () => {
                   p={{ base: '1rem', md: '2rem' }}
                   border="1px solid #E2E8F0"
                   mt="1rem"
+                  onClick={() => onClickDelivery(review.reviewCompany.url)}
                 >
                   <Img
                     src={review.reviewCompany.image}

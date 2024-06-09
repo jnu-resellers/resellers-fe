@@ -11,8 +11,12 @@ import deliveryPanelPc from '../../assets/deliveryPanelPc.svg';
 import deliveryPanelMob from '../../assets/deliveryPanelMob.svg';
 import { DELIVERY_LIST } from 'src/constants/delivery';
 import { DeliveryReview } from './DeliveryReview';
+import { DeliveryContact } from './DeliveryContact';
 
 export const DeliveryPartner = () => {
+  const onClickDelivery = (url: string) => {
+    window.open(url, '_blank');
+  };
   return (
     <Flex justify="center" flexDirection="column" alignItems="center">
       <Img
@@ -46,6 +50,7 @@ export const DeliveryPartner = () => {
               _hover={{ transform: 'scale(1.05)' }}
               width="100%"
               flexDirection={{ base: 'column', md: 'row' }}
+              onClick={() => onClickDelivery(delivery.url)}
             >
               <Img
                 src={delivery.image}
@@ -77,6 +82,7 @@ export const DeliveryPartner = () => {
         ))}
       </Wrap>
       <DeliveryReview />
+      <DeliveryContact />
     </Flex>
   );
 };

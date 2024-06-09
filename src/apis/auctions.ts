@@ -1,3 +1,4 @@
+import { GetResponseBody } from './common';
 import https from './https';
 import { PostMaterialReq } from './materials';
 
@@ -91,4 +92,26 @@ export const getAuctionBidList = async ({
 }: GetAuctionBidListRequest) => {
   const response = await https.get(`/auction/${auctionId}/bid`);
   return response.data.response as GetAuctionBidListResponse;
+};
+
+interface GetRegisteredAuctionListRequest {
+  memberId: number;
+}
+
+interface GetRegisteredAuctionListResponse {
+  materials: Array<{
+    fileName: string;
+    productName: string;
+    itemType: string;
+    nowPrice: number;
+    auctionStatus: '판매중' | '유찰' | '낙찰';
+    auctionId: number;
+  }>;
+}
+
+export const getRegisteredAuctionList = async ({
+  memberId,
+}: GetRegisteredAuctionListRequest) => {
+  const response = await https.get(`/auction/member/${memberId}`);
+  return response.data as GetResponseBody<GetRegisteredAuctionListResponse>;
 };

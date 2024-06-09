@@ -108,7 +108,7 @@ const MyBidAuctionListItem = ({
             >
               <Button onClick={onRedirectAuctionDetail}>상세 정보</Button>
               <Text color={theme.colors.gray[500]}>
-                입찰 시각: {renderDateFormat(deadline)}
+                경매 마감일: {renderDateFormat(deadline)}
               </Text>
             </Flex>
           </Box>

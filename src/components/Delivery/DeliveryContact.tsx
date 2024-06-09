@@ -1,4 +1,4 @@
-import { Flex, Box, Text, Img } from '@chakra-ui/react';
+import { Flex, Box, Text, Img, Button } from '@chakra-ui/react';
 import truck from '../../assets/truck.png';
 
 export const DeliveryContact = () => {
@@ -38,26 +38,17 @@ export const DeliveryContact = () => {
           리셀러스의 배송 파트너로 등록해보세요!
         </Text>
       </Box>
-      <Box
-        mt={{ base: '2rem', md: '0' }}
-        p={{ base: '1rem', md: '2rem' }}
-        background="orange.300"
-        borderRadius="md"
-        textAlign="center"
-        ml={{ base: '0', md: '2rem' }}
-        mr={{ base: '0', md: '2rem' }}
+
+      <Button
+        fontSize={{ base: 'lg', md: '2xl' }}
+        fontWeight="600"
+        color="white"
+        background="orange.500"
+        p={{ base: 4, md: 8 }}
+        m={{ base: '1rem', md: '2rem' }}
       >
-        <Text
-          fontSize={{
-            base: 'lg',
-            md: '2xl',
-          }}
-          fontWeight="600"
-          color="white"
-        >
-          ds1234@gmail.com
-        </Text>
-      </Box>
+        문의하기
+      </Button>
     </Flex>
   );
 };

@@ -4,6 +4,7 @@ interface Delivery {
   description: string;
   image: string;
   review: number;
+  url: string;
 }
 
 interface DeliveryReview {
@@ -21,6 +22,7 @@ export const DELIVERY_LIST: Delivery[] = [
     description: '전국화물 운송, 중앙일보 브랜드 대상!',
     image: 'https://1577-0005.com/assets/images/element/07.png',
     review: 124,
+    url: 'https://1577-0005.com/',
   },
   {
     id: 2,
@@ -29,6 +31,7 @@ export const DELIVERY_LIST: Delivery[] = [
     image:
       'https://sendy.ai/_next/image?url=%2Fimage%2Fwomen-and-truck-pc%402x.webp&w=2048&q=75',
     review: 98,
+    url: 'https://sendy.ai/',
   },
   {
     id: 3,
@@ -36,6 +39,7 @@ export const DELIVERY_LIST: Delivery[] = [
     description: ' 복잡하기만 했던 화물접수는 이제 그만',
     image: 'https://www.1600-7324.com/assets/img/main_merit_img2.png',
     review: 76,
+    url: 'https://www.1600-7324.com/',
   },
   {
     id: 4,
@@ -43,6 +47,7 @@ export const DELIVERY_LIST: Delivery[] = [
     description: '장거리 단거리 상관없이 저렴하고 빠르게!',
     image: 'https://www.전국용달.kr/images/logo.png',
     review: 112,
+    url: 'https://www.전국용달.kr/',
   },
   {
     id: 5,
@@ -50,6 +55,7 @@ export const DELIVERY_LIST: Delivery[] = [
     description: '전국 모든 특급 배송!',
     image: 'http://www.postb.co.kr/image/common/top_logo2.jpg',
     review: 88,
+    url: 'http://www.postb.co.kr/',
   },
   {
     id: 6,
@@ -57,6 +63,7 @@ export const DELIVERY_LIST: Delivery[] = [
     description: '배송 고민은 두발 히어로에게!',
     image: 'https://doobalhero.kr/assets/images/main/logo.png',
     review: 67,
+    url: 'https://doobalhero.kr/',
   },
   {
     id: 7,
@@ -64,6 +71,7 @@ export const DELIVERY_LIST: Delivery[] = [
     description: '고품격 용달, 이사! 통인 익스프레스!',
     image: 'https://tonginexp.com/default/img/theme/assets/img/about_01.jpg',
     review: 102,
+    url: 'https://tonginexp.com/',
   },
   {
     id: 8,
@@ -71,6 +79,7 @@ export const DELIVERY_LIST: Delivery[] = [
     description: '용달 이사 참 잘하는 집!',
     image: 'https://www.용참.com/images/main/cont3.png',
     review: 83,
+    url: 'https://www.용참.com/',
   },
 ];
 

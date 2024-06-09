@@ -1,23 +1,23 @@
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { getRegisteredAuctionList } from '../../apis/auctions';
+import { getMyAuctionList } from '../../apis/auctions';
 import { Stack, Button, Box, Text } from '@chakra-ui/react';
-import AuctionListItem from './AuctionListItem';
+import MyBidAuctionListItem from './MyBidAuctionListItem';
 
-interface MyRegisteredAuctionListProps {
+interface MyBidAuctionListProps {
   userId: number;
 }
 
-const MyRegisteredAuctionList = ({ userId }: MyRegisteredAuctionListProps) => {
+const MyBidAuctionList = ({ userId }: MyBidAuctionListProps) => {
   const navigate = useNavigate();
 
   const { data, status } = useQuery({
-    queryKey: ['registeredAuction', userId],
-    queryFn: () => getRegisteredAuctionList({ memberId: userId }),
+    queryKey: ['myBidAuctionList', userId],
+    queryFn: () => getMyAuctionList({ memberId: userId }),
   });
 
-  const onRedirectRegister = () => {
-    navigate('/auction-form');
+  const onRedirectHome = () => {
+    navigate('/auction');
   };
 
   if (status === 'pending')
@@ -38,27 +38,29 @@ const MyRegisteredAuctionList = ({ userId }: MyRegisteredAuctionListProps) => {
     return (
       <Stack textAlign="center" w="100%">
         <Text my={8} fontSize={20}>
-          아직 경매를 등록한 내역이 없습니다.
+          아직 구매한 내역이 없습니다.
         </Text>
-        <Button onClick={onRedirectRegister}>경매 등록하러 가기</Button>
+        <Button onClick={onRedirectHome}>쇼핑하러 가기</Button>
       </Stack>
     );
 
   return (
     <Stack>
       {data.response.map((auction) => (
-        <AuctionListItem
+        <MyBidAuctionListItem
           key={auction.auctionId}
-          auctionId={auction.auctionId}
           title={auction.productName}
           category={auction.itemType}
           mainImageUrl={auction.fileName}
-          price={auction.nowPrice}
+          nowPrice={auction.nowPrice}
+          bidPrice={auction.bidPrice}
           auctionStatus={auction.auctionStatus}
+          auctionId={auction.auctionId}
+          deadline={auction.deadLine}
         />
       ))}
     </Stack>
   );
 };
 
-export default MyRegisteredAuctionList;
+export default MyBidAuctionList;

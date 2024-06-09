@@ -9,6 +9,7 @@ import ProfileCard from '../components/MyPage/ProfileCard';
 import MyMaterialList from '../components/MyPage/MyMaterialList';
 import MyPurchaseList from '../components/MyPage/MyPurchaseList';
 import MyRegisteredAuctionList from '../components/MyPage/MyRegisteredAuctionList';
+import MyBidAuctionList from '../components/MyPage/MyBidAuctionList';
 
 const MyPage = () => {
   const rawMemberId = localStorage.getItem(LS_MEMBER_ID);
@@ -41,7 +42,9 @@ const MyPage = () => {
           <TabPanel>
             <MyRegisteredAuctionList userId={+rawMemberId} />
           </TabPanel>
-          <TabPanel>경매 입찰</TabPanel>
+          <TabPanel>
+            <MyBidAuctionList userId={+rawMemberId} />
+          </TabPanel>
           <TabPanel>
             <CustomerServiceCard />
           </TabPanel>

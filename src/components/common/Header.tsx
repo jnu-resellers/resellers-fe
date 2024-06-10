@@ -14,14 +14,14 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { EditIcon, HamburgerIcon } from '@chakra-ui/icons';
-import { BsFillHousesFill } from 'react-icons/bs';
-import { BsPersonCircle } from 'react-icons/bs';
+import { BsFillHousesFill, BsPersonCircle } from 'react-icons/bs';
 import { RiAuctionFill } from 'react-icons/ri';
+import { FaTruck } from 'react-icons/fa';
 import Logo from '@/assets/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import IconTextLink from './IconTextLink';
 import { LS_MEMBER_ID } from 'src/constants/lsKey';
-import { FaTruck } from 'react-icons/fa';
+import { useEffect } from 'react';
 
 interface HeaderProps {
   showIconsAndTexts: boolean;
@@ -32,6 +32,7 @@ const Header = ({ showIconsAndTexts, onLogoClick }: HeaderProps) => {
   const navigate = useNavigate();
   const isNotLogin = !localStorage.getItem(LS_MEMBER_ID);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const isXlOrLarger = useBreakpointValue({ base: false, xl: true });
 
   const onLogin = () => {
     navigate('/signin');
@@ -40,11 +41,18 @@ const Header = ({ showIconsAndTexts, onLogoClick }: HeaderProps) => {
     navigate('/me');
   };
 
-  const mb = useBreakpointValue({ base: 4, md: 0 });
+  const mb = useBreakpointValue({ base: 4, xl: 0 });
   const flexProps = useBreakpointValue({
     base: { w: '100%', justifyContent: 'space-between', alignItems: 'center' },
-    md: {},
+    md: { w: '100%', justifyContent: 'space-between', alignItems: 'center' },
+    xl: {},
   });
+
+  useEffect(() => {
+    if (isXlOrLarger && isOpen) {
+      onClose();
+    }
+  }, [isXlOrLarger, isOpen, onClose]);
 
   return (
     <Box
@@ -64,24 +72,30 @@ const Header = ({ showIconsAndTexts, onLogoClick }: HeaderProps) => {
             cursor="pointer"
           />
         </Link>
-        <IconButton
-          aria-label="메뉴 열기"
-          icon={<HamburgerIcon />}
-          fontSize="2rem"
-          display={{ base: 'block', md: 'none' }}
-          onClick={onOpen}
-          bg="transparent"
-          color="#FBD38D"
-          mb={1}
+        <Box
+          display={{ base: 'flex', xl: 'none' }}
           justifyContent="flex-end"
-        />
+          flex="1"
+        >
+          <IconButton
+            aria-label="메뉴 열기"
+            icon={<HamburgerIcon />}
+            fontSize="2rem"
+            onClick={onOpen}
+            bg="transparent"
+            _hover={{ backgroundColor: 'transparent' }}
+            _focus={{ backgroundColor: 'transparent' }}
+            color="#FBD38D"
+            mb={1}
+          />
+        </Box>
       </Flex>
       {showIconsAndTexts && (
         <>
           <Box
-            display={{ base: 'none', md: 'flex' }}
-            flexDirection={{ base: 'column', md: 'row' }}
-            alignItems={{ base: 'flex-start', md: 'center' }}
+            display={{ base: 'none', xl: 'flex' }}
+            flexDirection={{ base: 'column', xl: 'row' }}
+            alignItems={{ base: 'flex-start', xl: 'center' }}
             mt={{ base: 4, md: 0 }}
           >
             <IconTextLink

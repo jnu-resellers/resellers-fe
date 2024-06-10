@@ -44,8 +44,8 @@ export const AuctionPurchaseModal = ({
       });
       closeModal();
     },
-    onError: () => {
-      alert('입찰에 실패했습니다.');
+    onError: (error) => {
+      alert(error);
     },
   });
 
@@ -108,9 +108,12 @@ export const AuctionPurchaseModal = ({
                 alert('로그인이 필요한 서비스입니다.');
                 return;
               }
-
-              if (addedPrice === 0) {
-                alert('현재가 보다 높은 입찰가를 설정해주세요.');
+              if (nowPrice >= addedPrice) {
+                alert('현재 입찰가보다 높은 가격으로 입찰해주세요.');
+                return;
+              }
+              if (memberId === sellerIdStr) {
+                alert('기자재의 판매자는 입찰할 수 없습니다.');
                 return;
               }
               mutate({

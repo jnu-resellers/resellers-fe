@@ -1,8 +1,23 @@
-import { Flex, Text, Box, Divider } from '@chakra-ui/react';
+import { Flex, Text, Box, Divider, Button, theme } from '@chakra-ui/react';
 import { DescriptionBox } from './DescriptionBox';
-import { PurchaseProps } from './Purchase';
 import { PurchaseImages } from './PurchaseImages';
 import { PriceCheck } from './PriceCheck';
+
+interface PurchaseDetailsProps {
+  writer: string;
+  product: {
+    productId: number;
+    productName: string;
+    price: number;
+    description: string;
+    defect: string;
+    fileNames: string[];
+  };
+  contact: string;
+  itemType: string;
+  isSold: boolean;
+  onSubmitOrder: () => void;
+}
 
 const priceFormatter = (price: number) => {
   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -13,7 +28,9 @@ export const PurchaseDetails = ({
   product: { productId, productName, price, description, defect, fileNames },
   contact,
   itemType,
-}: PurchaseProps) => {
+  isSold,
+  onSubmitOrder,
+}: PurchaseDetailsProps) => {
   return (
     <Flex
       flexDirection="column"
@@ -32,14 +49,28 @@ export const PurchaseDetails = ({
       </Text>
       <Divider orientation="horizontal" mb="1rem" />
       <Box key={productId}>
-        <Text fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>
-          {priceFormatter(price)}원
-        </Text>
+        <Flex justifyContent="space-between">
+          <Text fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>
+            {priceFormatter(price)}원
+          </Text>
+          <Button
+            float="right"
+            px={{ base: 4, lg: 28 }}
+            py={{ base: 2, lg: 6 }}
+            color="white"
+            bgColor={theme.colors.orange[300]}
+            alignSelf="flex-end"
+            isDisabled={isSold}
+            onClick={onSubmitOrder}
+          >
+            주문 신청
+          </Button>
+        </Flex>
         <PurchaseImages fileNames={fileNames} />
         <Text
           fontSize={{ base: 'xl', sm: '2xl', md: '3xl' }}
           fontWeight="600"
-          marginBottom="2rem"
+          m="2rem 0 2rem 0"
         >
           설명
         </Text>

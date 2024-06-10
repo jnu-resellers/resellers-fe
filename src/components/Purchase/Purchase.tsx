@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Text, Divider, theme } from '@chakra-ui/react';
+import { Box, Flex, Text, Divider } from '@chakra-ui/react';
 import { PurchaseDetails } from './PurchaseDetails';
 import { getMaterial } from 'src/apis/materials';
 import { useQuery, useMutation } from '@tanstack/react-query';
@@ -84,18 +84,9 @@ export const Purchase = () => {
             writer={material.writer}
             product={material.product}
             contact={material.contact}
+            onSubmitOrder={onSubmitOrder}
+            isSold={material.product.isSold || false}
           />
-          <Button
-            px={{ base: 4, lg: 28 }}
-            py={{ base: 2, lg: 6 }}
-            color="white"
-            bgColor={theme.colors.orange[300]}
-            alignSelf="flex-end"
-            isDisabled={material.product.isSold}
-            onClick={onSubmitOrder}
-          >
-            주문 신청
-          </Button>
         </Box>
       </Flex>
     </Box>

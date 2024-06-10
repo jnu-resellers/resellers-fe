@@ -49,6 +49,7 @@ interface GetAuctionPurchaseRes {
   description: string;
   defect: string;
   priceUnit: number;
+  memberId: number;
 }
 
 export const getAuctionPurchase = async (

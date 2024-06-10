@@ -48,6 +48,7 @@ export const AuctionPurchase = () => {
             defect={auction.defect}
             priceUnit={auction.priceUnit}
             auctionId={auctionId}
+            sellerId={auction.memberId}
           />
         </Box>
       </Flex>

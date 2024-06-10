@@ -14,10 +14,25 @@ import { useAuction } from '@/hooks/Auction/useAuction';
 import { useParams } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { LS_MEMBER_ID } from 'src/constants/lsKey';
+import { AxiosError, AxiosResponse } from 'axios';
+
+interface AuctionError extends AxiosError {
+  response?: AxiosResponse<
+    | {
+        error?:
+          | {
+              reason?: string | undefined;
+            }
+          | undefined;
+      }
+    | undefined
+  >;
+}
 
 interface AuctionPurchaseModalProps {
   priceUnit: number;
   nowPrice: number;
+  sellerId: number;
   closeModal: () => void;
 }
 
@@ -41,8 +56,8 @@ export const AuctionPurchaseModal = ({
       });
       closeModal();
     },
-    onError: () => {
-      alert('입찰에 실패했습니다.');
+    onError: ({ response }: AuctionError) => {
+      alert(response?.data?.error?.reason);
     },
   });
 
@@ -103,11 +118,6 @@ export const AuctionPurchaseModal = ({
             onClick={() => {
               if (!memberId) {
                 alert('로그인이 필요한 서비스입니다.');
-                return;
-              }
-
-              if (addedPrice === 0) {
-                alert('현재가 보다 높은 입찰가를 설정해주세요.');
                 return;
               }
               mutate({

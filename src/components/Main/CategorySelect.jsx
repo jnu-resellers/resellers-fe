@@ -97,8 +97,8 @@ const CategorySelect = ({ selectedCategory, onCategorySelect }) => {
                   fontWeight={selectedCategory === category ? 'bold' : 'normal'}
                   fontSize={{
                     base: 'sm',
-                    md: 'md',
-                    lg: 'md',
+                    lg: 'sm',
+                    xl: 'md',
                   }}
                   onClick={() => handleCategorySelect(category)}
                 >

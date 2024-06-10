@@ -18,12 +18,14 @@ import { LS_MEMBER_ID } from 'src/constants/lsKey';
 interface AuctionPurchaseModalProps {
   priceUnit: number;
   nowPrice: number;
+  sellerId: number;
   closeModal: () => void;
 }
 
 export const AuctionPurchaseModal = ({
   priceUnit,
   nowPrice,
+  sellerId,
   closeModal,
 }: AuctionPurchaseModalProps) => {
   const memberId = localStorage.getItem(LS_MEMBER_ID);
@@ -31,6 +33,7 @@ export const AuctionPurchaseModal = ({
   const auctionId = Number(id);
   const { addedPrice, addPriceUnit, subtractPriceUnit } = useAuction();
   const queryClient = useQueryClient();
+  const sellerIdStr = sellerId.toString();
   const { mutate } = useMutation({
     mutationKey: ['auction'],
     mutationFn: patchAuctionPrice,

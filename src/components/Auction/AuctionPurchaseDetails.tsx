@@ -32,6 +32,7 @@ interface AuctionPurchaseDetailProps {
   defect: string;
   priceUnit: number;
   auctionId: number;
+  sellerId: number;
 }
 
 export const AuctionPurchaseDetails = ({
@@ -47,6 +48,7 @@ export const AuctionPurchaseDetails = ({
   defect,
   priceUnit,
   auctionId,
+  sellerId,
 }: AuctionPurchaseDetailProps) => {
   const { isModalOpen, openModal, closeModal } = useAuction();
 
@@ -128,6 +130,7 @@ export const AuctionPurchaseDetails = ({
           closeModal={closeModal}
           priceUnit={priceUnit}
           nowPrice={nowPrice}
+          sellerId={sellerId}
         />
       )}
     </Flex>

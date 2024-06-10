@@ -25,9 +25,9 @@ export const PurchaseImages = ({ fileNames }: PurchaseImagesProps) => {
     <Flex
       flexDirection="row"
       w="100%"
-      m={{ base: 4, lg: '2.25rem' }}
       maxW={{ base: '20rem', lg: '32rem' }}
       justify="center"
+      mt={{ base: 4, sm: 6, lg: 8 }}
     >
       <Slider {...settings}>
         {fileNames.map((fileName: string) => (

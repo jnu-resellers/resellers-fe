@@ -14,6 +14,20 @@ import { useAuction } from '@/hooks/Auction/useAuction';
 import { useParams } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { LS_MEMBER_ID } from 'src/constants/lsKey';
+import { AxiosError, AxiosResponse } from 'axios';
+
+interface AuctionError extends AxiosError {
+  response?: AxiosResponse<
+    | {
+        error?:
+          | {
+              reason?: string | undefined;
+            }
+          | undefined;
+      }
+    | undefined
+  >;
+}
 
 interface AuctionPurchaseModalProps {
   priceUnit: number;
@@ -25,7 +39,6 @@ interface AuctionPurchaseModalProps {
 export const AuctionPurchaseModal = ({
   priceUnit,
   nowPrice,
-  sellerId,
   closeModal,
 }: AuctionPurchaseModalProps) => {
   const memberId = localStorage.getItem(LS_MEMBER_ID);
@@ -33,7 +46,6 @@ export const AuctionPurchaseModal = ({
   const auctionId = Number(id);
   const { addedPrice, addPriceUnit, subtractPriceUnit } = useAuction();
   const queryClient = useQueryClient();
-  const sellerIdStr = sellerId.toString();
   const { mutate } = useMutation({
     mutationKey: ['auction'],
     mutationFn: patchAuctionPrice,
@@ -44,8 +56,8 @@ export const AuctionPurchaseModal = ({
       });
       closeModal();
     },
-    onError: (error) => {
-      alert(error);
+    onError: ({ response }: AuctionError) => {
+      alert(response?.data?.error?.reason);
     },
   });
 
@@ -106,14 +118,6 @@ export const AuctionPurchaseModal = ({
             onClick={() => {
               if (!memberId) {
                 alert('로그인이 필요한 서비스입니다.');
-                return;
-              }
-              if (nowPrice >= addedPrice) {
-                alert('현재 입찰가보다 높은 가격으로 입찰해주세요.');
-                return;
-              }
-              if (memberId === sellerIdStr) {
-                alert('기자재의 판매자는 입찰할 수 없습니다.');
                 return;
               }
               mutate({
